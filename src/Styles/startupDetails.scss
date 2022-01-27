@@ -1,0 +1,49 @@
+@import "./global.scss";
+.startup__details__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  margin-top: 2em;
+}
+.startup__details__container__img {
+  width: 150px;
+  border-radius: 50px;
+}
+.startup__details__container__img__wrapper {
+  width: 20%;
+}
+.startup__details__container__content {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  min-width: 400px;
+  height: fit-content;
+  padding: 1em;
+  background: $disabled;
+  border-radius: 10px;
+}
+.startup__details__container__content__left__entry {
+  width: 200px;
+  font-size: 14px;
+  color: $textColor;
+  margin-top: 0.5em;
+}
+.startup__details__container__content__right__entry {
+  font-size: 14px;
+  font-weight: bold;
+  width: 200px;
+  color: $textColor;
+  margin-top: 0.5em;
+}
+
+.startup__details__container__text__box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+  margin-top: 2em;
+}
+.startup__details__container__text__box__left {
+  margin-right: 2em;
+}
