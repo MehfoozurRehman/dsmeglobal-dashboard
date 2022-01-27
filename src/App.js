@@ -21,6 +21,8 @@ import AddInvestor from "./Screens/AddInvestor.jsx";
 import AddStartup from "./Screens/AddStartup.jsx";
 import EditStartup from "./Screens/EditStartup.jsx";
 import AddMilestone from "./Screens/AddMilestone.jsx";
+import DeleteConfirmation from "./Screens/DeleteConfirmation";
+import NewsLetter from "./Screens/NewsLetter";
 
 function Main() {
   return (
@@ -45,6 +47,9 @@ function App() {
   const [isAddInvestor, setIsAddInvestor] = useState(false);
   const [isAddStartup, setIsAddStartup] = useState(false);
   const [isEditStartup, setIsEditStartup] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [deleteConfirmationURL, setDeleteConfirmationURL] = useState("");
+  const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
   return (
     <BrowserRouter>
       {isAddQuestion ? <AddQuestion closeOnClick={setIsAddQuestion} /> : null}
@@ -65,6 +70,12 @@ function App() {
       {isAddInvestor ? <AddInvestor closeOnClick={setIsAddInvestor} /> : null}
       {isAddStartup ? <AddStartup closeOnClick={setIsAddStartup} /> : null}
       {isEditStartup ? <EditStartup closeOnClick={setIsEditStartup} /> : null}
+      {deleteConfirmation ? (
+        <DeleteConfirmation
+          deleteConfirmationURL={deleteConfirmationURL}
+          deleteConfirmationId={deleteConfirmationId}
+        />
+      ) : null}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Main />}>
@@ -106,7 +117,26 @@ function App() {
               />
             }
           />
-          <Route path="contact" element={<Contact />} />
+          <Route
+            path="contact"
+            element={
+              <Contact
+                setDeleteConfirmation={setDeleteConfirmation}
+                setDeleteConfirmationURL={setDeleteConfirmationURL}
+                setDeleteConfirmationId={setDeleteConfirmationId}
+              />
+            }
+          />
+          <Route
+            path="news-letter"
+            element={
+              <NewsLetter
+                setDeleteConfirmation={setDeleteConfirmation}
+                setDeleteConfirmationURL={setDeleteConfirmationURL}
+                setDeleteConfirmationId={setDeleteConfirmationId}
+              />
+            }
+          />
           <Route
             path="milestones"
             element={

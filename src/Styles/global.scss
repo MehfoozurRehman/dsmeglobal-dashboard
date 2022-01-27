@@ -90,6 +90,7 @@ body {
 .table__container__header__entry {
   width: fit-content;
   min-width: 150px;
+  margin-right: 2em;
   text-align: center;
   font-size: 12px;
   color: $whiteColor;
@@ -104,7 +105,7 @@ body {
   border-radius: 30px;
   margin-top: 1em;
   cursor: pointer;
-  height: 40px;
+  min-height: 40px;
   margin-bottom: 1em;
   border-radius: 50px;
   background-color: transparent;
@@ -119,6 +120,8 @@ body {
   width: fit-content;
   min-width: 150px;
   text-align: center;
+  max-width: 150px;
+  margin-right: 2em;
 }
 .table__wrapper__heading {
   font-size: 22px;
@@ -134,6 +137,8 @@ body {
   position: relative;
   color: $secondaryColor;
   cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
 }
 .entry__info__row__text__message {
   position: absolute;
@@ -310,6 +315,21 @@ body {
   flex-direction: column;
   width: 100%;
   margin-right: 12px;
+}
+.delete__confirmation {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete__confirmation__popup {
+  background-color: rgb(255, 183, 183);
+  border-radius: 50px;
+  padding: 0.7em 1.5em;
+  color: red;
 }
 @media (max-width: 1440px) {
   .main__container__content__table {
