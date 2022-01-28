@@ -4,11 +4,14 @@ import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 
 export default function Projects({
+  deleteConfirmation,
   setDeleteConfirmation,
   setDeleteConfirmationId,
   setDeleteConfirmationURL,
-  setIsEditProjects,
-  setIsAddProjects,
+  isAdd,
+  isEdit,
+  setIsEdit,
+  setIsAdd,
 }) {
   const [ProjectsData, setProjectsData] = useState([]);
 
@@ -16,7 +19,7 @@ export default function Projects({
     axios.get("http://localhost:9000/api/v1/get_project").then((res) => {
       setProjectsData(res.data);
     });
-  }, []);
+  }, [isAdd, isEdit, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Title" },
@@ -35,7 +38,7 @@ export default function Projects({
         <div className="main__container__header__buttons">
           <button
             onClick={() => {
-              setIsAddProjects(true);
+              setIsAdd(true);
             }}
             className="primary__button"
           >
@@ -83,7 +86,7 @@ export default function Projects({
                 <div style={{ marginRight: 10 }}>
                   <button
                     onClick={() => {
-                      setIsEditProjects(true);
+                      setIsEdit(true);
                     }}
                     className="secondary__button"
                   >
@@ -95,7 +98,7 @@ export default function Projects({
                     onClick={() => {
                       setDeleteConfirmation(true);
                       setDeleteConfirmationId(item._id);
-                      setDeleteConfirmationURL("/delete_roject");
+                      setDeleteConfirmationURL("/delete_project");
                     }}
                     className="primary__button"
                   >

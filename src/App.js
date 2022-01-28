@@ -12,6 +12,12 @@ import DeleteConfirmation from "./Screens/DeleteConfirmation";
 import NewsLetter from "./Screens/NewsLetter";
 import Projects from "./Screens/Projects";
 import Services from "./Screens/Services";
+import AddService from "./Screens/AddService";
+import EditService from "./Screens/EditService";
+import AddProject from "./Screens/AddProject";
+import EditProject from "./Screens/EditProject";
+import Category from "./Screens/Category";
+import AddCategory from "./Screens/AddCategory";
 
 function Main() {
   return (
@@ -26,17 +32,34 @@ function Main() {
 }
 
 function App() {
+  const [isAddCategory, setIsAddCategory] = useState(false);
   const [isAddWork, setIsAddWork] = useState(false);
   const [isEditWork, setIsEditWork] = useState(false);
+  const [isAddService, setIsAddService] = useState(false);
+  const [isEditService, setIsEditService] = useState(false);
+  const [isAddProject, setIsAddProject] = useState(false);
+  const [isEditProject, setIsEditProject] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationURL, setDeleteConfirmationURL] = useState("");
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
   const [editWorkId, setEditWorkId] = useState("");
+  const [editServiceId, setEditServiceId] = useState("");
+  const [editProjectId, setEditProjectId] = useState("");
+
   return (
     <BrowserRouter>
+      {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
       {isAddWork ? <AddWork closeOnClick={setIsAddWork} /> : null}
       {isEditWork ? (
-        <EditWork closeOnClick={setIsEditWork} editWorkId={editWorkId} />
+        <EditWork closeOnClick={setIsEditWork} editId={editWorkId} />
+      ) : null}
+      {isAddService ? <AddService closeOnClick={setIsAddService} /> : null}
+      {isEditService ? (
+        <EditService closeOnClick={setIsEditService} editId={editServiceId} />
+      ) : null}
+      {isAddProject ? <AddProject closeOnClick={setIsAddProject} /> : null}
+      {isEditProject ? (
+        <EditProject closeOnClick={setIsEditProject} editId={editProjectId} />
       ) : null}
       {deleteConfirmation ? (
         <DeleteConfirmation
@@ -52,9 +75,12 @@ function App() {
             path="services"
             element={
               <Services
-                setIsEditWork={setIsEditWork}
-                setEditWorkId={setEditWorkId}
-                setIsAddWork={setIsAddWork}
+                setIsAdd={setIsAddService}
+                setIsEdit={setIsEditService}
+                setEditId={setEditServiceId}
+                isAdd={isAddService}
+                isEdit={isEditService}
+                deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}
@@ -65,9 +91,12 @@ function App() {
             path="projects"
             element={
               <Projects
-                setIsEditWork={setIsEditWork}
-                setEditWorkId={setEditWorkId}
-                setIsAddWork={setIsAddWork}
+                setIsAdd={setIsAddProject}
+                setIsEdit={setIsEditProject}
+                setEditId={setEditProjectId}
+                isAdd={isAddProject}
+                isEdit={isEditProject}
+                deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}
@@ -78,9 +107,12 @@ function App() {
             path="work"
             element={
               <Work
-                setIsEditWork={setIsEditWork}
-                setEditWorkId={setEditWorkId}
-                setIsAddWork={setIsAddWork}
+                setIsAdd={setIsAddWork}
+                setIsEdit={setIsEditWork}
+                setEditId={setEditWorkId}
+                isAdd={isAddWork}
+                isEdit={isEditWork}
+                deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}
@@ -88,9 +120,23 @@ function App() {
             }
           />
           <Route
+            path="category"
+            element={
+              <Category
+                deleteConfirmation={deleteConfirmation}
+                setDeleteConfirmation={setDeleteConfirmation}
+                setDeleteConfirmationURL={setDeleteConfirmationURL}
+                setDeleteConfirmationId={setDeleteConfirmationId}
+                isAddCategory={isAddCategory}
+                setIsAddCategory={setIsAddCategory}
+              />
+            }
+          />
+          <Route
             path="news-letter"
             element={
               <NewsLetter
+                deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}
@@ -101,6 +147,7 @@ function App() {
             path="contact"
             element={
               <Contact
+                deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}

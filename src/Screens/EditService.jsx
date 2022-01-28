@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import imageToBase64 from "image-to-base64";
 
-export default function EditWork({ closeOnClick, editId }) {
-  const [company, setCompany] = useState("");
+export default function EditService({ closeOnClick }) {
+  const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
@@ -13,10 +14,10 @@ export default function EditWork({ closeOnClick, editId }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_work", {
+          axios.post("http://localhost:9000/api/v1/set_service", {
             logo: logo,
             image: image,
-            company: company,
+            categories: categories,
             title: name,
             description: description,
           });
@@ -24,7 +25,7 @@ export default function EditWork({ closeOnClick, editId }) {
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Work</div>
+          <div>Edit Service</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -66,18 +67,6 @@ export default function EditWork({ closeOnClick, editId }) {
             </svg>
           </button>
         </div>
-        <div className="popup__container__form__heading">Company Name</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="company"
-            value={company}
-            onChange={(e) => {
-              setCompany(e.target.value);
-            }}
-            required
-          />
-        </div>
         <div className="popup__container__form__heading">Name</div>
         <div className="login__container__content__form__input">
           <input
@@ -86,6 +75,18 @@ export default function EditWork({ closeOnClick, editId }) {
             value={name}
             onChange={(e) => {
               setName(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Categories</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Categories"
+            value={categories}
+            onChange={(e) => {
+              setCategories(e.target.value);
             }}
             required
           />
@@ -105,7 +106,6 @@ export default function EditWork({ closeOnClick, editId }) {
             required
           />
         </div>
-
         <div style={{ display: "flex" }}>
           <div>
             <div className="popup__container__form__heading">Upload Logo</div>

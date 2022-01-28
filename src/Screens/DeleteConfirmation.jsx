@@ -24,9 +24,10 @@ export default function DeleteConfirmation({
                 )
                 .then(function (response) {
                   console.log(response);
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 1000);
+                  // setTimeout(() => {
+                  //   window.location.reload();
+                  // }, 1000);
+                  closeOnClick(false);
                 })
                 .catch(function (error) {
                   console.log(error);

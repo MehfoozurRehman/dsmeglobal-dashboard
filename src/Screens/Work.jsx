@@ -4,11 +4,14 @@ import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 
 export default function Work({
+  deleteConfirmation,
   setDeleteConfirmation,
   setDeleteConfirmationId,
   setDeleteConfirmationURL,
-  setIsEditWork,
-  setIsAddWork,
+  isAdd,
+  isEdit,
+  setIsEdit,
+  setIsAdd,
 }) {
   const [WorkData, setWorkData] = useState([]);
 
@@ -16,7 +19,7 @@ export default function Work({
     axios.get("http://localhost:9000/api/v1/get_work").then((res) => {
       setWorkData(res.data);
     });
-  }, []);
+  }, [isAdd, isEdit, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Logo" },
@@ -35,7 +38,7 @@ export default function Work({
         <div className="main__container__header__buttons">
           <button
             onClick={() => {
-              setIsAddWork(true);
+              setIsAdd(true);
             }}
             className="primary__button"
           >
@@ -80,7 +83,7 @@ export default function Work({
                 <div style={{ marginRight: 10 }}>
                   <button
                     onClick={() => {
-                      setIsEditWork(true);
+                      setIsEdit(true);
                     }}
                     className="secondary__button"
                   >

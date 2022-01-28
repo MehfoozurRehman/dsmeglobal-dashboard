@@ -4,11 +4,14 @@ import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 
 export default function Services({
+  deleteConfirmation,
   setDeleteConfirmation,
   setDeleteConfirmationId,
   setDeleteConfirmationURL,
-  setIsEditServices,
-  setIsAddServices,
+  isAdd,
+  isEdit,
+  setIsEdit,
+  setIsAdd,
 }) {
   const [ServicesData, setServicesData] = useState([]);
 
@@ -16,7 +19,7 @@ export default function Services({
     axios.get("http://localhost:9000/api/v1/get_service").then((res) => {
       setServicesData(res.data);
     });
-  }, []);
+  }, [isAdd, isEdit, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Logo" },
@@ -35,7 +38,7 @@ export default function Services({
         <div className="main__container__header__buttons">
           <button
             onClick={() => {
-              setIsAddServices(true);
+              setIsAdd(true);
             }}
             className="primary__button"
           >
@@ -97,7 +100,7 @@ export default function Services({
                 <div style={{ marginRight: 10 }}>
                   <button
                     onClick={() => {
-                      setIsEditServices(true);
+                      setIsEdit(true);
                     }}
                     className="secondary__button"
                   >
