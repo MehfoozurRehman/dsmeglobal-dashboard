@@ -7,10 +7,12 @@ export default function InputBox({
   variant,
   title,
   disabled,
+  value,
   style,
   label,
+  name,
   options,
-  onChange
+  onChange,
 }) {
   const [uploadedImg, setUploadedImg] = useState(false);
   if (variant === "textbox") {
@@ -21,7 +23,10 @@ export default function InputBox({
           cols="30"
           rows="6"
           disabled={disabled}
-          placeholder="Design"
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          value={value}
           style={style}
           className="table__details__container__text__box__input"
         />
@@ -37,15 +42,12 @@ export default function InputBox({
           <input
             type="file"
             className="panel__container__form__input__file"
-            onChange={(e) => {
-              console.log(e.target.files[0]);
-              setUploadedImg(true);
-            }}
+            onChange={onChange}
           />
           <div className="panel__container__form__input__pic__content">
             {uploadedImg ? (
               <img
-                src={UploadedPic}
+                src={value}
                 alt="UploadedPic"
                 className="panel__container__form__input__pic__content__img"
               />
@@ -103,7 +105,12 @@ export default function InputBox({
   } else
     return (
       <div className="login__container__content__form__input">
-        <input type={type} placeholder={placeholder} onChange={onChange} required />
+        <input
+          type={type}
+          placeholder={placeholder}
+          onChange={onChange}
+          required
+        />
       </div>
     );
 }
