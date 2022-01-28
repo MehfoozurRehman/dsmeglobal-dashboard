@@ -80,7 +80,6 @@ export default function EditService({ closeOnClick }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Categories</div>
@@ -89,7 +88,6 @@ export default function EditService({ closeOnClick }) {
             options={catagoryDataOption}
             placeholder="Categories"
             isMulti
-            required
             value={categories}
             onChange={(e) => {
               setCategories(e);
@@ -108,7 +106,6 @@ export default function EditService({ closeOnClick }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
-            required
           />
         </div>
 
@@ -146,7 +143,6 @@ export default function EditService({ closeOnClick }) {
                       console.log(error);
                     }
                   }}
-                  required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {logo != "" ? (
@@ -221,7 +217,6 @@ export default function EditService({ closeOnClick }) {
                       console.log(error);
                     }
                   }}
-                  required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {image != "" ? (

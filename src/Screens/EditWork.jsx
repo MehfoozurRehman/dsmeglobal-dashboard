@@ -77,7 +77,6 @@ export default function EditWork({ closeOnClick }) {
             onChange={(e) => {
               setCompany(e.target.value);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Name</div>
@@ -89,7 +88,6 @@ export default function EditWork({ closeOnClick }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
@@ -104,7 +102,6 @@ export default function EditWork({ closeOnClick }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
-            required
           />
         </div>
 
@@ -142,7 +139,6 @@ export default function EditWork({ closeOnClick }) {
                       console.log(error);
                     }
                   }}
-                  required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {logo != "" ? (
@@ -217,7 +213,6 @@ export default function EditWork({ closeOnClick }) {
                       console.log(error);
                     }
                   }}
-                  required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {image != "" ? (

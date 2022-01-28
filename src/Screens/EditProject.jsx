@@ -79,7 +79,6 @@ export default function EditProject({ closeOnClick }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">URL</div>
@@ -91,7 +90,6 @@ export default function EditProject({ closeOnClick }) {
             onChange={(e) => {
               setUrl(e.target.value);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Is Our</div>
@@ -103,7 +101,6 @@ export default function EditProject({ closeOnClick }) {
             ]}
             placeholder="Is Our"
             value={isOur}
-            required
             onChange={(e) => {
               setIsOur(e);
             }}
@@ -115,7 +112,6 @@ export default function EditProject({ closeOnClick }) {
             options={catagoryDataOption}
             placeholder="Categories"
             isMulti
-            required
             value={categories}
             onChange={(e) => {
               setCategories(e);
@@ -155,7 +151,6 @@ export default function EditProject({ closeOnClick }) {
                     console.log(error);
                   }
                 }}
-                required
               />
               <div className="panel__container__form__input__pic__content">
                 {image != "" ? (

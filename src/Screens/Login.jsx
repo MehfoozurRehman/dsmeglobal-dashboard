@@ -9,18 +9,12 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-  // const [isFrom, setIsFrom] = useState(true);
   const LoginUser = async () => {
-    debugger;
-
     let data = { email: email, password: password };
-    //
+
     RegisterAdmin(data)
       .then((res) => {
-        //
-        // console.log('res', res);
         if (res.data.success === true) {
-          //setIsLogedin(true);
           localStorage.setItem("Admin", JSON.stringify(res.data.result.Id));
           navigate("/dashboard");
         } else {
