@@ -63,7 +63,7 @@ export default function Projects({
                 {item.categories.length < 40 ? (
                   <div class="entry__info__row__text">
                     {item.categories.map((category) => (
-                      <>{category + ", "}</>
+                      <>{category.label + ", "}</>
                     ))}
                   </div>
                 ) : (
@@ -72,13 +72,12 @@ export default function Projects({
                       Categories
                       <div className="entry__info__row__text__message">
                         {item.categories.map((category) => (
-                          <>{category + ", "}</>
+                          <>{category.label + ", "}</>
                         ))}
                       </div>
                     </a>
                   </div>
                 )}
-
                 <div class="entry__info__row__text">
                   {item.isOur === true ? "Yes" : "No"}
                 </div>

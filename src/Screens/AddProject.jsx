@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import imageToBase64 from "image-to-base64";
+import Select from "react-select";
+import catagoryDataOption from "../constants/constant";
 
 export default function AddProject({ closeOnClick }) {
   const [name, setName] = useState("");
@@ -93,26 +95,30 @@ export default function AddProject({ closeOnClick }) {
         </div>
         <div className="popup__container__form__heading">Is Our</div>
         <div className="login__container__content__form__input">
-          <input
-            type="text"
+          <Select
+            options={[
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
+            ]}
             placeholder="Is Our"
             value={isOur}
-            onChange={(e) => {
-              setIsOur(e.target.value);
-            }}
             required
+            onChange={(e) => {
+              setIsOur(e);
+            }}
           />
         </div>
         <div className="popup__container__form__heading">Categories</div>
         <div className="login__container__content__form__input">
-          <input
-            type="text"
+          <Select
+            options={catagoryDataOption}
             placeholder="Categories"
+            isMulti
+            required
             value={categories}
             onChange={(e) => {
-              setCategories(e.target.value);
+              setCategories(e);
             }}
-            required
           />
         </div>
         <div>

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import imageToBase64 from "image-to-base64";
+import Select from "react-select";
+import catagoryDataOption from "../constants/constant";
 
 export default function EditService({ closeOnClick }) {
   const [categories, setCategories] = useState("");
@@ -81,14 +83,15 @@ export default function EditService({ closeOnClick }) {
         </div>
         <div className="popup__container__form__heading">Categories</div>
         <div className="login__container__content__form__input">
-          <input
-            type="text"
+          <Select
+            options={catagoryDataOption}
             placeholder="Categories"
+            isMulti
+            required
             value={categories}
             onChange={(e) => {
-              setCategories(e.target.value);
+              setCategories(e);
             }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
