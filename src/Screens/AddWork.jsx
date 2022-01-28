@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import imageToBase64 from "image-to-base64";
+import imageToBase64 from "image-to-base64/browser";
+import imageCompression from "browser-image-compression";
 
 export default function AddWork({ closeOnClick }) {
   const [company, setCompany] = useState("");
@@ -118,8 +119,28 @@ export default function AddWork({ closeOnClick }) {
                 <input
                   type="file"
                   className="panel__container__form__input__file"
-                  onChange={(e) => {
-                    setLogo(URL.createObjectURL(e.target.files[0]));
+                  onChange={async (e) => {
+                    const options = {
+                      maxSizeMB: 0.02,
+                      maxWidthOrHeight: 300,
+                      useWebWorker: true,
+                    };
+                    try {
+                      const compressedFile = await imageCompression(
+                        e.target.files[0],
+                        options
+                      );
+                      imageToBase64(URL.createObjectURL(compressedFile))
+                        .then((response) => {
+                          setLogo("data:image/png;base64," + response);
+                          console.log(response);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
+                    } catch (error) {
+                      console.log(error);
+                    }
                   }}
                   required
                 />
@@ -173,8 +194,28 @@ export default function AddWork({ closeOnClick }) {
                 <input
                   type="file"
                   className="panel__container__form__input__file"
-                  onChange={(e) => {
-                    setImage(URL.createObjectURL(e.target.files[0]));
+                  onChange={async (e) => {
+                    const options = {
+                      maxSizeMB: 0.02,
+                      maxWidthOrHeight: 300,
+                      useWebWorker: true,
+                    };
+                    try {
+                      const compressedFile = await imageCompression(
+                        e.target.files[0],
+                        options
+                      );
+                      imageToBase64(URL.createObjectURL(compressedFile))
+                        .then((response) => {
+                          setImage("data:image/png;base64," + response);
+                          console.log(response);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
+                    } catch (error) {
+                      console.log(error);
+                    }
                   }}
                   required
                 />
