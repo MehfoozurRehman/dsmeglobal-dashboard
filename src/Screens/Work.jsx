@@ -50,8 +50,8 @@ export default function Work({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {WorkData.length > 0 ? (
-            WorkData.map((item) => (
-              <div class="entry__info__row">
+            WorkData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
                 <div className="entry__info__row__text">
                   <img
                     src={item.logo}
@@ -66,10 +66,12 @@ export default function Work({
                     className="entry__info__row__text__img"
                   />
                 </div>
-                <div class="entry__info__row__text">{item.company}</div>
-                <div class="entry__info__row__text">{item.title}</div>
+                <div className="entry__info__row__text">{item.company}</div>
+                <div className="entry__info__row__text">{item.title}</div>
                 {item.description.length < 40 ? (
-                  <div class="entry__info__row__text">{item.description}</div>
+                  <div className="entry__info__row__text">
+                    {item.description}
+                  </div>
                 ) : (
                   <div className="entry__info__row__text">
                     <a>

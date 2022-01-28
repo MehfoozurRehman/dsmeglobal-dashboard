@@ -62,8 +62,8 @@ export default function Header() {
               id="PEERVEST"
               transform="translate(-1352.259 1037.94)"
               fill="#0a264e"
-              font-size="28"
-              font-family="CenturyGothic, Century Gothic"
+              fontSize="28"
+              fontFamily="CenturyGothic, Century Gothic"
             >
               <tspan x="0" y="0">
                 PEERVEST
@@ -73,8 +73,8 @@ export default function Header() {
               id="GLOBAL"
               transform="translate(-1352.726 1056.94)"
               fill="#0a264e"
-              font-size="16"
-              font-family="CenturyGothic, Century Gothic"
+              fontSize="16"
+              fontFamily="CenturyGothic, Century Gothic"
             >
               <tspan x="0" y="0">
                 GLOBAL

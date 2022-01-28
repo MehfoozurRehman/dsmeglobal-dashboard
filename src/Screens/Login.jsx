@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Button from "../Components/Button";
 import InputBox from "../Components/InputBox";
 import { useNavigate } from "react-router-dom";
-import { RegisterAdmin } from '../Apis/Login.js';
-
+import { RegisterAdmin } from "../Apis/Login.js";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,27 +13,24 @@ export default function Login() {
   const LoginUser = async () => {
     debugger;
 
-    let data = { 'email': email, 'password': password}
+    let data = { email: email, password: password };
     //
-    RegisterAdmin(data).then((res) => {
-      //
-      // console.log('res', res);
-      if (res.data.success === true) 
-      {
-        //setIsLogedin(true);
-        localStorage.setItem("Admin", JSON.stringify(res.data.result.Id));
-        navigate('/dashboard');
-
-      }
-      else {
-        alert(res.data.message);
-      }
-
-    }).catch((error) => {
-      console.log("error", error)
-    })
-
-  }
+    RegisterAdmin(data)
+      .then((res) => {
+        //
+        // console.log('res', res);
+        if (res.data.success === true) {
+          //setIsLogedin(true);
+          localStorage.setItem("Admin", JSON.stringify(res.data.result.Id));
+          navigate("/dashboard");
+        } else {
+          alert(res.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
   return (
     <div className="login__container">
       <div className="login__container__content">
@@ -53,8 +49,8 @@ export default function Login() {
               id="PEERVEST"
               transform="translate(-1352.259 1037.94)"
               fill="#0a264e"
-              font-size="28"
-              font-family="CenturyGothic, Century Gothic"
+              fontSize="28"
+              fontFamily="CenturyGothic, Century Gothic"
             >
               <tspan x="0" y="0">
                 PEERVEST
@@ -64,8 +60,8 @@ export default function Login() {
               id="GLOBAL"
               transform="translate(-1352.726 1056.94)"
               fill="#0a264e"
-              font-size="16"
-              font-family="CenturyGothic, Century Gothic"
+              fontSize="16"
+              fontFamily="CenturyGothic, Century Gothic"
             >
               <tspan x="0" y="0">
                 GLOBAL
@@ -102,7 +98,7 @@ export default function Login() {
           </g>
         </svg>
         <div className="login__container__content__form">
-        <InputBox
+          <InputBox
             type="email"
             placeholder="Email Address"
             value={email}
@@ -110,15 +106,23 @@ export default function Login() {
             autoFocus
             onChange={(e) => setEmail(e.currentTarget.value)}
           />
-           <InputBox type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.currentTarget.value)} />
-        
+          <InputBox
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+
           <div className="login__container__content__form__checkbox">
             <input
               className="styled-checkbox"
               id="styled-checkbox"
               type="checkbox"
               name="Remember"
-              required value={remember} onChange={(e) => setRemember(e.currentTarget.value)}
+              required
+              value={remember}
+              onChange={(e) => setRemember(e.currentTarget.value)}
             />
             <label
               style={{ color: "#1c0a15", fontSize: 13 }}
@@ -138,7 +142,3 @@ export default function Login() {
     </div>
   );
 }
-
-
-
-

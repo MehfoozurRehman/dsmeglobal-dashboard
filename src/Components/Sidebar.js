@@ -50,7 +50,7 @@ export default function Sidebar() {
                   transform="translate(-1080.912 -1497.306)"
                   fill="#fff"
                   stroke="#707070"
-                  stroke-width="0.3"
+                  strokeWidth="0.3"
                 />
                 <path
                   id="Path_22"
@@ -59,7 +59,7 @@ export default function Sidebar() {
                   transform="translate(-1096.912 -1497.306)"
                   fill="#fff"
                   stroke="#707070"
-                  stroke-width="0.3"
+                  strokeWidth="0.3"
                 />
                 <path
                   id="Path_20"
@@ -68,7 +68,7 @@ export default function Sidebar() {
                   transform="translate(-1080.912 -1509.306)"
                   fill="#fff"
                   stroke="#707070"
-                  stroke-width="0.3"
+                  strokeWidth="0.3"
                 />
                 <path
                   id="Path_21"
@@ -77,7 +77,7 @@ export default function Sidebar() {
                   transform="translate(-1096.912 -1509.306)"
                   fill="#fff"
                   stroke="#707070"
-                  stroke-width="0.3"
+                  strokeWidth="0.3"
                 />
               </g>
             </svg>

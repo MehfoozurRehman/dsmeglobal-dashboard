@@ -50,9 +50,9 @@ export default function Projects({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {ProjectsData.length > 0 ? (
-            ProjectsData.map((item) => (
-              <div class="entry__info__row">
-                <div class="entry__info__row__text">{item.title}</div>
+            ProjectsData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
+                <div className="entry__info__row__text">{item.title}</div>
                 <div className="entry__info__row__text">
                   <img
                     src={item.image}
@@ -61,13 +61,13 @@ export default function Projects({
                   />
                 </div>
                 {item.categories.length < 40 ? (
-                  <div class="entry__info__row__text">
+                  <div className="entry__info__row__text">
                     {item.categories.map((category) => (
                       <>{category.label + ", "}</>
                     ))}
                   </div>
                 ) : (
-                  <div class="entry__info__row__text">
+                  <div className="entry__info__row__text">
                     <a>
                       Categories
                       <div className="entry__info__row__text__message">
@@ -78,10 +78,10 @@ export default function Projects({
                     </a>
                   </div>
                 )}
-                <div class="entry__info__row__text">
+                <div className="entry__info__row__text">
                   {item.isOur === true ? "Yes" : "No"}
                 </div>
-                <div class="entry__info__row__text">{item.url}</div>
+                <div className="entry__info__row__text">{item.url}</div>
                 <div style={{ marginRight: 10 }}>
                   <button
                     onClick={() => {

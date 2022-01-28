@@ -29,10 +29,10 @@ export default function NewsLetter({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {NewsLetterData.length > 0 ? (
-            NewsLetterData.map((item) => (
-              <div class="entry__info__row">
+            NewsLetterData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
                 <div
-                  class="entry__info__row__text"
+                  className="entry__info__row__text"
                   style={{ marginRight: "4em" }}
                 >
                   {item.email}

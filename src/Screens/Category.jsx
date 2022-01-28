@@ -40,10 +40,10 @@ export default function Category({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {CategoryData.length > 0 ? (
-            CategoryData.map((item) => (
-              <div class="entry__info__row">
+            CategoryData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
                 <div
-                  class="entry__info__row__text"
+                  className="entry__info__row__text"
                   style={{ marginRight: "4em" }}
                 >
                   {item.name}

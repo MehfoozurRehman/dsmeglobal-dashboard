@@ -35,13 +35,13 @@ export default function Contact({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {contactData.length > 0 ? (
-            contactData.map((item) => (
-              <div class="entry__info__row">
-                <div class="entry__info__row__text">{item.username}</div>
-                <div class="entry__info__row__text">{item.email}</div>
-                <div class="entry__info__row__text">{item.phone}</div>
+            contactData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
+                <div className="entry__info__row__text">{item.username}</div>
+                <div className="entry__info__row__text">{item.email}</div>
+                <div className="entry__info__row__text">{item.phone}</div>
                 {item.subject.length < 40 ? (
-                  <div class="entry__info__row__text">{item.subject}</div>
+                  <div className="entry__info__row__text">{item.subject}</div>
                 ) : (
                   <div className="entry__info__row__text">
                     <a>
@@ -53,7 +53,7 @@ export default function Contact({
                   </div>
                 )}
                 {item.message.length < 40 ? (
-                  <div class="entry__info__row__text">{item.message}</div>
+                  <div className="entry__info__row__text">{item.message}</div>
                 ) : (
                   <div className="entry__info__row__text">
                     <a>

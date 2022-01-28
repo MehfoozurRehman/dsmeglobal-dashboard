@@ -50,8 +50,8 @@ export default function Services({
         <div className="main__container__content__table">
           <TableEntryHeadings tableHeadingEntryRow={tableHeadingRow} />
           {ServicesData.length > 0 ? (
-            ServicesData.map((item) => (
-              <div class="entry__info__row">
+            ServicesData.map((item, i) => (
+              <div className="entry__info__row" key={i}>
                 <div className="entry__info__row__text">
                   <img
                     src={item.logo}
@@ -66,15 +66,15 @@ export default function Services({
                     className="entry__info__row__text__img"
                   />
                 </div>
-                <div class="entry__info__row__text">{item.title}</div>
+                <div className="entry__info__row__text">{item.title}</div>
                 {item.categories.length < 40 ? (
-                  <div class="entry__info__row__text">
+                  <div className="entry__info__row__text">
                     {item.categories.map((category) => (
                       <>{category.label + ", "}</>
                     ))}
                   </div>
                 ) : (
-                  <div class="entry__info__row__text">
+                  <div className="entry__info__row__text">
                     <a>
                       Categories
                       <div className="entry__info__row__text__message">
@@ -86,7 +86,9 @@ export default function Services({
                   </div>
                 )}
                 {item.description.length < 40 ? (
-                  <div class="entry__info__row__text">{item.description}</div>
+                  <div className="entry__info__row__text">
+                    {item.description}
+                  </div>
                 ) : (
                   <div className="entry__info__row__text">
                     <a>

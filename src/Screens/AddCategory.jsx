@@ -39,9 +39,9 @@ export default function AddCategory({ closeOnClick }) {
                   transform="translate(6 6)"
                   fill="none"
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                 />
                 <line
                   id="Line_21"
@@ -51,9 +51,9 @@ export default function AddCategory({ closeOnClick }) {
                   transform="translate(6 6)"
                   fill="none"
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                 />
               </g>
             </svg>
