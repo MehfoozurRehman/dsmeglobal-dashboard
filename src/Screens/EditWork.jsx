@@ -1,21 +1,31 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import imageToBase64 from "image-to-base64/browser";
 import imageCompression from "browser-image-compression";
 
-export default function EditWork({ closeOnClick }) {
+export default function EditWork({ closeOnClick, editId }) {
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
   const [image, setImage] = useState("");
 
+  useEffect(() => {
+    setCompany(editId.company);
+    setName(editId.title);
+    setDescription(editId.description);
+    setLogo(editId.logo);
+    setImage(editId.image);
+    console.log(editId);
+  }, []);
+
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_work", {
+          axios.put("http://localhost:9000/api/v1/update_work", {
+            _id: editId._id,
             logo: logo,
             image: image,
             company: company,

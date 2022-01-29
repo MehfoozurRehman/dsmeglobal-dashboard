@@ -8,6 +8,7 @@ export default function Work({
   setDeleteConfirmation,
   setDeleteConfirmationId,
   setDeleteConfirmationURL,
+  setEditId,
   isAdd,
   isEdit,
   setIsEdit,
@@ -19,7 +20,7 @@ export default function Work({
     axios.get("http://localhost:9000/api/v1/get_work").then((res) => {
       setWorkData(res.data);
     });
-  }, [isAdd, isEdit, deleteConfirmation]);
+  }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Logo" },
@@ -86,6 +87,14 @@ export default function Work({
                   <button
                     onClick={() => {
                       setIsEdit(true);
+                      setEditId({
+                        _id: item._id,
+                        company: item.company,
+                        title: item.title,
+                        description: item.description,
+                        logo: item.logo,
+                        image: item.image,
+                      });
                     }}
                     className="secondary__button"
                   >
