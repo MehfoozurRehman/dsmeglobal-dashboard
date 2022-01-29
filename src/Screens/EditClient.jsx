@@ -92,7 +92,7 @@ export default function EditClient({ closeOnClick, editId }) {
                 onChange={async (e) => {
                   const options = {
                     maxSizeMB: 0.02,
-                    maxWidthOrHeight: 300,
+                    maxWidthOrHeight: 1920,
                     useWebWorker: true,
                   };
                   try {
