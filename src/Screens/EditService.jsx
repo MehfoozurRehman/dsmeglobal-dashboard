@@ -1,23 +1,31 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
 import imageToBase64 from "image-to-base64/browser";
 import imageCompression from "browser-image-compression";
 
-export default function EditService({ closeOnClick }) {
+export default function EditService({ closeOnClick, editId }) {
   const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
   const [image, setImage] = useState("");
-
+  useEffect(() => {
+    setCategories(editId.categories);
+    setDescription(editId.description);
+    setName(editId.title);
+    setLogo(editId.logo);
+    setImage(editId.image);
+    console.log(editId);
+  }, []);
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_service", {
+          axios.put("http://localhost:9000/api/v1/update_service", {
+            _id: editId._id,
             logo: logo,
             image: image,
             categories: categories,

@@ -12,6 +12,7 @@ export default function Services({
   isEdit,
   setIsEdit,
   setIsAdd,
+  setEditId,
 }) {
   const [ServicesData, setServicesData] = useState([]);
 
@@ -19,7 +20,7 @@ export default function Services({
     axios.get("http://localhost:9000/api/v1/get_service").then((res) => {
       setServicesData(res.data);
     });
-  }, [isAdd, isEdit, deleteConfirmation]);
+  }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Logo" },
@@ -103,6 +104,14 @@ export default function Services({
                   <button
                     onClick={() => {
                       setIsEdit(true);
+                      setEditId({
+                        _id: item._id,
+                        logo: item.logo,
+                        title: item.title,
+                        image: item.image,
+                        description: item.description,
+                        categories: item.categories,
+                      });
                     }}
                     className="secondary__button"
                   >

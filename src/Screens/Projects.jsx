@@ -20,7 +20,7 @@ export default function Projects({
     axios.get("http://localhost:9000/api/v1/get_project").then((res) => {
       setProjectsData(res.data);
     });
-  }, [isAdd, isEdit, deleteConfirmation]);
+  }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "Title" },
