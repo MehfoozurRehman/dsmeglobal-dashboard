@@ -12,6 +12,7 @@ export default function Projects({
   isEdit,
   setIsEdit,
   setIsAdd,
+  setEditId,
 }) {
   const [ProjectsData, setProjectsData] = useState([]);
 
@@ -79,13 +80,21 @@ export default function Projects({
                   </div>
                 )}
                 <div className="entry__info__row__text">
-                  {item.isOur === true ? "Yes" : "No"}
+                  {item.isOur.map((item) => item.label)}
                 </div>
                 <div className="entry__info__row__text">{item.url}</div>
                 <div style={{ marginRight: 10 }}>
                   <button
                     onClick={() => {
                       setIsEdit(true);
+                      setEditId({
+                        _id: item._id,
+                        title: item.title,
+                        image: item.image,
+                        categories: item.categories,
+                        isOur: item.isOur,
+                        url: item.url,
+                      });
                     }}
                     className="secondary__button"
                   >

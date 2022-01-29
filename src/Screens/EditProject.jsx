@@ -1,23 +1,31 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
 import imageToBase64 from "image-to-base64/browser";
 import imageCompression from "browser-image-compression";
 
-export default function EditProject({ closeOnClick }) {
+export default function EditProject({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [categories, setCategories] = useState("");
   const [isOur, setIsOur] = useState("");
   const [url, setUrl] = useState("");
-
+  useEffect(() => {
+    setName(editId.title);
+    setImage(editId.image);
+    setCategories(editId.categories);
+    setIsOur({ value: editId.isOur, label: editId.isOur ? "Yes" : "No" });
+    setUrl(editId.url);
+    console.log(editId.categories);
+  }, []);
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_project", {
+          axios.put("http://localhost:9000/api/v1/update_project", {
+            _id: editId._id,
             title: name,
             image: image,
             categories: categories,
