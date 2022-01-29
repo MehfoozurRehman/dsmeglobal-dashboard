@@ -266,9 +266,6 @@
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 1440px) {
-  .dashboard__container__col:last-child {
-    display: none;
-  }
   .dashboard__container__col:nth-child(2) {
     margin-right: 0em;
   }

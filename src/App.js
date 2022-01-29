@@ -24,6 +24,9 @@ import AddProject from "./Screens/AddProject";
 import EditProject from "./Screens/EditProject";
 import Category from "./Screens/Category";
 import AddCategory from "./Screens/AddCategory";
+import Client from "./Screens/Client";
+import AddClient from "./Screens/AddClient";
+import EditClient from "./Screens/EditClient";
 
 function Main() {
   return (
@@ -47,11 +50,14 @@ function App() {
   const [isAddProject, setIsAddProject] = useState(false);
   const [isEditProject, setIsEditProject] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [isAddClient, setIsAddClient] = useState(false);
+  const [isEditClient, setIsEditClient] = useState(false);
   const [deleteConfirmationURL, setDeleteConfirmationURL] = useState("");
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
   const [editWorkId, setEditWorkId] = useState("");
   const [editServiceId, setEditServiceId] = useState("");
   const [editProjectId, setEditProjectId] = useState("");
+  const [editClientId, setEditClientId] = useState("");
   useEffect(() => {
     console.log(window.localStorage.getItem("user"));
     if (window.localStorage.getItem("user") === null) {
@@ -61,6 +67,10 @@ function App() {
   return (
     <>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
+      {isAddClient ? <AddClient closeOnClick={setIsAddClient} /> : null}
+      {isEditClient ? (
+        <EditClient closeOnClick={setIsEditClient} editId={editClientId} />
+      ) : null}
       {isAddWork ? <AddWork closeOnClick={setIsAddWork} /> : null}
       {isEditWork ? (
         <EditWork closeOnClick={setIsEditWork} editId={editWorkId} />
@@ -128,6 +138,22 @@ function App() {
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
                 setDeleteConfirmationId={setDeleteConfirmationId}
+              />
+            }
+          />
+          <Route
+            path="client"
+            element={
+              <Client
+                deleteConfirmation={deleteConfirmation}
+                setDeleteConfirmation={setDeleteConfirmation}
+                setDeleteConfirmationURL={setDeleteConfirmationURL}
+                setDeleteConfirmationId={setDeleteConfirmationId}
+                isAddClient={isAddClient}
+                setIsAddClient={setIsAddClient}
+                isEditClient={isEditClient}
+                setIsEditClient={setIsEditClient}
+                setEditClientId={setEditClientId}
               />
             }
           />
