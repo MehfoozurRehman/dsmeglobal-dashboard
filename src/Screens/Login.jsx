@@ -1,32 +1,44 @@
-import React, { useState } from "react";
-import Button from "../Components/Button";
-import InputBox from "../Components/InputBox";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { RegisterAdmin } from "../Apis/Login.js";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-  const LoginUser = async () => {
-    let data = { email: email, password: password };
-
-    RegisterAdmin(data)
+  useEffect(() => {
+    console.log(window.localStorage.getItem("user"));
+    if (window.localStorage.getItem("user") != null) {
+      navigate("/dashboard");
+    }
+  }, []);
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:9000/api/v1/login", {
+        email: email,
+        password: password,
+      })
       .then((res) => {
-        if (res.data.success === true) {
-          localStorage.setItem("Admin", JSON.stringify(res.data.result.Id));
-          navigate("/dashboard");
+        if (res.data.message) {
+          setError(res.data.message);
+          window.localStorage.clear("user");
         } else {
-          alert(res.data.message);
+          window.localStorage.setItem("user", res.data.email);
+          console.log(res.data);
+          setError("");
+          navigate("/dashboard");
         }
       })
-      .catch((error) => {
-        console.log("error", error);
+      .catch((res) => {
+        console.log(res);
       });
-  };
+  }
+
   return (
-    <div className="login__container">
+    <form onSubmit={handleSubmit} className="login__container">
       <div className="login__container__content">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,31 +104,37 @@ export default function Login() {
           </g>
         </svg>
         <div className="login__container__content__form">
-          <InputBox
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            required
-            autoFocus
-            onChange={(e) => setEmail(e.currentTarget.value)}
-          />
-          <InputBox
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.currentTarget.value)}
-          />
-
+          <div className="login__container__content__form__input">
+            <input
+              type="eamil"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              autoFocus
+              required
+            />
+          </div>
+          <div className="login__container__content__form__input">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              required
+            />
+          </div>
           <div className="login__container__content__form__checkbox">
             <input
               className="styled-checkbox"
               id="styled-checkbox"
               type="checkbox"
               name="Remember"
-              required
               value={remember}
-              onChange={(e) => setRemember(e.currentTarget.value)}
+              onChange={(e) => setRemember(e.target.value)}
             />
             <label
               style={{ color: "#1c0a15", fontSize: 13 }}
@@ -125,14 +143,18 @@ export default function Login() {
               Remember Me
             </label>
           </div>
-          <Button
-            path="/dashboard"
-            placeholder="Login"
-            className="primary__button"
-            onClick={() => LoginUser()}
-          />
+          <button type="submit" className="primary__button">
+            Login
+          </button>
+          {error != "" ? (
+            <div
+              style={{ color: "red", textAlign: "center", marginTop: ".5em" }}
+            >
+              {error}
+            </div>
+          ) : null}
         </div>
       </div>
-    </div>
+    </form>
   );
 }

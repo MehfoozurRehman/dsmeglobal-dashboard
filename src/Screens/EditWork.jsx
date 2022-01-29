@@ -17,7 +17,7 @@ export default function EditWork({ closeOnClick, editId }) {
     setLogo(editId.logo);
     setImage(editId.image);
     console.log(editId);
-  }, []);
+  }, [editId]);
 
   return (
     <div className="popup__container">

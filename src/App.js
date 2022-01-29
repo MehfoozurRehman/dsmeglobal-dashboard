@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import Dashboard from "./Screens/Dashboard.jsx";
 import Login from "./Screens/Login.jsx";
 import Work from "./Screens/Work.jsx";
@@ -32,6 +38,7 @@ function Main() {
 }
 
 function App() {
+  const navigate = useNavigate();
   const [isAddCategory, setIsAddCategory] = useState(false);
   const [isAddWork, setIsAddWork] = useState(false);
   const [isEditWork, setIsEditWork] = useState(false);
@@ -45,9 +52,14 @@ function App() {
   const [editWorkId, setEditWorkId] = useState("");
   const [editServiceId, setEditServiceId] = useState("");
   const [editProjectId, setEditProjectId] = useState("");
-
+  useEffect(() => {
+    console.log(window.localStorage.getItem("user"));
+    if (window.localStorage.getItem("user") === null) {
+      navigate("/");
+    }
+  }, [window.location.pathname]);
   return (
-    <BrowserRouter>
+    <>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
       {isAddWork ? <AddWork closeOnClick={setIsAddWork} /> : null}
       {isEditWork ? (
@@ -156,7 +168,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

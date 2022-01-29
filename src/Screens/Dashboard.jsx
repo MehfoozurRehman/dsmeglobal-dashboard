@@ -220,9 +220,6 @@ export default function Dashboard() {
         />
         <StatsCard stroke="#D39844" />
       </div>
-      <div className="dashboard__container__col">
-        <RecentPanel />
-      </div>
     </div>
   );
 }

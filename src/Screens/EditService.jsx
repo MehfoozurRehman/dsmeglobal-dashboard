@@ -18,7 +18,7 @@ export default function EditService({ closeOnClick, editId }) {
     setLogo(editId.logo);
     setImage(editId.image);
     console.log(editId);
-  }, []);
+  }, [editId]);
   return (
     <div className="popup__container">
       <form

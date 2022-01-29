@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function NavLink({ title, svg, path, defaultChecked, id }) {
+function NavLink({ title, svg, path, defaultChecked, id, onClick }) {
   const navigate = useNavigate();
   return (
     <div className="sidebar__container__content__entry">
@@ -14,6 +14,7 @@ function NavLink({ title, svg, path, defaultChecked, id }) {
         onChange={() => {
           navigate(path);
         }}
+        onClick={onClick}
       />
       <div className="nav__bar__content__link__content">
         <div className="nav__bar__content__link__content__svg__wrapper">
@@ -278,6 +279,9 @@ export default function Sidebar() {
         <NavLink
           title="Logout"
           path="/"
+          onClick={() => {
+            window.localStorage.clear("user");
+          }}
           svg={
             <svg
               xmlns="http://www.w3.org/2000/svg"
