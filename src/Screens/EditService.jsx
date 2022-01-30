@@ -131,7 +131,7 @@ export default function EditService({ closeOnClick, editId }) {
                   onChange={async (e) => {
                     const options = {
                       maxSizeMB: 0.02,
-                      maxWidthOrHeight: 1920,
+
                       useWebWorker: true,
                     };
                     try {
@@ -205,7 +205,7 @@ export default function EditService({ closeOnClick, editId }) {
                   onChange={async (e) => {
                     const options = {
                       maxSizeMB: 0.02,
-                      maxWidthOrHeight: 1920,
+
                       useWebWorker: true,
                     };
                     try {
