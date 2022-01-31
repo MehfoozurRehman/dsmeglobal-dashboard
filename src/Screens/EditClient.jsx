@@ -6,10 +6,10 @@ import imageCompression from "browser-image-compression";
 export default function EditClient({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const [oldImage, setOldImage] = useState("");
   useEffect(() => {
     setName(editId.name);
-    setImage(editId.logo);
-    console.log(editId);
+    setOldImage(editId.logo);
   }, [editId]);
   return (
     <div className="popup__container">
@@ -19,7 +19,14 @@ export default function EditClient({ closeOnClick, editId }) {
           axios.put("http://localhost:9000/api/v1/update_client", {
             _id: editId._id,
             name: name,
-            logo: image,
+            logo: image.name,
+          });
+          const formData = new FormData();
+          formData.append("image", image);
+          axios.post("http://localhost:9000/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
         }}
         className="popup__container__form"
@@ -90,33 +97,17 @@ export default function EditClient({ closeOnClick, editId }) {
                 type="file"
                 className="panel__container__form__input__file"
                 onChange={async (e) => {
-                  const options = {
-                    maxSizeMB: 0.02,
-
-                    useWebWorker: true,
-                  };
-                  try {
-                    const compressedFile = await imageCompression(
-                      e.target.files[0],
-                      options
-                    );
-                    imageToBase64(URL.createObjectURL(compressedFile))
-                      .then((response) => {
-                        setImage("data:image/png;base64," + response);
-                        console.log(response);
-                      })
-                      .catch((error) => {
-                        console.log(error);
-                      });
-                  } catch (error) {
-                    console.log(error);
-                  }
+                  setImage(e.target.files[0]);
                 }}
               />
               <div className="panel__container__form__input__pic__content">
-                {image != "" ? (
+                {oldImage != "" ? (
                   <img
-                    src={image}
+                    src={
+                      image === ""
+                        ? `http://localhost:9000/${oldImage}`
+                        : URL.createObjectURL(image)
+                    }
                     alt="UploadedPic"
                     className="panel__container__form__input__pic__content__img"
                   />

@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import imageToBase64 from "image-to-base64/browser";
 
 export default function AddCategory({ closeOnClick }) {
   const [name, setName] = useState("");

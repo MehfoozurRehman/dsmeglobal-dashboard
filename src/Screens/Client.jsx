@@ -20,7 +20,7 @@ export default function Client({
     axios.get("http://localhost:9000/api/v1/get_client").then((res) => {
       setClientData(res.data);
     });
-  }, [isAddClient, isEditClient, deleteConfirmation]);
+  }, [isAddClient === false, isEditClient === false, deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "" },
@@ -105,7 +105,7 @@ export default function Client({
                 </div>
                 <div className="entry__info__row__text">
                   <img
-                    src={item.logo}
+                    src={"http://localhost:9000/" + item.logo}
                     alt="tableEntryPic"
                     className="entry__info__row__text__img"
                   />

@@ -18,7 +18,6 @@ export default function EditProject({ closeOnClick, editId }) {
     setCategories(editId.categories);
     setIsOur({ value: editId.isOur, label: editId.isOur ? "Yes" : "No" });
     setUrl(editId.url);
-    console.log(oldImage);
   }, [editId]);
   return (
     <div className="popup__container">
