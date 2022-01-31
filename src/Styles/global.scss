@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-$primaryColor: #0a2751;
-$secondaryColor: #d39844;
+$primaryColor: #0f593e;
+$secondaryColor: #00040e;
 $disabled: #e7e9ec;
 $whiteColor: #fff;
 $textColor: #242424;
@@ -69,7 +69,7 @@ body {
   height: 5px;
 }
 .main__container__content::-webkit-scrollbar-thumb {
-  background-color: #d39844;
+  background-color: #00040e;
 }
 .main__container__content::-webkit-scrollbar-track {
   background-color: white;
@@ -134,6 +134,7 @@ body {
 .entry__info__row__text__img {
   width: 38px;
   height: 38px;
+  border-radius: 6px;
 }
 .entry__info__row__text a {
   position: relative;
@@ -215,7 +216,8 @@ body {
   display: flex;
   flex-direction: column;
   width: fit-content;
-  min-width: 400px;
+  min-width: 550px;
+  max-width: 550px;
   height: fit-content;
   background: $whiteColor;
   border-radius: 20px;
@@ -341,8 +343,46 @@ body {
   padding: 0.7em 1.5em;
   color: red;
 }
+.primary__button__rounded {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  border: none;
+  background: $primaryColor;
+  color: #fff;
+  margin-right: 12px;
+  cursor: pointer;
+}
+.primary__button__rounded:hover {
+  transition: 300ms ease-in-out;
+  background: #052217;
+}
+.primary__button__rounded svg {
+  width: 20px;
+  height: 20px;
+}
+.secondary__button__rounded {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  border: none;
+  background: $secondaryColor;
+  color: #fff;
+  cursor: pointer;
+}
+.secondary__button__rounded:hover {
+  transition: 300ms ease-in-out;
+  background: #000000;
+}
+.secondary__button__rounded svg {
+  width: 20px;
+  height: 20px;
+}
 @media (max-width: 1440px) {
   .main__container__content__table {
+    max-width: 1000px;
+  }
+  .main__container {
     max-width: 1000px;
   }
 }

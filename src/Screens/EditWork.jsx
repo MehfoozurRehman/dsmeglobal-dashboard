@@ -268,7 +268,7 @@ export default function EditWork({ closeOnClick, editId }) {
         <button
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}
-          className="primary__button"
+          className="secondary__button"
         >
           Edit
         </button>

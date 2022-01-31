@@ -136,13 +136,13 @@
   padding: 0.8em 2em;
   border-radius: 8px;
   border: none;
-  background: $primaryColor;
+  background: $secondaryColor;
   color: #fff;
   font-size: 14px;
   cursor: pointer;
 }
 .secondary__button {
-  background: $secondaryColor;
+  background: $primaryColor;
   flex: 1;
   padding: 0.8em 2em;
   border-radius: 8px;
@@ -153,9 +153,9 @@
 }
 .secondary__button:hover {
   transition: 300ms ease-in-out;
-  background: #7a5116;
+  background: #062e1f;
 }
 .primary__button:hover {
   transition: 300ms ease-in-out;
-  background: #041733;
+  background: #000000;
 }
