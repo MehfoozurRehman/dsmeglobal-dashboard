@@ -16,11 +16,25 @@ export default function AddWork({ closeOnClick }) {
         onSubmit={() => {
           closeOnClick(false);
           axios.post("http://localhost:9000/api/v1/set_work", {
-            logo: logo,
-            image: image,
+            logo: logo.name,
+            image: image.name,
             company: company,
             title: name,
             description: description,
+          });
+          const fdImage = new FormData();
+          fdImage.append("image", image);
+          axios.post("http://localhost:9000/upload", fdImage, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          const fdLogo = new FormData();
+          fdLogo.append("image", logo);
+          axios.post("http://localhost:9000/upload", fdLogo, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
         }}
         className="popup__container__form"
@@ -120,34 +134,14 @@ export default function AddWork({ closeOnClick }) {
                   type="file"
                   className="panel__container__form__input__file"
                   onChange={async (e) => {
-                    const options = {
-                      maxSizeMB: 0.02,
-
-                      useWebWorker: true,
-                    };
-                    try {
-                      const compressedFile = await imageCompression(
-                        e.target.files[0],
-                        options
-                      );
-                      imageToBase64(URL.createObjectURL(compressedFile))
-                        .then((response) => {
-                          setLogo("data:image/png;base64," + response);
-                          console.log(response);
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    setLogo(e.target.files[0]);
                   }}
                   required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {logo != "" ? (
                     <img
-                      src={logo}
+                      src={URL.createObjectURL(logo)}
                       alt="UploadedPic"
                       className="panel__container__form__input__pic__content__img"
                     />
@@ -195,34 +189,14 @@ export default function AddWork({ closeOnClick }) {
                   type="file"
                   className="panel__container__form__input__file"
                   onChange={async (e) => {
-                    const options = {
-                      maxSizeMB: 0.02,
-
-                      useWebWorker: true,
-                    };
-                    try {
-                      const compressedFile = await imageCompression(
-                        e.target.files[0],
-                        options
-                      );
-                      imageToBase64(URL.createObjectURL(compressedFile))
-                        .then((response) => {
-                          setImage("data:image/png;base64," + response);
-                          console.log(response);
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    setImage(e.target.files[0]);
                   }}
                   required
                 />
                 <div className="panel__container__form__input__pic__content">
                   {image != "" ? (
                     <img
-                      src={image}
+                      src={URL.createObjectURL(image)}
                       alt="UploadedPic"
                       className="panel__container__form__input__pic__content__img"
                     />

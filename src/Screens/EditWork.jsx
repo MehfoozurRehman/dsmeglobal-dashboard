@@ -8,15 +8,16 @@ export default function EditWork({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
+  const [oldLogo, setOldLogo] = useState("");
   const [image, setImage] = useState("");
+  const [oldImage, setOldImage] = useState("");
 
   useEffect(() => {
     setCompany(editId.company);
     setName(editId.title);
     setDescription(editId.description);
-    setLogo(editId.logo);
-    setImage(editId.image);
-    console.log(editId);
+    setOldLogo(editId.logo);
+    setOldImage(editId.image);
   }, [editId]);
 
   return (
@@ -26,11 +27,25 @@ export default function EditWork({ closeOnClick, editId }) {
           closeOnClick(false);
           axios.put("http://localhost:9000/api/v1/update_work", {
             _id: editId._id,
-            logo: logo,
-            image: image,
+            logo: logo.name,
+            image: image.name,
             company: company,
             title: name,
             description: description,
+          });
+          const fdImage = new FormData();
+          fdImage.append("image", image);
+          axios.post("http://localhost:9000/upload", fdImage, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          const fdLogo = new FormData();
+          fdLogo.append("image", logo);
+          axios.post("http://localhost:9000/upload", fdLogo, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
         }}
         className="popup__container__form"
@@ -127,33 +142,17 @@ export default function EditWork({ closeOnClick, editId }) {
                   type="file"
                   className="panel__container__form__input__file"
                   onChange={async (e) => {
-                    const options = {
-                      maxSizeMB: 0.02,
-
-                      useWebWorker: true,
-                    };
-                    try {
-                      const compressedFile = await imageCompression(
-                        e.target.files[0],
-                        options
-                      );
-                      imageToBase64(URL.createObjectURL(compressedFile))
-                        .then((response) => {
-                          setLogo("data:image/png;base64," + response);
-                          console.log(response);
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    setLogo(e.target.files[0]);
                   }}
                 />
                 <div className="panel__container__form__input__pic__content">
-                  {logo != "" ? (
+                  {oldLogo != "" ? (
                     <img
-                      src={logo}
+                      src={
+                        logo === ""
+                          ? `http://localhost:9000/${oldLogo}`
+                          : URL.createObjectURL(logo)
+                      }
                       alt="UploadedPic"
                       className="panel__container__form__input__pic__content__img"
                     />
@@ -201,33 +200,17 @@ export default function EditWork({ closeOnClick, editId }) {
                   type="file"
                   className="panel__container__form__input__file"
                   onChange={async (e) => {
-                    const options = {
-                      maxSizeMB: 0.02,
-
-                      useWebWorker: true,
-                    };
-                    try {
-                      const compressedFile = await imageCompression(
-                        e.target.files[0],
-                        options
-                      );
-                      imageToBase64(URL.createObjectURL(compressedFile))
-                        .then((response) => {
-                          setImage("data:image/png;base64," + response);
-                          console.log(response);
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    setImage(e.target.files[0]);
                   }}
                 />
                 <div className="panel__container__form__input__pic__content">
-                  {image != "" ? (
+                  {oldImage != "" ? (
                     <img
-                      src={image}
+                      src={
+                        image === ""
+                          ? `http://localhost:9000/${oldImage}`
+                          : URL.createObjectURL(image)
+                      }
                       alt="UploadedPic"
                       className="panel__container__form__input__pic__content__img"
                     />
