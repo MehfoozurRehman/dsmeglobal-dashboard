@@ -19,10 +19,17 @@ export default function AddProject({ closeOnClick }) {
           closeOnClick(false);
           axios.post("http://localhost:9000/api/v1/set_project", {
             title: name,
-            image: image,
+            image: image.name,
             categories: categories,
             isOur: isOur,
             url: url,
+          });
+          const formData = new FormData();
+          formData.append("image", image);
+          axios.post("http://localhost:9000/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
         }}
         className="popup__container__form"
@@ -132,35 +139,16 @@ export default function AddProject({ closeOnClick }) {
               <input
                 type="file"
                 className="panel__container__form__input__file"
+                name="image"
                 onChange={async (e) => {
-                  const options = {
-                    maxSizeMB: 0.02,
-
-                    useWebWorker: true,
-                  };
-                  try {
-                    const compressedFile = await imageCompression(
-                      e.target.files[0],
-                      options
-                    );
-                    imageToBase64(URL.createObjectURL(compressedFile))
-                      .then((response) => {
-                        setImage("data:image/png;base64," + response);
-                        console.log(response);
-                      })
-                      .catch((error) => {
-                        console.log(error);
-                      });
-                  } catch (error) {
-                    console.log(error);
-                  }
+                  setImage(e.target.files[0]);
                 }}
                 required
               />
               <div className="panel__container__form__input__pic__content">
                 {image != "" ? (
                   <img
-                    src={image}
+                    src={URL.createObjectURL(image)}
                     alt="UploadedPic"
                     className="panel__container__form__input__pic__content__img"
                   />

@@ -56,7 +56,7 @@ export default function Projects({
                 <div className="entry__info__row__text">{item.title}</div>
                 <div className="entry__info__row__text">
                   <img
-                    src={item.image}
+                    src={"http://localhost:9000/" + item.image}
                     alt="tableEntryPic"
                     className="entry__info__row__text__img"
                   />
