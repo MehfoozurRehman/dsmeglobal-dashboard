@@ -37,7 +37,7 @@ export default function Contact({
           {contactData.length > 0 ? (
             contactData.map((item, i) => (
               <div className="entry__info__row" key={i}>
-                <div style={{ width: 126 }}>
+                <div className="entry__info__row__btns">
                   <button
                     onClick={() => {
                       setDeleteConfirmation(true);
@@ -48,8 +48,6 @@ export default function Contact({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

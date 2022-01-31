@@ -52,7 +52,7 @@ export default function Work({
           {WorkData.length > 0 ? (
             WorkData.map((item, i) => (
               <div className="entry__info__row" key={i}>
-                <div style={{ width: 126 }}>
+                <div className="entry__info__row__btns">
                   <button
                     onClick={() => {
                       setIsEdit(true);
@@ -69,8 +69,6 @@ export default function Work({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -92,8 +90,6 @@ export default function Work({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

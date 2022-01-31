@@ -4,7 +4,7 @@ function EntryHeadingData({ value }) {
   return (
     <div
       className="table__container__header__entry"
-      style={value === "" ? { maxWidth: "10px", minWidth: 100 } : null}
+      style={value === "" ? { maxWidth: 100, minWidth: 100 } : null}
     >
       {value}
     </div>

@@ -27,7 +27,7 @@
   padding: 0em 1em;
 }
 .user__statistics__card__header__heading {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: black;
 }
@@ -121,7 +121,7 @@
   color: #7c828a;
 }
 .monthly__stats__card__content__value {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   color: black;
 }
@@ -212,15 +212,18 @@
   padding-right: 0.5em;
 }
 .notification__panel__content::-webkit-scrollbar,
+.table__details__container__text__box__input::-webkit-scrollbar,
 .recent__panel__content::-webkit-scrollbar {
   width: 5px;
 }
 .notification__panel__content::-webkit-scrollbar-thumb,
+.table__details__container__text__box__input::-webkit-scrollbar-thumb,
 .recent__panel__content::-webkit-scrollbar-thumb {
-  background-color: #d39844;
+  background-color: #242424;
   border-radius: 50px;
 }
 .notification__panel__content::-webkit-scrollbar-track,
+.table__details__container__text__box__input::-webkit-scrollbar-track,
 .recent__panel__content::-webkit-scrollbar-track {
   background-color: transparent;
   border-radius: 50px;
