@@ -111,14 +111,14 @@ export default function Services({
                 </div>
                 <div className="entry__info__row__text">
                   <img
-                    src={item.logo}
+                    src={"http://localhost:9000/" + item.logo}
                     alt="tableEntryPic"
                     className="entry__info__row__text__img"
                   />
                 </div>
                 <div className="entry__info__row__text">
                   <img
-                    src={item.image}
+                    src={"http://localhost:9000/" + item.image}
                     alt="tableEntryPic"
                     className="entry__info__row__text__img"
                   />
