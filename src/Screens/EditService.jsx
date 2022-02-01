@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
-import imageToBase64 from "image-to-base64/browser";
-import imageCompression from "browser-image-compression";
 
 export default function EditService({ closeOnClick, editId }) {
   const [categories, setCategories] = useState("");

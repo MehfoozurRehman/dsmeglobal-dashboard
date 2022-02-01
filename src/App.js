@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import Dashboard from "./Screens/Dashboard.jsx";
 import Login from "./Screens/Login.jsx";
 import Work from "./Screens/Work.jsx";
@@ -59,11 +53,9 @@ function App() {
   const [editProjectId, setEditProjectId] = useState("");
   const [editClientId, setEditClientId] = useState("");
   useEffect(() => {
-    console.log(window.localStorage.getItem("user"));
     if (window.localStorage.getItem("user") === null) {
       navigate("/");
     }
-    console.log(process.env.REACT_APP_API_URL);
   }, [window.location.pathname]);
   return (
     <>

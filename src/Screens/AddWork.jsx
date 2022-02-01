@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import imageToBase64 from "image-to-base64/browser";
-import imageCompression from "browser-image-compression";
 
 export default function AddWork({ closeOnClick }) {
   const [company, setCompany] = useState("");

@@ -9,7 +9,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   useEffect(() => {
-    console.log(window.localStorage.getItem("user"));
     if (window.localStorage.getItem("user") != null) {
       navigate("/dashboard");
     }
@@ -27,7 +26,6 @@ export default function Login() {
           window.localStorage.clear("user");
         } else {
           window.localStorage.setItem("user", res.data.email);
-          console.log(res.data);
           setError("");
           navigate("/dashboard");
         }

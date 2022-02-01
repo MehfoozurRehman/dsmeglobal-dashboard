@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import imageToBase64 from "image-to-base64/browser";
-import imageCompression from "browser-image-compression";
 
 export default function EditClient({ closeOnClick, editId }) {
   const [name, setName] = useState("");
