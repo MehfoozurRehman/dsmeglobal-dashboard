@@ -18,10 +18,12 @@ export default function Projects({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_project").then((res) => {
-      setProjectsData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_project`)
+      .then((res) => {
+        setProjectsData(res.data);
+        setLoading(false);
+      });
   }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
@@ -114,7 +116,7 @@ export default function Projects({
                     <div className="entry__info__row__text">{item.title}</div>
                     <div className="entry__info__row__text">
                       <img
-                        src={"http://localhost:9000/" + item.image}
+                        src={process.env.REACT_APP_API_URL + item.image}
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

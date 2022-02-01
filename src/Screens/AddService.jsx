@@ -15,7 +15,7 @@ export default function AddService({ closeOnClick }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_service", {
+          axios.post(`${process.env.REACT_APP_API_URL}api/v1/set_service`, {
             logo: logo.name,
             image: image.name,
             categories: categories,
@@ -24,14 +24,14 @@ export default function AddService({ closeOnClick }) {
           });
           const fdImage = new FormData();
           fdImage.append("image", image);
-          axios.post("http://localhost:9000/upload", fdImage, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdImage, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
           const fdLogo = new FormData();
           fdLogo.append("image", logo);
-          axios.post("http://localhost:9000/upload", fdLogo, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdLogo, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

@@ -18,10 +18,12 @@ export default function Services({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_service").then((res) => {
-      setServicesData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_service`)
+      .then((res) => {
+        setServicesData(res.data);
+        setLoading(false);
+      });
   }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
@@ -113,14 +115,14 @@ export default function Services({
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={"http://localhost:9000/" + item.logo}
+                        src={process.env.REACT_APP_API_URL + item.logo}
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={"http://localhost:9000/" + item.image}
+                        src={process.env.REACT_APP_API_URL + item.image}
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

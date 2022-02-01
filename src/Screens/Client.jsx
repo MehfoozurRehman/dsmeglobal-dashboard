@@ -18,10 +18,12 @@ export default function Client({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_client").then((res) => {
-      setClientData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_client`)
+      .then((res) => {
+        setClientData(res.data);
+        setLoading(false);
+      });
   }, [isAddClient === false, isEditClient === false, deleteConfirmation]);
 
   const tableHeadingRow = [
@@ -107,7 +109,7 @@ export default function Client({
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={"http://localhost:9000/" + item.logo}
+                        src={process.env.REACT_APP_API_URL + item.logo}
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

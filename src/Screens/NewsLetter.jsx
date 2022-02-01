@@ -13,10 +13,12 @@ export default function NewsLetter({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_news_letter").then((res) => {
-      setNewsLetterData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_news_letter`)
+      .then((res) => {
+        setNewsLetterData(res.data);
+        setLoading(false);
+      });
   }, [deleteConfirmation]);
 
   const tableHeadingRow = [{ heading: "" }, { heading: "Email" }];

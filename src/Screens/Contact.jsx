@@ -12,10 +12,12 @@ export default function Contact({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_contact").then((res) => {
-      setContactData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_contact`)
+      .then((res) => {
+        setContactData(res.data);
+        setLoading(false);
+      });
   }, []);
 
   const tableHeadingRow = [

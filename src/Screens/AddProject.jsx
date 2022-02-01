@@ -17,7 +17,7 @@ export default function AddProject({ closeOnClick }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_project", {
+          axios.post(`${process.env.REACT_APP_API_URL}api/v1/set_project`, {
             title: name,
             image: image.name,
             categories: categories,
@@ -26,7 +26,7 @@ export default function AddProject({ closeOnClick }) {
           });
           const formData = new FormData();
           formData.append("image", image);
-          axios.post("http://localhost:9000/upload", formData, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -98,7 +98,6 @@ export default function AddProject({ closeOnClick }) {
             onChange={(e) => {
               setUrl(e.target.value);
             }}
-          
           />
         </div>
         <div className="popup__container__form__heading">Is Our</div>

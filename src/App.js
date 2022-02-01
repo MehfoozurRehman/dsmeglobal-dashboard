@@ -63,6 +63,7 @@ function App() {
     if (window.localStorage.getItem("user") === null) {
       navigate("/");
     }
+    console.log(process.env.REACT_APP_API_URL);
   }, [window.location.pathname]);
   return (
     <>

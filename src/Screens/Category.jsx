@@ -15,10 +15,12 @@ export default function Category({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/get_category").then((res) => {
-      setCategoryData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}api/v1/get_category`)
+      .then((res) => {
+        setCategoryData(res.data);
+        setLoading(false);
+      });
   }, [isAddCategory, deleteConfirmation]);
 
   const tableHeadingRow = [{ heading: "" }, { heading: "Name" }];

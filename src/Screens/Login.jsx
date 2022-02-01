@@ -17,7 +17,7 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:9000/api/v1/login", {
+      .post(`${process.env.REACT_APP_API_URL}api/v1/login`, {
         email: email,
         password: password,
       })

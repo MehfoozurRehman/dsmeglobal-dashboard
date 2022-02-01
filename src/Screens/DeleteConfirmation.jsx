@@ -17,7 +17,8 @@ export default function DeleteConfirmation({
             onClick={() => {
               axios
                 .delete(
-                  "http://localhost:9000/api/v1" + deleteConfirmationURL,
+                  `${process.env.REACT_APP_API_URL}api/v1` +
+                    deleteConfirmationURL,
                   {
                     data: { _id: deleteConfirmationId },
                   }

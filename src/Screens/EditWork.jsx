@@ -25,7 +25,7 @@ export default function EditWork({ closeOnClick, editId }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put("http://localhost:9000/api/v1/update_work", {
+          axios.put(`${process.env.REACT_APP_API_URL}api/v1/update_work`, {
             _id: editId._id,
             logo: logo.name,
             image: image.name,
@@ -35,14 +35,14 @@ export default function EditWork({ closeOnClick, editId }) {
           });
           const fdImage = new FormData();
           fdImage.append("image", image);
-          axios.post("http://localhost:9000/upload", fdImage, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdImage, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
           const fdLogo = new FormData();
           fdLogo.append("image", logo);
-          axios.post("http://localhost:9000/upload", fdLogo, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdLogo, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -150,7 +150,7 @@ export default function EditWork({ closeOnClick, editId }) {
                     <img
                       src={
                         logo === ""
-                          ? `http://localhost:9000/${oldLogo}`
+                          ? `${process.env.REACT_APP_API_URL}${oldLogo}`
                           : URL.createObjectURL(logo)
                       }
                       alt="UploadedPic"
@@ -208,7 +208,7 @@ export default function EditWork({ closeOnClick, editId }) {
                     <img
                       src={
                         image === ""
-                          ? `http://localhost:9000/${oldImage}`
+                          ? `${process.env.REACT_APP_API_URL}${oldImage}`
                           : URL.createObjectURL(image)
                       }
                       alt="UploadedPic"

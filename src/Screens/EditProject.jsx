@@ -22,7 +22,7 @@ export default function EditProject({ closeOnClick, editId }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put("http://localhost:9000/api/v1/update_project", {
+          axios.put(`${process.env.REACT_APP_API_URL}api/v1/update_project`, {
             _id: editId._id,
             title: name,
             image: image.name,
@@ -32,7 +32,7 @@ export default function EditProject({ closeOnClick, editId }) {
           });
           const formData = new FormData();
           formData.append("image", image);
-          axios.post("http://localhost:9000/upload", formData, {
+          axios.post(`${process.env.REACT_APP_API_URL}upload`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -150,7 +150,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   <img
                     src={
                       image === ""
-                        ? `http://localhost:9000/${oldImage}`
+                        ? `${process.env.REACT_APP_API_URL}${oldImage}`
                         : URL.createObjectURL(image)
                     }
                     alt="UploadedPic"

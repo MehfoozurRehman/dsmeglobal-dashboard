@@ -9,7 +9,7 @@ export default function AddCategory({ closeOnClick }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post("http://localhost:9000/api/v1/set_category", {
+          axios.post(`${process.env.REACT_APP_API_URL}api/v1/set_category`, {
             name: name,
           });
         }}
