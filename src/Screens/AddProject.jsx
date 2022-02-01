@@ -98,7 +98,7 @@ export default function AddProject({ closeOnClick }) {
             onChange={(e) => {
               setUrl(e.target.value);
             }}
-            required
+          
           />
         </div>
         <div className="popup__container__form__heading">Is Our</div>
