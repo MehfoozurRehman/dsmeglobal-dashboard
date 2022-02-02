@@ -108,7 +108,6 @@ export default function EditService({ closeOnClick, editId }) {
           <Select
             options={catagoryDataOption}
             placeholder="Categories"
-            isMulti
             value={categories}
             onChange={(e) => {
               setCategories(e);

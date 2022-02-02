@@ -100,7 +100,6 @@ export default function AddService({ closeOnClick }) {
           <Select
             options={catagoryDataOption}
             placeholder="Categories"
-            isMulti
             required
             value={categories}
             onChange={(e) => {
