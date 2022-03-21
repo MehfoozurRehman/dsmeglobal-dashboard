@@ -13,7 +13,7 @@ export default function Contact({
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}api/v1/get_contact`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_contact`)
       .then((res) => {
         setContactData(res.data);
         setLoading(false);

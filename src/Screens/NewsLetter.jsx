@@ -14,7 +14,7 @@ export default function NewsLetter({
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}api/v1/get_news_letter`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_news_letter`)
       .then((res) => {
         setNewsLetterData(res.data);
         setLoading(false);

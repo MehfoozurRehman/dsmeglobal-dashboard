@@ -15,16 +15,19 @@ export default function AddProject({ closeOnClick }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post(`${process.env.REACT_APP_API_URL}api/v1/set_project`, {
-            title: name,
-            image: image.name,
-            categories: categories,
-            isOur: isOur,
-            url: url,
-          });
+          axios.post(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/set_project`,
+            {
+              title: name,
+              image: image.name,
+              categories: categories,
+              isOur: isOur,
+              url: url,
+            }
+          );
           const formData = new FormData();
           formData.append("image", image);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, formData, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

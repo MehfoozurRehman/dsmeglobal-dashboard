@@ -16,7 +16,7 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_URL}api/v1/login`, {
+      .post(`https://dsmeglobal-api.herokuapp.com/api/v1/login`, {
         email: email,
         password: password,
       })

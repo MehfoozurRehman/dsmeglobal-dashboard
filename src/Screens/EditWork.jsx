@@ -23,7 +23,7 @@ export default function EditWork({ closeOnClick, editId }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(`${process.env.REACT_APP_API_URL}api/v1/update_work`, {
+          axios.put(`https://dsmeglobal-api.herokuapp.com/api/v1/update_work`, {
             _id: editId._id,
             logo: logo.name,
             image: image.name,
@@ -33,14 +33,14 @@ export default function EditWork({ closeOnClick, editId }) {
           });
           const fdImage = new FormData();
           fdImage.append("image", image);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdImage, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, fdImage, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
           const fdLogo = new FormData();
           fdLogo.append("image", logo);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdLogo, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, fdLogo, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -148,7 +148,7 @@ export default function EditWork({ closeOnClick, editId }) {
                     <img
                       src={
                         logo === ""
-                          ? `${process.env.REACT_APP_API_URL}${oldLogo}`
+                          ? `https://dsmeglobal-api.herokuapp.com/${oldLogo}`
                           : URL.createObjectURL(logo)
                       }
                       alt="UploadedPic"
@@ -206,7 +206,7 @@ export default function EditWork({ closeOnClick, editId }) {
                     <img
                       src={
                         image === ""
-                          ? `${process.env.REACT_APP_API_URL}${oldImage}`
+                          ? `https://dsmeglobal-api.herokuapp.com/${oldImage}`
                           : URL.createObjectURL(image)
                       }
                       alt="UploadedPic"

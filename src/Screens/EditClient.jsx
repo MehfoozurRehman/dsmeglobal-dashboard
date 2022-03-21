@@ -14,14 +14,17 @@ export default function EditClient({ closeOnClick, editId }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(`${process.env.REACT_APP_API_URL}api/v1/update_client`, {
-            _id: editId._id,
-            name: name,
-            logo: image.name,
-          });
+          axios.put(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/update_client`,
+            {
+              _id: editId._id,
+              name: name,
+              logo: image.name,
+            }
+          );
           const formData = new FormData();
           formData.append("image", image);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, formData, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -103,7 +106,7 @@ export default function EditClient({ closeOnClick, editId }) {
                   <img
                     src={
                       image === ""
-                        ? `${process.env.REACT_APP_API_URL}${oldImage}`
+                        ? `https://dsmeglobal-api.herokuapp.com/${oldImage}`
                         : URL.createObjectURL(image)
                     }
                     alt="UploadedPic"

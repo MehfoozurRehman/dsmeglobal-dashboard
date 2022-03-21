@@ -19,7 +19,7 @@ export default function Services({
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}api/v1/get_service`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_service`)
       .then((res) => {
         setServicesData(res.data);
         setLoading(false);
@@ -115,14 +115,18 @@ export default function Services({
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={process.env.REACT_APP_API_URL + item.logo}
+                        src={
+                          "https://dsmeglobal-api.herokuapp.com/" + item.logo
+                        }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={process.env.REACT_APP_API_URL + item.image}
+                        src={
+                          "https://dsmeglobal-api.herokuapp.com/" + item.image
+                        }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

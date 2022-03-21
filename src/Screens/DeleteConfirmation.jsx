@@ -17,7 +17,7 @@ export default function DeleteConfirmation({
             onClick={() => {
               axios
                 .delete(
-                  `${process.env.REACT_APP_API_URL}api/v1` +
+                  `https://dsmeglobal-api.herokuapp.com/api/v1` +
                     deleteConfirmationURL,
                   {
                     data: { _id: deleteConfirmationId },

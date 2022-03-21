@@ -19,7 +19,7 @@ export default function Client({
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}api/v1/get_client`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_client`)
       .then((res) => {
         setClientData(res.data);
         setLoading(false);
@@ -109,7 +109,9 @@ export default function Client({
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={process.env.REACT_APP_API_URL + item.logo}
+                        src={
+                          "https://dsmeglobal-api.herokuapp.com/" + item.logo
+                        }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

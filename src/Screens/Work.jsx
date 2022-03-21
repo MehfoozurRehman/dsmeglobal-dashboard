@@ -18,10 +18,12 @@ export default function Work({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}api/v1/get_work`).then((res) => {
-      setWorkData(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_work`)
+      .then((res) => {
+        setWorkData(res.data);
+        setLoading(false);
+      });
   }, [isAdd === false, isEdit === false, deleteConfirmation]);
 
   const tableHeadingRow = [
@@ -113,14 +115,18 @@ export default function Work({
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={process.env.REACT_APP_API_URL + item.logo}
+                        src={
+                          "https://dsmeglobal-api.herokuapp.com/" + item.logo
+                        }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />
                     </div>
                     <div className="entry__info__row__text">
                       <img
-                        src={process.env.REACT_APP_API_URL + item.image}
+                        src={
+                          "https://dsmeglobal-api.herokuapp.com/" + item.image
+                        }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
                       />

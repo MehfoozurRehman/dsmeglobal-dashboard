@@ -15,23 +15,26 @@ export default function AddService({ closeOnClick }) {
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post(`${process.env.REACT_APP_API_URL}api/v1/set_service`, {
-            logo: logo.name,
-            image: image.name,
-            categories: categories,
-            title: name,
-            description: description,
-          });
+          axios.post(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/set_service`,
+            {
+              logo: logo.name,
+              image: image.name,
+              categories: categories,
+              title: name,
+              description: description,
+            }
+          );
           const fdImage = new FormData();
           fdImage.append("image", image);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdImage, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, fdImage, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
           const fdLogo = new FormData();
           fdLogo.append("image", logo);
-          axios.post(`${process.env.REACT_APP_API_URL}upload`, fdLogo, {
+          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, fdLogo, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
