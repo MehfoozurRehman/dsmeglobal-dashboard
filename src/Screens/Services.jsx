@@ -134,18 +134,18 @@ export default function Services({
                     <div className="entry__info__row__text">{item.title}</div>
                     {item.categories.length < 40 ? (
                       <div className="entry__info__row__text">
-                        {item.categories.map((category) => (
-                          <>{category.label + ", "}</>
-                        ))}
+                        {item.categories.map(
+                          (category) => category.label + ", "
+                        )}
                       </div>
                     ) : (
                       <div className="entry__info__row__text">
                         <a>
                           Categories
                           <div className="entry__info__row__text__message">
-                            {item.categories.map((category) => (
-                              <>{category.label + ", "}</>
-                            ))}
+                            {item.categories.map(
+                              (category) => category.label + ", "
+                            )}
                           </div>
                         </a>
                       </div>

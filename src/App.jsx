@@ -21,6 +21,7 @@ import AddCategory from "./Screens/AddCategory";
 import Client from "./Screens/Client";
 import AddClient from "./Screens/AddClient";
 import EditClient from "./Screens/EditClient";
+import axios from "axios";
 
 function Main() {
   return (
@@ -35,6 +36,7 @@ function Main() {
 }
 
 function App() {
+  axios.defaults.headers.common["Bypass-Tunnel-Reminder"] = true;
   const navigate = useNavigate();
   const [isAddCategory, setIsAddCategory] = useState(false);
   const [isAddWork, setIsAddWork] = useState(false);
