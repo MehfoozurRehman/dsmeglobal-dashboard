@@ -21,7 +21,7 @@ export default function Category({
         setCategoryData(res.data);
         setLoading(false);
       });
-  }, [isAddCategory, deleteConfirmation]);
+  }, [isAddCategory === false, deleteConfirmation === false]);
 
   const tableHeadingRow = [{ heading: "" }, { heading: "Name" }];
 

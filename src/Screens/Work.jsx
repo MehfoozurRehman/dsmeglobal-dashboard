@@ -24,7 +24,7 @@ export default function Work({
         setWorkData(res.data);
         setLoading(false);
       });
-  }, [isAdd === false, isEdit === false, deleteConfirmation]);
+  }, [isAdd === false, isEdit === false, deleteConfirmation === false]);
 
   const tableHeadingRow = [
     { heading: "" },

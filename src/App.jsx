@@ -22,6 +22,13 @@ import Client from "./Screens/Client";
 import AddClient from "./Screens/AddClient";
 import EditClient from "./Screens/EditClient";
 import axios from "axios";
+import { WidgetLoader, Widget } from "react-cloudinary-upload-widget";
+import {
+  Image,
+  Video,
+  Transformation,
+  CloudinaryContext,
+} from "cloudinary-react";
 
 function Main() {
   return (
@@ -54,13 +61,16 @@ function App() {
   const [editServiceId, setEditServiceId] = useState("");
   const [editProjectId, setEditProjectId] = useState("");
   const [editClientId, setEditClientId] = useState("");
-  useEffect(() => {
-    if (window.localStorage.getItem("user") === null) {
-      navigate("/");
-    }
-  }, [window.location.pathname]);
+  // useEffect(() => {
+  //   if (window.localStorage.getItem("user") === null) {
+  //     navigate("/");
+  //   }
+  // }, [window.location.pathname]);
   return (
     <>
+      <Image cloudName="mehfoozurrehman" public="icequvguqwk2gsdktnkj">
+        <Transformation crop="scale" width="200" angle="10" />
+      </Image>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
       {isAddClient ? <AddClient closeOnClick={setIsAddClient} /> : null}
       {isEditClient ? (
@@ -84,6 +94,8 @@ function App() {
           deleteConfirmationId={deleteConfirmationId}
         />
       ) : null}
+      <WidgetLoader />
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Main />}>

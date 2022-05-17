@@ -24,7 +24,11 @@ export default function Client({
         setClientData(res.data);
         setLoading(false);
       });
-  }, [isAddClient === false, isEditClient === false, deleteConfirmation]);
+  }, [
+    isAddClient === false,
+    isEditClient === false,
+    deleteConfirmation === false,
+  ]);
 
   const tableHeadingRow = [
     { heading: "" },
@@ -110,7 +114,8 @@ export default function Client({
                     <div className="entry__info__row__text">
                       <img
                         src={
-                          "https://dsmeglobal-api.herokuapp.com/" + item.logo
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          item.logo
                         }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"

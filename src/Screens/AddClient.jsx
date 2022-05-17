@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Widget } from "react-cloudinary-upload-widget";
 
 export default function AddClient({ closeOnClick }) {
   const [name, setName] = useState("");
@@ -12,14 +13,7 @@ export default function AddClient({ closeOnClick }) {
           closeOnClick(false);
           axios.post(`https://dsmeglobal-api.herokuapp.com/api/v1/set_client`, {
             name: name,
-            logo: image.name,
-          });
-          const formData = new FormData();
-          formData.append("image", image);
-          axios.post(`https://dsmeglobal-api.herokuapp.com/upload`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
+            logo: image,
           });
         }}
         className="popup__container__form"
@@ -81,58 +75,53 @@ export default function AddClient({ closeOnClick }) {
         </div>
         <div>
           <div className="popup__container__form__heading">Upload Image</div>
-          <div
-            className="panel__container__form__input"
-            style={{ alignItems: "flex-start" }}
-          >
-            <div className="panel__container__form__input__pic">
-              <input
-                type="file"
-                className="panel__container__form__input__file"
-                onChange={async (e) => {
-                  setImage(e.target.files[0]);
-                }}
-                required
-              />
-              <div className="panel__container__form__input__pic__content">
-                {image != "" ? (
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt="UploadedPic"
-                    className="panel__container__form__input__pic__content__img"
-                  />
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24.561"
-                    height="24.561"
-                    viewBox="0 0 16.561 16.561"
-                  >
-                    <g
-                      id="Icon_feather-plus"
-                      data-name="Icon feather-plus"
-                      transform="translate(1.5 1.5)"
-                    >
-                      <path
-                        id="Path_9205"
-                        data-name="Path 9205"
-                        d="M18,22.561a1.5,1.5,0,0,1-1.5-1.5V7.5a1.5,1.5,0,0,1,3,0V21.061A1.5,1.5,0,0,1,18,22.561Z"
-                        transform="translate(-11.219 -7.5)"
-                        fill="#7c7a79"
-                      />
-                      <path
-                        id="Path_9206"
-                        data-name="Path 9206"
-                        d="M21.061,19.5H7.5a1.5,1.5,0,0,1,0-3H21.061a1.5,1.5,0,0,1,0,3Z"
-                        transform="translate(-7.5 -11.219)"
-                        fill="#7c7a79"
-                      />
-                    </g>
-                  </svg>
-                )}
-              </div>
-            </div>
-          </div>
+          <Widget
+            sources={["local"]}
+            resourceType={"image"} // optionally set with 'auto', 'image', 'video' or 'raw' -> default = 'auto'
+            cloudName={"mehfoozurrehman"} // your cloudinary account cloud name.
+            uploadPreset={"cqido5en"} // check that an upload preset exists and check mode is signed or unisgned
+            buttonText={
+              image !== "" ? (
+                <img
+                  src={
+                    "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                    image
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
+              ) : (
+                "+"
+              )
+            } // default 'Upload Files'
+            style={{
+              color: "black",
+              border: "none",
+              width: "120px",
+              backgroundColor: "white",
+              border: "1px solid #242424",
+              borderRadius: "4px",
+              fontSize: 50,
+              height: "120px",
+              cursor: "pointer",
+              padding: 0,
+            }} // inline styling only or style id='cloudinary_upload_button'
+            folder={"dsme_global"} // set cloudinary folder name to send file
+            cropping={true}
+            multiple={false}
+            autoClose={false}
+            onSuccess={(e) => {
+              setImage(e.info.path);
+              console.log(e);
+            }} // add success callback -> returns result
+            onFailure={(e) => {
+              console.log(e);
+            }} // add failure callback -> returns 'response.error' + 'response.result'
+            logging={true} // logs will be provided for success and failure messages,
+            use_filename={true}
+            destroy={true} // will destroy the widget on completion
+            apiKey={915662453295273} // cloudinary API key -> number format
+            // unique_filename={true}
+          />
         </div>
         <button
           type="submit"
