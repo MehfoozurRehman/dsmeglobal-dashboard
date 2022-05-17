@@ -5,35 +5,36 @@ export default function DeleteConfirmation({
   closeOnClick,
   deleteConfirmationId,
   deleteConfirmationURL,
+  fetch,
 }) {
+  console.log("deleteConfirmationURL", deleteConfirmationURL);
+  console.log(
+    "deleteConfirmationId",
+
+    `https://dsmeglobal-api.herokuapp.com/api/v1` + deleteConfirmationURL,
+    {
+      data: { _id: deleteConfirmationId },
+    }
+  );
+  function onDelete() {
+    axios.delete(
+      `https://dsmeglobal-api.herokuapp.com/api/v1/` + deleteConfirmationURL,
+      {
+        data: { _id: deleteConfirmationId },
+      }
+    );
+    closeOnClick(false);
+    fetch();
+  }
   return (
     <div className="popup__container">
-      <form action="" className="popup__container__form">
+      <div className="popup__container__form">
         <div className="popup__container__form__header">
           <div>Are you sure you want to delete</div>
         </div>
         <div style={{ display: "flex" }}>
           <button
-            onClick={() => {
-              axios
-                .delete(
-                  `https://dsmeglobal-api.herokuapp.com/api/v1` +
-                    deleteConfirmationURL,
-                  {
-                    data: { _id: deleteConfirmationId },
-                  }
-                )
-                .then(function (response) {
-                  console.log(response);
-                  // setTimeout(() => {
-                  //   window.location.reload();
-                  // }, 1000);
-                  closeOnClick(false);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-            }}
+            onClick={onDelete}
             style={{
               marginTop: "1em",
               marginRight: "1em",
@@ -52,7 +53,7 @@ export default function DeleteConfirmation({
             Cancel
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
