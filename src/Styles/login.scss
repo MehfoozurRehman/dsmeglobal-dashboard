@@ -40,6 +40,9 @@
 .login__container__content__form__input {
   width: 100%;
 }
+.login__container__content__form__input * {
+  font-size: 12px !important;
+}
 .login__container__content__form__input input {
   display: flex;
   width: 100%;
