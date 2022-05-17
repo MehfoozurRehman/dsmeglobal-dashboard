@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { WidgetLoader } from "react-cloudinary-upload-widget";
+import { Routes, Route, Outlet } from "react-router-dom";
+import axios from "axios";
+import DeleteConfirmation from "./Screens/DeleteConfirmation";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
-import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import Dashboard from "./Screens/Dashboard.jsx";
 import Login from "./Screens/Login.jsx";
 import Work from "./Screens/Work.jsx";
 import Contact from "./Screens/Contact.jsx";
 import EditWork from "./Screens/EditWork.jsx";
 import AddWork from "./Screens/AddWork.jsx";
-import DeleteConfirmation from "./Screens/DeleteConfirmation";
 import NewsLetter from "./Screens/NewsLetter";
 import Projects from "./Screens/Projects";
 import Services from "./Screens/Services";
@@ -21,14 +23,6 @@ import AddCategory from "./Screens/AddCategory";
 import Client from "./Screens/Client";
 import AddClient from "./Screens/AddClient";
 import EditClient from "./Screens/EditClient";
-import axios from "axios";
-import { WidgetLoader, Widget } from "react-cloudinary-upload-widget";
-import {
-  Image,
-  Video,
-  Transformation,
-  CloudinaryContext,
-} from "cloudinary-react";
 
 function Main() {
   return (
@@ -44,7 +38,6 @@ function Main() {
 
 function App() {
   axios.defaults.headers.common["Bypass-Tunnel-Reminder"] = true;
-  const navigate = useNavigate();
   const [isAddCategory, setIsAddCategory] = useState(false);
   const [isAddWork, setIsAddWork] = useState(false);
   const [isEditWork, setIsEditWork] = useState(false);
@@ -52,9 +45,9 @@ function App() {
   const [isEditService, setIsEditService] = useState(false);
   const [isAddProject, setIsAddProject] = useState(false);
   const [isEditProject, setIsEditProject] = useState(false);
-  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
   const [isEditClient, setIsEditClient] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationURL, setDeleteConfirmationURL] = useState("");
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
   const [editWorkId, setEditWorkId] = useState("");
@@ -68,9 +61,6 @@ function App() {
   // }, [window.location.pathname]);
   return (
     <>
-      <Image cloudName="mehfoozurrehman" public="icequvguqwk2gsdktnkj">
-        <Transformation crop="scale" width="200" angle="10" />
-      </Image>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
       {isAddClient ? <AddClient closeOnClick={setIsAddClient} /> : null}
       {isEditClient ? (

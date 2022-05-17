@@ -117,9 +117,9 @@ export default function AddService({ closeOnClick }) {
             <div className="popup__container__form__heading">Upload Logo</div>
             <Widget
               sources={["local"]}
-              resourceType={"image"} // optionally set with 'auto', 'image', 'video' or 'raw' -> default = 'auto'
-              cloudName={"mehfoozurrehman"} // your cloudinary account cloud name.
-              uploadPreset={"cqido5en"} // check that an upload preset exists and check mode is signed or unisgned
+              resourceType={"image"}
+              cloudName={"mehfoozurrehman"}
+              uploadPreset={"cqido5en"}
               buttonText={
                 logo !== "" ? (
                   <img
@@ -132,7 +132,7 @@ export default function AddService({ closeOnClick }) {
                 ) : (
                   "+"
                 )
-              } // default 'Upload Files'
+              }
               style={{
                 color: "black",
                 border: "none",
@@ -144,32 +144,31 @@ export default function AddService({ closeOnClick }) {
                 height: "120px",
                 cursor: "pointer",
                 padding: 0,
-              }} // inline styling only or style id='cloudinary_upload_button'
-              folder={"dsme_global"} // set cloudinary folder name to send file
+              }}
+              folder={"dsme_global"}
               cropping={true}
               multiple={false}
               autoClose={false}
               onSuccess={(e) => {
                 setLogo(e.info.path);
                 console.log(e);
-              }} // add success callback -> returns result
+              }}
               onFailure={(e) => {
                 console.log(e);
-              }} // add failure callback -> returns 'response.error' + 'response.result'
-              logging={true} // logs will be provided for success and failure messages,
+              }}
+              logging={true}
               use_filename={true}
-              destroy={true} // will destroy the widget on completion
-              apiKey={915662453295273} // cloudinary API key -> number format
-              // unique_filename={true}
+              destroy={true}
+              apiKey={915662453295273}
             />
           </div>
           <div>
             <div className="popup__container__form__heading">Upload Image</div>
             <Widget
               sources={["local"]}
-              resourceType={"image"} // optionally set with 'auto', 'image', 'video' or 'raw' -> default = 'auto'
-              cloudName={"mehfoozurrehman"} // your cloudinary account cloud name.
-              uploadPreset={"cqido5en"} // check that an upload preset exists and check mode is signed or unisgned
+              resourceType={"image"}
+              cloudName={"mehfoozurrehman"}
+              uploadPreset={"cqido5en"}
               buttonText={
                 image !== "" ? (
                   <img
@@ -182,7 +181,7 @@ export default function AddService({ closeOnClick }) {
                 ) : (
                   "+"
                 )
-              } // default 'Upload Files'
+              }
               style={{
                 color: "black",
                 border: "none",
@@ -194,23 +193,22 @@ export default function AddService({ closeOnClick }) {
                 height: "120px",
                 cursor: "pointer",
                 padding: 0,
-              }} // inline styling only or style id='cloudinary_upload_button'
-              folder={"dsme_global"} // set cloudinary folder name to send file
+              }}
+              folder={"dsme_global"}
               cropping={true}
               multiple={false}
               autoClose={false}
               onSuccess={(e) => {
                 setImage(e.info.path);
                 console.log(e);
-              }} // add success callback -> returns result
+              }}
               onFailure={(e) => {
                 console.log(e);
-              }} // add failure callback -> returns 'response.error' + 'response.result'
-              logging={true} // logs will be provided for success and failure messages,
+              }}
+              logging={true}
               use_filename={true}
-              destroy={true} // will destroy the widget on completion
-              apiKey={915662453295273} // cloudinary API key -> number format
-              // unique_filename={true}
+              destroy={true}
+              apiKey={915662453295273}
             />
           </div>
         </div>
