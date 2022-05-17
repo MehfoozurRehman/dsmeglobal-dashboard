@@ -116,7 +116,8 @@ export default function Work({
                     <div className="entry__info__row__text">
                       <img
                         src={
-                          "https://dsmeglobal-api.herokuapp.com/" + item.logo
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          item.logo
                         }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"
@@ -125,7 +126,8 @@ export default function Work({
                     <div className="entry__info__row__text">
                       <img
                         src={
-                          "https://dsmeglobal-api.herokuapp.com/" + item.image
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          item.image
                         }
                         alt="tableEntryPic"
                         className="entry__info__row__text__img"

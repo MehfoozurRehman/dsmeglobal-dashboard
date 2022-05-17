@@ -161,6 +161,7 @@ body {
   display: none;
   z-index: 4;
   word-wrap: break-word;
+  word-break: break-all;
 }
 .entry__info__row__text a:hover .entry__info__row__text__message {
   display: flex;
