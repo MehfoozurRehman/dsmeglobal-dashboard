@@ -17,7 +17,7 @@ export default function Contact({}) {
         setContactData(res.data);
         setLoading(false);
       });
-  }, []);
+  }, [!deleteConfirmation]);
 
   const tableHeadingRow = [
     { heading: "" },
