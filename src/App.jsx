@@ -23,6 +23,7 @@ import AddCategory from "./Screens/AddCategory";
 import Client from "./Screens/Client";
 import AddClient from "./Screens/AddClient";
 import EditClient from "./Screens/EditClient";
+import Blogs from "./Screens/Blogs";
 
 function Main() {
   return (
@@ -155,13 +156,21 @@ function App() {
             }
           />
           <Route
+            path="blogs"
+            element={
+              <Blogs
+                isAddClient={isAddClient}
+                setIsAddClient={setIsAddClient}
+                isEditClient={isEditClient}
+                setIsEditClient={setIsEditClient}
+                setEditClientId={setEditClientId}
+              />
+            }
+          />
+          <Route
             path="category"
             element={
               <Category
-                deleteConfirmation={deleteConfirmation}
-                setDeleteConfirmation={setDeleteConfirmation}
-                setDeleteConfirmationURL={setDeleteConfirmationURL}
-                setDeleteConfirmationId={setDeleteConfirmationId}
                 isAddCategory={isAddCategory}
                 setIsAddCategory={setIsAddCategory}
               />

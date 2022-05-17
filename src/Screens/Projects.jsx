@@ -125,8 +125,27 @@ export default function Projects({
                       </div>
                       {item.categories.length < 40 ? (
                         <div className="entry__info__row__text">
-                          {item.categories.map(
-                            (category) => category.label + ", "
+                          {item.categories.length <= 2 ? (
+                            <div className="entry__info__row__text">
+                              {item.categories.map((category, i) =>
+                                i + 1 < item.categories.length
+                                  ? category.label + ", "
+                                  : category.label
+                              )}
+                            </div>
+                          ) : (
+                            <div className="entry__info__row__text">
+                              <a>
+                                View Categories
+                                <div className="entry__info__row__text__message">
+                                  {item.categories.map((category, i) =>
+                                    i + 1 < item.categories.length
+                                      ? category.label + ", "
+                                      : category.label
+                                  )}
+                                </div>
+                              </a>
+                            </div>
                           )}
                         </div>
                       ) : (

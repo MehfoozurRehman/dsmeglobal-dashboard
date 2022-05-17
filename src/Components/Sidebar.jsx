@@ -11,6 +11,7 @@ function NavLink({ title, svg, path, defaultChecked, id, onClick }) {
         name="sidebar__container__content__entry__input"
         id={id ? id : "sidebar__container__content__entry__input"}
         className="sidebar__container__content__entry__input"
+        checked={window.location.pathname === path}
         onChange={() => {
           navigate(path);
         }}
@@ -33,7 +34,7 @@ export default function Sidebar() {
       <div className="sidebar__container__links">
         <NavLink
           title="Dashboard"
-          path="/Dashboard"
+          path="/dashboard"
           defaultChecked
           id="sidebar__container__content__entry__input__1"
           svg={
@@ -86,7 +87,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="Our Services"
-          path="/Dashboard/services"
+          path="/dashboard/services"
           svg={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +127,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="Our Projects"
-          path="/Dashboard/projects"
+          path="/dashboard/projects"
           svg={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +167,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="Our Work"
-          path="/Dashboard/work"
+          path="/dashboard/work"
           svg={
             <svg
               id="Group_1012"
@@ -209,7 +210,29 @@ export default function Sidebar() {
         />
         <NavLink
           title="Our Clients"
-          path="/Dashboard/client"
+          path="/dashboard/client"
+          svg={
+            <svg
+              id="Group_1011"
+              data-name="Group 1011"
+              xmlns="http://www.w3.org/2000/svg"
+              width="23.297"
+              height="21.227"
+              viewBox="0 0 23.297 21.227"
+            >
+              <path
+                id="Path_12017"
+                data-name="Path 12017"
+                d="M-332.025,163.12a1.393,1.393,0,0,0-.857-1.313,2.109,2.109,0,0,0-.973-.175h-13.627c-.117,0-.224.021-.286-.14a13.342,13.342,0,0,0-.752-1.48,5.572,5.572,0,0,0-1.328-1.71,1.4,1.4,0,0,0-1.538-.32,5.377,5.377,0,0,0-.995.575,7.018,7.018,0,0,0-2.935,6.208,9.944,9.944,0,0,0,1.222,4.4c1,1.859,2.077,3.682,3.18,5.484a10.026,10.026,0,0,0,1.6,1.962,8.016,8.016,0,0,0,5.17,2.471,6.9,6.9,0,0,0,4.166-1.065,1.376,1.376,0,0,0,.678-1.313,2.277,2.277,0,0,0-.113-.627,10.251,10.251,0,0,0-2.279-3.75l-.018-.018a2.215,2.215,0,0,0-2.878-.317c-.273.158-.546.316-.821.471a.944.944,0,0,1-.714.1,1.835,1.835,0,0,1-1.2-.879c-.8-1.377-1.6-2.758-2.4-4.136a1.493,1.493,0,0,1-.208-.573,1.328,1.328,0,0,1,.453-1.425c.316-.212.657-.386,1-.585a.907.907,0,0,0,.36.437q2.562,2.01,5.122,4.021a1.883,1.883,0,0,0,2.588,0q2.311-1.81,4.616-3.627l2.651-2.082v9.142c0,.094,0,.188,0,.282a.385.385,0,0,1-.415.44c-.094.006-.188,0-.282,0h-4.67a2.2,2.2,0,0,0-.231,0,.552.552,0,0,0-.535.6.54.54,0,0,0,.584.517q2.515,0,5.03,0a1.526,1.526,0,0,0,1.637-1.648v-9.393C-332.025,163.479-332.025,163.3-332.025,163.12Zm-17.113.936c-.273.158-.545.318-.819.472a2.208,2.208,0,0,0-1.119,1.844,2.955,2.955,0,0,0,.436,1.833c.8,1.34,1.552,2.7,2.354,4.042a2.727,2.727,0,0,0,2.715,1.426,1.855,1.855,0,0,0,.765-.269c.3-.172.6-.35.908-.523a.94.94,0,0,1,1.243.089,3.589,3.589,0,0,1,.794.865,9.232,9.232,0,0,1,1.369,2.528c.007.025.021.047.027.072.114.488.093.5-.335.768a6.03,6.03,0,0,1-2.508.8,6.922,6.922,0,0,1-4.6-1.634,9.285,9.285,0,0,1-2.052-2.31c-1.1-1.776-2.155-3.577-3.143-5.416a8.807,8.807,0,0,1-1.1-4.443,5.772,5.772,0,0,1,2.437-4.707c.245-.181.525-.315.787-.475a.227.227,0,0,1,.261.032,1.653,1.653,0,0,1,.428.365,9.065,9.065,0,0,1,1.74,3.269C-348.354,163.389-348.5,163.688-349.138,164.057Zm13.507.195-5.4,4.24a.881.881,0,0,1-1.36-.007q-2.536-2-5.075-3.99c-.086-.068-.181-.126-.278-.194a2.012,2.012,0,0,0,.356-1.377c-.025-.221.11-.181.234-.181h13.441C-334.389,163.274-335.01,163.764-335.631,164.251Z"
+                transform="translate(355.322 -157.865)"
+                fill="#fff"
+              />
+            </svg>
+          }
+        />
+        <NavLink
+          title="Our Blogs"
+          path="/dashboard/blogs"
           svg={
             <svg
               id="Group_1011"
@@ -231,7 +254,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="Category"
-          path="/Dashboard/category"
+          path="/dashboard/category"
           svg={
             <svg
               id="Group_1011"
@@ -253,7 +276,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="Contact"
-          path="/Dashboard/contact"
+          path="/dashboard/contact"
           svg={
             <svg
               id="Group_1011"
@@ -275,7 +298,7 @@ export default function Sidebar() {
         />
         <NavLink
           title="News Letter"
-          path="/Dashboard/news-letter"
+          path="/dashboard/news-letter"
           svg={
             <svg
               id="Group_1011"
