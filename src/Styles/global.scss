@@ -266,15 +266,21 @@ body {
   justify-content: center;
   align-items: center;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
   outline: none;
   background: transparent;
   cursor: pointer;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+}
+.popup__container__form__close__btn svg {
+  width: 12px;
+  height: 12px;
 }
 .popup__container__form__close__btn:hover {
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  background-color: #00040e;
+  color: white;
 }
 .panel__container__form__input {
   display: flex;

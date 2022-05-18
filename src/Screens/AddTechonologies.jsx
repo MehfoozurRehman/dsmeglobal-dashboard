@@ -1,44 +1,28 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
-import catagoryDataOption from "../constants/constant";
 
-export default function EditProject({ closeOnClick, editId }) {
+export default function AddTechonologies({ closeOnClick }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  const [oldImage, setOldImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [isOur, setIsOur] = useState("");
-  const [url, setUrl] = useState("");
-  useEffect(() => {
-    setName(editId.title);
-    setOldImage(editId.image);
-    setCategories(editId.categories);
-    setIsOur({ value: editId.isOur, label: editId.isOur ? "Yes" : "No" });
-    setUrl(editId.url);
-  }, [editId]);
+
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(
-            `https://dsmeglobal-api.herokuapp.com/api/v1/update_project`,
+          axios.post(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/set_techonologies`,
             {
-              _id: editId._id,
-              title: name,
-              image: image === "" ? oldImage : image,
-              categories: categories,
-              isOur: isOur,
-              url: url,
+              name: name,
+              image: image,
             }
           );
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Project</div>
+          <div>Add Techonologies</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -89,43 +73,7 @@ export default function EditProject({ closeOnClick, editId }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-          />
-        </div>
-        <div className="popup__container__form__heading">URL</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="URL"
-            value={url}
-            onChange={(e) => {
-              setUrl(e.target.value);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Is Our</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={[
-              { value: true, label: "Yes" },
-              { value: false, label: "No" },
-            ]}
-            placeholder="Is Our"
-            value={isOur}
-            onChange={(e) => {
-              setIsOur(e);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Categories</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
-            value={categories}
-            onChange={(e) => {
-              setCategories(e);
-            }}
+            required
           />
         </div>
         <div>
@@ -136,16 +84,17 @@ export default function EditProject({ closeOnClick, editId }) {
             cloudName={"mehfoozurrehman"}
             uploadPreset={"cqido5en"}
             buttonText={
-              <img
-                src={
-                  image === ""
-                    ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      oldImage
-                    : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      image
-                }
-                style={{ width: "100%", height: "100%" }}
-              />
+              image !== "" ? (
+                <img
+                  src={
+                    "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                    image
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
+              ) : (
+                "+"
+              )
             }
             style={{
               color: "black",
@@ -181,7 +130,7 @@ export default function EditProject({ closeOnClick, editId }) {
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
         >
-          Edit
+          Add
         </button>
       </form>
     </div>

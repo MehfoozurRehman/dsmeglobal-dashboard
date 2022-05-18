@@ -27,6 +27,8 @@ import Blogs from "./Screens/Blogs";
 import EditBlog from "./Screens/EditBlog";
 import AddBlog from "./Screens/AddBlog";
 import Techonologies from "./Screens/Techonologies";
+import AddTechonologies from "./Screens/AddTechonologies";
+import EditTechonologies from "./Screens/EditTechonologies";
 
 function Main() {
   return (
@@ -53,6 +55,8 @@ function App() {
   const [isEditBlog, setIsEditBlog] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
   const [isEditClient, setIsEditClient] = useState(false);
+  const [isAddTechonologies, setIsAddTechonologies] = useState(false);
+  const [isEditTechonologies, setIsEditTechonologies] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationURL, setDeleteConfirmationURL] = useState("");
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
@@ -60,6 +64,7 @@ function App() {
   const [editServiceId, setEditServiceId] = useState("");
   const [editProjectId, setEditProjectId] = useState("");
   const [editClientId, setEditClientId] = useState("");
+  const [editTechonologiesId, setEditTechonologiesId] = useState("");
   const [editBlogId, setEditBlogId] = useState("");
   // useEffect(() => {
   //   if (window.localStorage.getItem("user") === null) {
@@ -73,6 +78,15 @@ function App() {
       {isAddClient ? <AddClient closeOnClick={setIsAddClient} /> : null}
       {isEditClient ? (
         <EditClient closeOnClick={setIsEditClient} editId={editClientId} />
+      ) : null}
+      {isAddTechonologies ? (
+        <AddTechonologies closeOnClick={setIsAddTechonologies} />
+      ) : null}
+      {isEditTechonologies ? (
+        <EditTechonologies
+          closeOnClick={setIsEditTechonologies}
+          editId={editTechonologiesId}
+        />
       ) : null}
       {isAddWork ? <AddWork closeOnClick={setIsAddWork} /> : null}
       {isEditWork ? (
@@ -182,11 +196,11 @@ function App() {
             path="techonologies"
             element={
               <Techonologies
-                isAdd={isAddBlog}
-                setIsAdd={setIsAddBlog}
-                isEdit={isEditBlog}
-                setIsEdit={setIsEditBlog}
-                setEditId={setEditBlogId}
+                isAdd={isAddTechonologies}
+                setIsAdd={setIsAddTechonologies}
+                isEdit={isEditTechonologies}
+                setIsEdit={setIsEditTechonologies}
+                setEditId={setEditTechonologiesId}
               />
             }
           />

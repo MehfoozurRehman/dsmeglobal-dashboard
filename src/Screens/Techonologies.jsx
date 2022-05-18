@@ -67,11 +67,8 @@ export default function Techonologies({
                             setIsEdit(true);
                             setEditId({
                               _id: item._id,
-                              title: item.title,
+                              name: item.name,
                               image: item.image,
-                              categories: item.categories,
-                              author: item.author,
-                              content: item.content,
                             });
                           }}
                           className="primary__button__rounded"
@@ -113,33 +110,7 @@ export default function Techonologies({
                           </svg>
                         </button>
                       </div>
-                      <div className="entry__info__row__text">{item.title}</div>
-                      <div className="entry__info__row__text">
-                        {parseDate(item.updatedAt)}
-                      </div>
-                      <div className="entry__info__row__text">
-                        {item.author}
-                      </div>
-                      {item.categories.length < 40 ? (
-                        <div className="entry__info__row__text">
-                          {item.categories.map(
-                            (category) => category.label + ", "
-                          )}
-                        </div>
-                      ) : (
-                        <div className="entry__info__row__text">
-                          <a>
-                            Categories
-                            <div className="entry__info__row__text__message">
-                              {item.categories.map((category, i) =>
-                                i < item.categories.length
-                                  ? category.label + ", "
-                                  : category.label
-                              )}
-                            </div>
-                          </a>
-                        </div>
-                      )}
+                      <div className="entry__info__row__text">{item.name}</div>
                       <div className="entry__info__row__text">
                         <img
                           src={

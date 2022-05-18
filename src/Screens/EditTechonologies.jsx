@@ -1,22 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
-import catagoryDataOption from "../constants/constant";
 
-export default function EditProject({ closeOnClick, editId }) {
+export default function EditTechonologies({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [oldImage, setOldImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [isOur, setIsOur] = useState("");
-  const [url, setUrl] = useState("");
   useEffect(() => {
-    setName(editId.title);
+    setName(editId.name);
     setOldImage(editId.image);
-    setCategories(editId.categories);
-    setIsOur({ value: editId.isOur, label: editId.isOur ? "Yes" : "No" });
-    setUrl(editId.url);
   }, [editId]);
   return (
     <div className="popup__container">
@@ -24,21 +16,18 @@ export default function EditProject({ closeOnClick, editId }) {
         onSubmit={() => {
           closeOnClick(false);
           axios.put(
-            `https://dsmeglobal-api.herokuapp.com/api/v1/update_project`,
+            `https://dsmeglobal-api.herokuapp.com/api/v1/update_techonologies`,
             {
               _id: editId._id,
-              title: name,
+              name: name,
               image: image === "" ? oldImage : image,
-              categories: categories,
-              isOur: isOur,
-              url: url,
             }
           );
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Project</div>
+          <div>Edit Techonologies</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -89,43 +78,7 @@ export default function EditProject({ closeOnClick, editId }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-          />
-        </div>
-        <div className="popup__container__form__heading">URL</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="URL"
-            value={url}
-            onChange={(e) => {
-              setUrl(e.target.value);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Is Our</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={[
-              { value: true, label: "Yes" },
-              { value: false, label: "No" },
-            ]}
-            placeholder="Is Our"
-            value={isOur}
-            onChange={(e) => {
-              setIsOur(e);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Categories</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
-            value={categories}
-            onChange={(e) => {
-              setCategories(e);
-            }}
+            required
           />
         </div>
         <div>
@@ -176,6 +129,7 @@ export default function EditProject({ closeOnClick, editId }) {
             apiKey={915662453295273}
           />
         </div>
+
         <button
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}
