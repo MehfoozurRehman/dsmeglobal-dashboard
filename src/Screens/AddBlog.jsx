@@ -119,7 +119,6 @@ export default function AddBlog({ closeOnClick }) {
           data=""
           onChange={(event, editor) => {
             const data = editor.getData();
-            console.log({ event, editor, data });
             setContent(data);
           }}
         />

@@ -22,7 +22,6 @@ export default function Techonologies({
       .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_techonologies`)
       .then((res) => {
         setTechonologiesData(res.data);
-        console.log(res.data);
         setLoading(false);
       });
   }, [!isAdd, !isEdit, !deleteConfirmation]);

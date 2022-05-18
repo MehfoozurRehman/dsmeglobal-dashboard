@@ -7,15 +7,6 @@ export default function DeleteConfirmation({
   deleteConfirmationURL,
   fetch,
 }) {
-  console.log("deleteConfirmationURL", deleteConfirmationURL);
-  console.log(
-    "deleteConfirmationId",
-
-    `https://dsmeglobal-api.herokuapp.com/api/v1` + deleteConfirmationURL,
-    {
-      data: { _id: deleteConfirmationId },
-    }
-  );
   function onDelete() {
     axios.delete(
       `https://dsmeglobal-api.herokuapp.com/api/v1/` + deleteConfirmationURL,

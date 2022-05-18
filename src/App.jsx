@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteConfirmation from "./Screens/DeleteConfirmation";
 import Header from "./Components/Header";
@@ -44,6 +44,7 @@ function Main() {
 
 function App() {
   axios.defaults.headers.common["Bypass-Tunnel-Reminder"] = true;
+  const navigate = useNavigate();
   const [isAddCategory, setIsAddCategory] = useState(false);
   const [isAddWork, setIsAddWork] = useState(false);
   const [isEditWork, setIsEditWork] = useState(false);
@@ -66,12 +67,11 @@ function App() {
   const [editClientId, setEditClientId] = useState("");
   const [editTechonologiesId, setEditTechonologiesId] = useState("");
   const [editBlogId, setEditBlogId] = useState("");
-  // useEffect(() => {
-  //   if (window.localStorage.getItem("user") === null) {
-  //     navigate("/");
-  //   }
-  // }, [window.location.pathname]);
-  console.log(editBlogId);
+  useEffect(() => {
+    if (window.localStorage.getItem("user") === null) {
+      navigate("/");
+    }
+  }, [window.location.pathname]);
   return (
     <>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}

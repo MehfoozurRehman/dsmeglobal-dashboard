@@ -22,7 +22,6 @@ export default function Blogs({
       .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_blog`)
       .then((res) => {
         setBlogData(res.data);
-        console.log(res.data);
         setLoading(false);
       });
   }, [!isAdd, !isEdit, !deleteConfirmation]);

@@ -135,7 +135,6 @@ export default function EditBlog({ closeOnClick, editId }) {
           data={content}
           onChange={(event, editor) => {
             const data = editor.getData();
-            console.log({ event, editor, data });
             setContent(data);
           }}
         />
