@@ -52,10 +52,10 @@ export default function Login() {
               y2="1"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0" stop-color="#62cbac" />
-              <stop offset="1" stop-color="#316656" />
+              <stop offset="0" stopColor="#62cbac" />
+              <stop offset="1" stopColor="#316656" />
             </linearGradient>
-            <clipPath id="clip-path">
+            <clipPath id="clipPath">
               <rect
                 id="Rectangle_3"
                 data-name="Rectangle 3"
@@ -75,7 +75,7 @@ export default function Login() {
               data-name="Group 2"
               transform="translate(196.895 26)"
             >
-              <g id="Group_3" data-name="Group 3" clip-path="url(#clip-path)">
+              <g id="Group_3" data-name="Group 3" clipPath="url(#clipPath)">
                 <path
                   id="Path_37"
                   data-name="Path 37"
@@ -89,9 +89,9 @@ export default function Login() {
               id="DSME"
               transform="translate(288 64)"
               fill="#5dc1a3"
-              font-size="31"
-              font-family="Montserrat-SemiBold, Montserrat"
-              font-weight="600"
+              fontSize="31"
+              fontFamily="Montserrat-SemiBold, Montserrat"
+              fontWeight="600"
             >
               <tspan x="0" y="0">
                 DSME
@@ -101,9 +101,9 @@ export default function Login() {
               id="GLOBAL"
               transform="translate(288 93)"
               fill="#00040e"
-              font-size="31"
-              font-family="Montserrat-Medium, Montserrat"
-              font-weight="500"
+              fontSize="31"
+              fontFamily="Montserrat-Medium, Montserrat"
+              fontWeight="500"
             >
               <tspan x="0" y="0">
                 GLOBAL

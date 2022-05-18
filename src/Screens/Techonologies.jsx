@@ -38,7 +38,7 @@ export default function Techonologies({
       <div className="main__container">
         <div className="main__container__header">
           <div className="main__container__header__heading">
-            Our Techonologies
+            Our Technologies
           </div>
           <div className="main__container__header__buttons">
             <button

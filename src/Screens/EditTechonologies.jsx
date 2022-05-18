@@ -27,7 +27,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Techonologies</div>
+          <div>Edit Technologies</div>
           <button
             onClick={() => {
               closeOnClick(false);

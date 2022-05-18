@@ -253,7 +253,7 @@ export default function Sidebar() {
           }
         />
         <NavLink
-          title="Our Techonologies"
+          title="Our Technologies"
           path="/dashboard/techonologies"
           svg={
             <svg

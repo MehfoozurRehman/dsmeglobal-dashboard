@@ -22,7 +22,7 @@ export default function AddTechonologies({ closeOnClick }) {
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Add Techonologies</div>
+          <div>Add Technologies</div>
           <button
             onClick={() => {
               closeOnClick(false);
