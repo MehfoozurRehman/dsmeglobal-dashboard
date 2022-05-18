@@ -26,6 +26,7 @@ import EditClient from "./Screens/EditClient";
 import Blogs from "./Screens/Blogs";
 import EditBlog from "./Screens/EditBlog";
 import AddBlog from "./Screens/AddBlog";
+import Techonologies from "./Screens/Techonologies";
 
 function Main() {
   return (
@@ -169,6 +170,18 @@ function App() {
             path="blogs"
             element={
               <Blogs
+                isAdd={isAddBlog}
+                setIsAdd={setIsAddBlog}
+                isEdit={isEditBlog}
+                setIsEdit={setIsEditBlog}
+                setEditId={setEditBlogId}
+              />
+            }
+          />
+          <Route
+            path="techonologies"
+            element={
+              <Techonologies
                 isAdd={isAddBlog}
                 setIsAdd={setIsAddBlog}
                 isEdit={isEditBlog}
