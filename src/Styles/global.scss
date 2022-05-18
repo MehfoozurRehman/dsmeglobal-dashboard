@@ -403,6 +403,22 @@ body {
 .css-14el2xx-placeholder {
   font-size: 12px;
 }
+.ck * svg {
+  width: 15px !important;
+  height: 15px !important;
+}
+.ck-toolbar {
+  background-color: #e7e9ec !important;
+  border-color: #e7e9ec !important;
+  border-radius: 5px 5px 0px 0px !important;
+}
+.ck-editor__editable {
+  height: 150px !important;
+  border-radius: 0px 0px 5px 5px !important;
+}
+.ck-dropdown__arrow {
+  z-index: 0 !important;
+}
 @media (max-width: 1360px) {
   .main__container__content__table {
     max-width: 1000px;

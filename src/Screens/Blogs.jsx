@@ -3,6 +3,7 @@ import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { parseDate } from "../utils/parseDate";
 
 export default function Blogs({
   isAdd,
@@ -11,16 +12,17 @@ export default function Blogs({
   setIsAdd,
   setEditId,
 }) {
-  const [ProjectsData, setProjectsData] = useState([]);
+  const [BlogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
 
   useEffect(() => {
     axios
-      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_project`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_blog`)
       .then((res) => {
-        setProjectsData(res.data);
+        setBlogData(res.data);
+        console.log(res.data);
         setLoading(false);
       });
   }, [!isAdd, !isEdit, !deleteConfirmation]);
@@ -57,8 +59,8 @@ export default function Blogs({
               <Loader />
             ) : (
               <>
-                {ProjectsData.length > 0 ? (
-                  ProjectsData.map((item, i) => (
+                {BlogData.length > 0 ? (
+                  BlogData.map((item, i) => (
                     <div className="entry__info__row" key={i}>
                       <div className="entry__info__row__btns">
                         <button
@@ -69,8 +71,8 @@ export default function Blogs({
                               title: item.title,
                               image: item.image,
                               categories: item.categories,
-                              isOur: item.isOur,
-                              url: item.url,
+                              author: item.author,
+                              content: item.content,
                             });
                           }}
                           className="primary__button__rounded"
@@ -114,14 +116,10 @@ export default function Blogs({
                       </div>
                       <div className="entry__info__row__text">{item.title}</div>
                       <div className="entry__info__row__text">
-                        <img
-                          src={
-                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                            item.image
-                          }
-                          alt="tableEntryPic"
-                          className="entry__info__row__text__img"
-                        />
+                        {parseDate(item.updatedAt)}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.author}
                       </div>
                       {item.categories.length < 40 ? (
                         <div className="entry__info__row__text">
@@ -144,9 +142,22 @@ export default function Blogs({
                         </div>
                       )}
                       <div className="entry__info__row__text">
+                        <img
+                          src={
+                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                            item.image
+                          }
+                          alt="tableEntryPic"
+                          className="entry__info__row__text__img"
+                        />
+                      </div>
+                      {/* <div className="entry__info__row__text">{item.title}</div>
+                      
+                      
+                      <div className="entry__info__row__text">
                         {item.isOur.map((item) => item.label)}
                       </div>
-                      <div className="entry__info__row__text">{item.url}</div>
+                      <div className="entry__info__row__text">{item.url}</div> */}
                     </div>
                   ))
                 ) : (
@@ -170,14 +181,14 @@ export default function Blogs({
       {deleteConfirmation ? (
         <DeleteConfirmation
           closeOnClick={setDeleteConfirmation}
-          deleteConfirmationURL="delete_project"
+          deleteConfirmationURL="delete_blog"
           deleteConfirmationId={deleteConfirmationId}
           fetch={() => {
             setLoading(true);
             axios
-              .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_project`)
+              .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_blog`)
               .then((res) => {
-                setProjectsData(res.data);
+                setBlogData(res.data);
                 setLoading(false);
               });
           }}

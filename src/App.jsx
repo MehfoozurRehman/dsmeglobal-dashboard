@@ -24,6 +24,8 @@ import Client from "./Screens/Client";
 import AddClient from "./Screens/AddClient";
 import EditClient from "./Screens/EditClient";
 import Blogs from "./Screens/Blogs";
+import EditBlog from "./Screens/EditBlog";
+import AddBlog from "./Screens/AddBlog";
 
 function Main() {
   return (
@@ -46,6 +48,8 @@ function App() {
   const [isEditService, setIsEditService] = useState(false);
   const [isAddProject, setIsAddProject] = useState(false);
   const [isEditProject, setIsEditProject] = useState(false);
+  const [isAddBlog, setIsAddBlog] = useState(false);
+  const [isEditBlog, setIsEditBlog] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
   const [isEditClient, setIsEditClient] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
@@ -55,11 +59,13 @@ function App() {
   const [editServiceId, setEditServiceId] = useState("");
   const [editProjectId, setEditProjectId] = useState("");
   const [editClientId, setEditClientId] = useState("");
+  const [editBlogId, setEditBlogId] = useState("");
   // useEffect(() => {
   //   if (window.localStorage.getItem("user") === null) {
   //     navigate("/");
   //   }
   // }, [window.location.pathname]);
+  console.log(editBlogId);
   return (
     <>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
@@ -78,6 +84,10 @@ function App() {
       {isAddProject ? <AddProject closeOnClick={setIsAddProject} /> : null}
       {isEditProject ? (
         <EditProject closeOnClick={setIsEditProject} editId={editProjectId} />
+      ) : null}
+      {isAddBlog ? <AddBlog closeOnClick={setIsAddBlog} /> : null}
+      {isEditBlog ? (
+        <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
       ) : null}
       {deleteConfirmation ? (
         <DeleteConfirmation
@@ -159,11 +169,11 @@ function App() {
             path="blogs"
             element={
               <Blogs
-                isAddClient={isAddClient}
-                setIsAddClient={setIsAddClient}
-                isEditClient={isEditClient}
-                setIsEditClient={setIsEditClient}
-                setEditClientId={setEditClientId}
+                isAdd={isAddBlog}
+                setIsAdd={setIsAddBlog}
+                isEdit={isEditBlog}
+                setIsEdit={setIsEditBlog}
+                setEditId={setEditBlogId}
               />
             }
           />
