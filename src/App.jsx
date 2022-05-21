@@ -32,6 +32,7 @@ import EditTechonologies from "./Screens/EditTechonologies";
 import CareersApplications from "./Screens/CareersApplications";
 import EditCareersApplied from "./Screens/EditCareersApplied";
 import AddCareersApplied from "./Screens/AddCareersApplied";
+import Vacancies from "./Screens/Vacancies";
 
 function Main() {
   return (
@@ -216,6 +217,18 @@ function App() {
                 isEdit={isEditTechonologies}
                 setIsEdit={setIsEditTechonologies}
                 setEditId={setEditTechonologiesId}
+              />
+            }
+          />
+          <Route
+            path="vacancies"
+            element={
+              <Vacancies
+                isAdd={isAddCareersApplied}
+                setIsAdd={setIsAddCareersApplied}
+                isEdit={isEditCareersApplied}
+                setIsEdit={setIsEditCareersApplied}
+                setEditId={setEditCareersAppliedId}
               />
             }
           />

@@ -4,7 +4,7 @@ import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 import DeleteConfirmation from "./DeleteConfirmation";
 
-export default function CareersApplications({
+export default function Vacancies({
   isAdd,
   isEdit,
   setIsEdit,
@@ -27,21 +27,17 @@ export default function CareersApplications({
 
   const tableHeadingRow = [
     { heading: "" },
-    { heading: "Name" },
-    { heading: "Email" },
-    { heading: "Phone" },
     { heading: "Position" },
+    { heading: "Description" },
+    { heading: "Requirements" },
     { heading: "Department" },
-    { heading: "CV" },
   ];
 
   return (
     <>
       <div className="main__container">
         <div className="main__container__header">
-          <div className="main__container__header__heading">
-            Careers Applications
-          </div>
+          <div className="main__container__header__heading">Vacancies</div>
           <div className="main__container__header__buttons">
             <button
               onClick={() => {
@@ -73,7 +69,6 @@ export default function CareersApplications({
                               email: item.email,
                               phone: item.phone,
                               position: item.position,
-                              department: item.department,
                               cv: item.cv,
                             });
                           }}
@@ -124,10 +119,7 @@ export default function CareersApplications({
                       </div>
                       <div className="entry__info__row__text">{item.phone}</div>
                       <div className="entry__info__row__text">
-                        {item.position}
-                      </div>
-                      <div className="entry__info__row__text">
-                        {item.department.map((item) => item.label)}
+                        {item.position.map((item) => item.label)}
                       </div>
                       <div className="entry__info__row__text">
                         <a

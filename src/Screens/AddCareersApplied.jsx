@@ -10,7 +10,8 @@ export default function AddCareersApplied({ closeOnClick }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [position, setPosition] = useState([]);
+  const [position, setPosition] = useState("");
+  const [department, setDepartment] = useState([]);
   const [cv, setCV] = useState("");
 
   return (
@@ -25,6 +26,7 @@ export default function AddCareersApplied({ closeOnClick }) {
               email: email,
               phone: phone,
               position: position,
+              department: department,
               cv: cv,
             }
           );
@@ -112,13 +114,25 @@ export default function AddCareersApplied({ closeOnClick }) {
         </div>
         <div className="popup__container__form__heading">Position</div>
         <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
+          <input
+            type="text"
             placeholder="Position"
-            required
             value={position}
             onChange={(e) => {
-              setPosition(e);
+              setPosition(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Department</div>
+        <div className="login__container__content__form__input">
+          <Select
+            options={catagoryDataOption}
+            placeholder="Department"
+            required
+            value={department}
+            onChange={(e) => {
+              setDepartment(e);
             }}
           />
         </div>

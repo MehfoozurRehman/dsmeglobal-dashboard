@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function EditCareersApplied({ closeOnClick, editId }) {
   const [name, setName] = useState("");
@@ -12,13 +10,15 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
   const [oldCV, setOldCV] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [position, setPosition] = useState([]);
+  const [position, setPosition] = useState("");
+  const [department, setDepartment] = useState([]);
   console.log({
     _id: editId._id,
     name: name,
     email: email,
     phone: phone,
     position: position,
+    department: department,
     cv: cv === "" ? oldCV : cv,
   });
   useEffect(() => {
@@ -26,6 +26,7 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
     setEmail(editId.email);
     setPhone(editId.phone);
     setPosition(editId.position);
+    setDepartment(editId.department);
     setOldCV(editId.cv);
   }, [editId]);
   return (
@@ -41,6 +42,7 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
               email: email,
               phone: phone,
               position: position,
+              department: department,
               cv: cv === "" ? oldCV : cv,
             }
           );
@@ -128,13 +130,25 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
         </div>
         <div className="popup__container__form__heading">Position</div>
         <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
+          <input
+            type="text"
             placeholder="Position"
-            required
             value={position}
             onChange={(e) => {
-              setPosition(e);
+              setPosition(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Department</div>
+        <div className="login__container__content__form__input">
+          <Select
+            options={catagoryDataOption}
+            placeholder="Department"
+            required
+            value={department}
+            onChange={(e) => {
+              setDepartment(e);
             }}
           />
         </div>
