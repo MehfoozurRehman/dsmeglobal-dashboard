@@ -4,6 +4,7 @@ import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 import DeleteConfirmation from "./DeleteConfirmation";
 import { parseDate } from "../utils/parseDate";
+import { getText } from "../utils/getText";
 
 export default function Vacancies({
   isAdd,
@@ -12,7 +13,7 @@ export default function Vacancies({
   setIsAdd,
   setEditId,
 }) {
-  const [careersAppliedData, setCareersAppliedData] = useState([]);
+  const [VacanciesData, setVacanciesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
@@ -21,7 +22,8 @@ export default function Vacancies({
     axios
       .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_careers`)
       .then((res) => {
-        setCareersAppliedData(res.data);
+        setVacanciesData(res.data);
+        console.log(res.data);
         setLoading(false);
       });
   }, [!isAdd, !isEdit, !deleteConfirmation]);
@@ -58,8 +60,8 @@ export default function Vacancies({
               <Loader />
             ) : (
               <>
-                {careersAppliedData.length > 0 ? (
-                  careersAppliedData.map((item, i) => (
+                {VacanciesData.length > 0 ? (
+                  VacanciesData.map((item, i) => (
                     <div className="entry__info__row" key={i}>
                       <div className="entry__info__row__btns">
                         <button
@@ -123,7 +125,20 @@ export default function Vacancies({
                         {item.description}
                       </div>
                       <div className="entry__info__row__text">
-                        {item.requirements}
+                        {getText(item.requirements).length < 40 ? (
+                          <div className="entry__info__row__text">
+                            {getText(item.requirements)}
+                          </div>
+                        ) : (
+                          <div className="entry__info__row__text">
+                            <a>
+                              View Details
+                              <div className="entry__info__row__text__message">
+                                {getText(item.requirements)}
+                              </div>
+                            </a>
+                          </div>
+                        )}
                       </div>
                       <div className="entry__info__row__text">
                         {item.department.map((item) => item.label)}
@@ -151,7 +166,7 @@ export default function Vacancies({
       {deleteConfirmation ? (
         <DeleteConfirmation
           closeOnClick={setDeleteConfirmation}
-          deleteConfirmationURL="delete_careers_applied"
+          deleteConfirmationURL="delete_careers"
           deleteConfirmationId={deleteConfirmationId}
           fetch={() => {
             setLoading(true);
@@ -160,7 +175,7 @@ export default function Vacancies({
                 `https://dsmeglobal-api.herokuapp.com/api/v1/get_careers_applied`
               )
               .then((res) => {
-                setCareersAppliedData(res.data);
+                setVacanciesData(res.data);
                 setLoading(false);
               });
           }}

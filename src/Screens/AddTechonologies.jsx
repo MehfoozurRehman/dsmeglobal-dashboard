@@ -27,6 +27,7 @@ export default function AddTechonologies({ closeOnClick }) {
             onClick={() => {
               closeOnClick(false);
             }}
+            type="button"
             className="popup__container__form__close__btn"
           >
             <svg

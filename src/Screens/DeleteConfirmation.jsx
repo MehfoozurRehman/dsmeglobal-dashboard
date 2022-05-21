@@ -38,6 +38,7 @@ export default function DeleteConfirmation({
             onClick={() => {
               closeOnClick(false);
             }}
+            type="button"
             style={{ marginTop: "1em" }}
             className="secondary__button"
           >

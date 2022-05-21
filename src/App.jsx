@@ -33,6 +33,7 @@ import CareersApplications from "./Screens/CareersApplications";
 import EditCareersApplied from "./Screens/EditCareersApplied";
 import AddCareersApplied from "./Screens/AddCareersApplied";
 import Vacancies from "./Screens/Vacancies";
+import AddVacancy from "./Screens/AddVacancy";
 
 function Main() {
   return (
@@ -58,6 +59,8 @@ function App() {
   const [isEditProject, setIsEditProject] = useState(false);
   const [isAddBlog, setIsAddBlog] = useState(false);
   const [isEditBlog, setIsEditBlog] = useState(false);
+  const [isAddVacancy, setIsAddVacancy] = useState(false);
+  // const [isEditBlog, setIsEditBlog] = useState(false);
   const [isAddCareersApplied, setIsAddCareersApplied] = useState(false);
   const [isEditCareersApplied, setIsEditCareersApplied] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
@@ -111,6 +114,10 @@ function App() {
       {isEditBlog ? (
         <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
       ) : null}
+      {isAddVacancy ? <AddVacancy closeOnClick={setIsAddVacancy} /> : null}
+      {/* {isEditBlog ? (
+        <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
+      ) : null} */}
       {isAddCareersApplied ? (
         <AddCareersApplied closeOnClick={setIsAddCareersApplied} />
       ) : null}
@@ -224,8 +231,8 @@ function App() {
             path="vacancies"
             element={
               <Vacancies
-                isAdd={isAddCareersApplied}
-                setIsAdd={setIsAddCareersApplied}
+                isAdd={isAddVacancy}
+                setIsAdd={setIsAddVacancy}
                 isEdit={isEditCareersApplied}
                 setIsEdit={setIsEditCareersApplied}
                 setEditId={setEditCareersAppliedId}
