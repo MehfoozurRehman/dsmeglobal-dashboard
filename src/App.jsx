@@ -29,6 +29,7 @@ import AddBlog from "./Screens/AddBlog";
 import Techonologies from "./Screens/Techonologies";
 import AddTechonologies from "./Screens/AddTechonologies";
 import EditTechonologies from "./Screens/EditTechonologies";
+import CareersApplications from "./Screens/CareersApplications";
 
 function Main() {
   return (
@@ -196,6 +197,18 @@ function App() {
             path="techonologies"
             element={
               <Techonologies
+                isAdd={isAddTechonologies}
+                setIsAdd={setIsAddTechonologies}
+                isEdit={isEditTechonologies}
+                setIsEdit={setIsEditTechonologies}
+                setEditId={setEditTechonologiesId}
+              />
+            }
+          />
+          <Route
+            path="applied"
+            element={
+              <CareersApplications
                 isAdd={isAddTechonologies}
                 setIsAdd={setIsAddTechonologies}
                 isEdit={isEditTechonologies}
