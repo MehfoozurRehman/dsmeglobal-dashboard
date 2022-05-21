@@ -5,13 +5,22 @@
   max-width: 300px;
   min-height: 100%;
   background: $whiteColor;
-  border-radius: 0px 40px 0px 0px;
+  border-radius: 0px 20px 0px 0px;
   margin-right: 2em;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2em 1.5em;
+}
+.sidebar__container::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebar__container::-webkit-scrollbar-thumb {
+  background-color: $primaryColor;
+}
+.sidebar__container::-webkit-scrollbar-track {
+  background-color: white;
 }
 .sidebar__container__links {
   height: fit-content;

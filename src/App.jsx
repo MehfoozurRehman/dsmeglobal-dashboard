@@ -34,6 +34,7 @@ import EditCareersApplied from "./Screens/EditCareersApplied";
 import AddCareersApplied from "./Screens/AddCareersApplied";
 import Vacancies from "./Screens/Vacancies";
 import AddVacancy from "./Screens/AddVacancy";
+import EditVacancies from "./Screens/EditVacancies";
 
 function Main() {
   return (
@@ -60,7 +61,7 @@ function App() {
   const [isAddBlog, setIsAddBlog] = useState(false);
   const [isEditBlog, setIsEditBlog] = useState(false);
   const [isAddVacancy, setIsAddVacancy] = useState(false);
-  // const [isEditBlog, setIsEditBlog] = useState(false);
+  const [isEditVacancies, setIsEditVacancies] = useState(false);
   const [isAddCareersApplied, setIsAddCareersApplied] = useState(false);
   const [isEditCareersApplied, setIsEditCareersApplied] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
@@ -77,6 +78,7 @@ function App() {
   const [editTechonologiesId, setEditTechonologiesId] = useState("");
   const [editBlogId, setEditBlogId] = useState("");
   const [editCareersAppliedId, setEditCareersAppliedId] = useState("");
+  const [editVacanciesId, setEditVacanciesId] = useState("");
   useEffect(() => {
     if (window.localStorage.getItem("user") === null) {
       navigate("/");
@@ -115,9 +117,12 @@ function App() {
         <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
       ) : null}
       {isAddVacancy ? <AddVacancy closeOnClick={setIsAddVacancy} /> : null}
-      {/* {isEditBlog ? (
-        <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
-      ) : null} */}
+      {isEditVacancies ? (
+        <EditVacancies
+          closeOnClick={setIsEditVacancies}
+          editId={editVacanciesId}
+        />
+      ) : null}
       {isAddCareersApplied ? (
         <AddCareersApplied closeOnClick={setIsAddCareersApplied} />
       ) : null}
@@ -233,9 +238,9 @@ function App() {
               <Vacancies
                 isAdd={isAddVacancy}
                 setIsAdd={setIsAddVacancy}
-                isEdit={isEditCareersApplied}
-                setIsEdit={setIsEditCareersApplied}
-                setEditId={setEditCareersAppliedId}
+                isEdit={isEditVacancies}
+                setIsEdit={setIsEditVacancies}
+                setEditId={setEditVacanciesId}
               />
             }
           />

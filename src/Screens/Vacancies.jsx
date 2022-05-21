@@ -23,7 +23,6 @@ export default function Vacancies({
       .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_careers`)
       .then((res) => {
         setVacanciesData(res.data);
-        console.log(res.data);
         setLoading(false);
       });
   }, [!isAdd, !isEdit, !deleteConfirmation]);
@@ -69,11 +68,10 @@ export default function Vacancies({
                             setIsEdit(true);
                             setEditId({
                               _id: item._id,
-                              name: item.name,
-                              email: item.email,
-                              phone: item.phone,
                               position: item.position,
-                              cv: item.cv,
+                              department: item.department,
+                              description: item.description,
+                              requirements: item.requirements,
                             });
                           }}
                           className="primary__button__rounded"
@@ -171,9 +169,7 @@ export default function Vacancies({
           fetch={() => {
             setLoading(true);
             axios
-              .get(
-                `https://dsmeglobal-api.herokuapp.com/api/v1/get_careers_applied`
-              )
+              .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_careers`)
               .then((res) => {
                 setVacanciesData(res.data);
                 setLoading(false);
