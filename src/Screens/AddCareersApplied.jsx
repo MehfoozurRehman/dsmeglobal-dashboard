@@ -131,13 +131,35 @@ export default function AddCareersApplied({ closeOnClick }) {
             uploadPreset={"cqido5en"}
             buttonText={
               cv !== "" ? (
-                <iframe
-                  src={
-                    "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                    cv
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    paddingRight: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "red",
+                      width: 40,
+                      height: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      color: "white",
+                      marginRight: 10,
+                    }}
+                  >
+                    PDF
+                  </div>
+                  {cv
+                    .replace(/dsme_global/, "")
+                    .replace("/", "")
+                    .substring(cv.indexOf("/") + 1)
+                    .trim()}
+                </div>
               ) : (
                 "+"
               )
@@ -145,12 +167,13 @@ export default function AddCareersApplied({ closeOnClick }) {
             style={{
               color: "black",
               border: "none",
-              width: "120px",
+              width: "fit-content",
+              minWidth: "170px",
               backgroundColor: "white",
               border: "1px solid #242424",
               borderRadius: "4px",
-              fontSize: 50,
-              height: "120px",
+              fontSize: cv === "" ? 30 : 12,
+              height: "40px",
               cursor: "pointer",
               padding: 0,
             }}

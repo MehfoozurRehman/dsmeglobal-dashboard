@@ -8,25 +8,25 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function EditCareersApplied({ closeOnClick, editId }) {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [oldImage, setOldImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
+  const [cv, setCV] = useState("");
+  const [oldCV, setOldCV] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [position, setPosition] = useState([]);
   console.log({
     _id: editId._id,
-    title: name,
-    image: image === "" ? oldImage : image,
-    categories: categories,
-    author: author,
-    content: content,
+    name: name,
+    email: email,
+    phone: phone,
+    position: position,
+    cv: cv === "" ? oldCV : cv,
   });
   useEffect(() => {
-    setName(editId.title);
-    setOldImage(editId.image);
-    setCategories(editId.categories);
-    setAuthor(editId.author);
-    setContent(editId.content);
+    setName(editId.name);
+    setEmail(editId.email);
+    setPhone(editId.phone);
+    setPosition(editId.position);
+    setOldCV(editId.cv);
   }, [editId]);
   return (
     <div className="popup__container">
@@ -37,11 +37,11 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
             `https://dsmeglobal-api.herokuapp.com/api/v1/update_careers_applied`,
             {
               _id: editId._id,
-              title: name,
-              image: image === "" ? oldImage : image,
-              categories: categories,
-              author: author,
-              content: content,
+              name: name,
+              email: email,
+              phone: phone,
+              position: position,
+              cv: cv === "" ? oldCV : cv,
             }
           );
         }}
@@ -102,73 +102,90 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
             required
           />
         </div>
-        <div className="popup__container__form__heading">Author</div>
+        <div className="popup__container__form__heading">Email</div>
         <div className="login__container__content__form__input">
           <input
             type="text"
-            placeholder="Author"
-            value={author}
+            placeholder="Eamil"
+            value={email}
             onChange={(e) => {
-              setAuthor(e.target.value);
+              setEmail(e.target.value);
             }}
             required
           />
         </div>
-        <div className="popup__container__form__heading">Categories</div>
+        <div className="popup__container__form__heading">Phone</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Phone"
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Position</div>
         <div className="login__container__content__form__input">
           <Select
             options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
+            placeholder="Position"
             required
-            value={categories}
+            value={position}
             onChange={(e) => {
-              setCategories(e);
+              setPosition(e);
             }}
           />
         </div>
-        <div
-          className="popup__container__form__heading"
-          style={{ marginTop: 10 }}
-        >
-          Content
-        </div>
-        <CKEditor
-          editor={ClassicEditor}
-          data={content}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setContent(data);
-          }}
-        />
         <div>
-          <div className="popup__container__form__heading">Upload Image</div>
+          <div className="popup__container__form__heading">Upload PDF</div>
           <Widget
             sources={["local"]}
             resourceType={"image"}
             cloudName={"mehfoozurrehman"}
             uploadPreset={"cqido5en"}
             buttonText={
-              <img
-                src={
-                  image === ""
-                    ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      oldImage
-                    : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      image
-                }
-                style={{ width: "100%", height: "100%" }}
-              />
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  paddingRight: 10,
+                }}
+              >
+                <div
+                  style={{
+                    background: "red",
+                    width: 40,
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "white",
+                    marginRight: 10,
+                  }}
+                >
+                  PDF
+                </div>
+                {(cv === "" ? oldCV : cv)
+                  .replace(/dsme_global/, "")
+                  .replace("/", "")
+                  .substring((cv === "" ? oldCV : cv).indexOf("/") + 1)
+                  .trim()}
+              </div>
             }
             style={{
               color: "black",
               border: "none",
-              width: "120px",
+              width: "fit-content",
+              minWidth: "170px",
               backgroundColor: "white",
               border: "1px solid #242424",
               borderRadius: "4px",
-              fontSize: 50,
-              height: "120px",
+              fontSize: 12,
+              height: "40px",
               cursor: "pointer",
               padding: 0,
             }}
@@ -177,7 +194,7 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
             multiple={false}
             autoClose={false}
             onSuccess={(e) => {
-              setImage(e.info.path);
+              setCV(e.info.path);
               console.log(e);
             }}
             onFailure={(e) => {
