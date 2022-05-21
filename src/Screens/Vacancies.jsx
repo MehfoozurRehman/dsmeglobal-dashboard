@@ -3,6 +3,7 @@ import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { parseDate } from "../utils/parseDate";
 
 export default function Vacancies({
   isAdd,
@@ -18,7 +19,7 @@ export default function Vacancies({
 
   useEffect(() => {
     axios
-      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_careers_applied`)
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_careers`)
       .then((res) => {
         setCareersAppliedData(res.data);
         setLoading(false);
@@ -28,6 +29,7 @@ export default function Vacancies({
   const tableHeadingRow = [
     { heading: "" },
     { heading: "Position" },
+    { heading: "Date" },
     { heading: "Description" },
     { heading: "Requirements" },
     { heading: "Department" },
@@ -111,25 +113,20 @@ export default function Vacancies({
                           </svg>
                         </button>
                       </div>
-                      <div className="entry__info__row__text">{item.name}</div>
                       <div className="entry__info__row__text">
-                        {item.email}
-
-                        {/* {parseDate(item.updatedAt)} */}
-                      </div>
-                      <div className="entry__info__row__text">{item.phone}</div>
-                      <div className="entry__info__row__text">
-                        {item.position.map((item) => item.label)}
+                        {item.position}
                       </div>
                       <div className="entry__info__row__text">
-                        <a
-                          href={
-                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                            item.cv
-                          }
-                        >
-                          View CV
-                        </a>
+                        {parseDate(item.updatedAt)}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.description}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.requirements}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.department.map((item) => item.label)}
                       </div>
                     </div>
                   ))
