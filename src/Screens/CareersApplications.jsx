@@ -131,16 +131,9 @@ export default function CareersApplications({
                             item.cv
                           }
                         >
-                          Download CV
+                          View CV
                         </a>
                       </div>
-                      {/* <div className="entry__info__row__text">{item.title}</div>
-                      
-                      
-                      <div className="entry__info__row__text">
-                        {item.isOur.map((item) => item.label)}
-                      </div>
-                      <div className="entry__info__row__text">{item.url}</div> */}
                     </div>
                   ))
                 ) : (

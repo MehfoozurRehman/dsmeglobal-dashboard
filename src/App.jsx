@@ -30,6 +30,8 @@ import Techonologies from "./Screens/Techonologies";
 import AddTechonologies from "./Screens/AddTechonologies";
 import EditTechonologies from "./Screens/EditTechonologies";
 import CareersApplications from "./Screens/CareersApplications";
+import EditCareersApplied from "./Screens/EditCareersApplied";
+import AddCareersApplied from "./Screens/AddCareersApplied";
 
 function Main() {
   return (
@@ -55,6 +57,8 @@ function App() {
   const [isEditProject, setIsEditProject] = useState(false);
   const [isAddBlog, setIsAddBlog] = useState(false);
   const [isEditBlog, setIsEditBlog] = useState(false);
+  const [isAddCareersApplied, setIsAddCareersApplied] = useState(false);
+  const [isEditCareersApplied, setIsEditCareersApplied] = useState(false);
   const [isAddClient, setIsAddClient] = useState(false);
   const [isEditClient, setIsEditClient] = useState(false);
   const [isAddTechonologies, setIsAddTechonologies] = useState(false);
@@ -68,6 +72,7 @@ function App() {
   const [editClientId, setEditClientId] = useState("");
   const [editTechonologiesId, setEditTechonologiesId] = useState("");
   const [editBlogId, setEditBlogId] = useState("");
+  const [editCareersAppliedId, setEditCareersAppliedId] = useState("");
   useEffect(() => {
     if (window.localStorage.getItem("user") === null) {
       navigate("/");
@@ -104,6 +109,15 @@ function App() {
       {isAddBlog ? <AddBlog closeOnClick={setIsAddBlog} /> : null}
       {isEditBlog ? (
         <EditBlog closeOnClick={setIsEditBlog} editId={editBlogId} />
+      ) : null}
+      {isAddCareersApplied ? (
+        <AddCareersApplied closeOnClick={setIsAddCareersApplied} />
+      ) : null}
+      {isEditCareersApplied ? (
+        <EditCareersApplied
+          closeOnClick={setIsEditCareersApplied}
+          editId={editCareersAppliedId}
+        />
       ) : null}
       {deleteConfirmation ? (
         <DeleteConfirmation
@@ -209,11 +223,11 @@ function App() {
             path="applied"
             element={
               <CareersApplications
-                isAdd={isAddTechonologies}
-                setIsAdd={setIsAddTechonologies}
-                isEdit={isEditTechonologies}
-                setIsEdit={setIsEditTechonologies}
-                setEditId={setEditTechonologiesId}
+                isAdd={isAddCareersApplied}
+                setIsAdd={setIsAddCareersApplied}
+                isEdit={isEditCareersApplied}
+                setIsEdit={setIsEditCareersApplied}
+                setEditId={setEditCareersAppliedId}
               />
             }
           />

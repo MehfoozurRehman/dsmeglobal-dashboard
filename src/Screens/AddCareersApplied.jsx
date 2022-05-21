@@ -8,10 +8,10 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function AddCareersApplied({ closeOnClick }) {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [position, setPosition] = useState([]);
+  const [cv, setCV] = useState("");
 
   return (
     <div className="popup__container">
@@ -21,11 +21,11 @@ export default function AddCareersApplied({ closeOnClick }) {
           axios.post(
             `https://dsmeglobal-api.herokuapp.com/api/v1/set_careers_applied`,
             {
-              title: name,
-              author: author,
-              categories: categories,
-              image: image,
-              content: content,
+              name: name,
+              email: email,
+              phone: phone,
+              position: position,
+              cv: cv,
             }
           );
         }}
@@ -86,58 +86,55 @@ export default function AddCareersApplied({ closeOnClick }) {
             required
           />
         </div>
-        <div className="popup__container__form__heading">Author</div>
+        <div className="popup__container__form__heading">Email</div>
         <div className="login__container__content__form__input">
           <input
             type="text"
-            placeholder="Author"
-            value={author}
+            placeholder="Email"
+            value={email}
             onChange={(e) => {
-              setAuthor(e.target.value);
+              setEmail(e.target.value);
             }}
             required
           />
         </div>
-        <div className="popup__container__form__heading">Categories</div>
+        <div className="popup__container__form__heading">Phone</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Phone"
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Position</div>
         <div className="login__container__content__form__input">
           <Select
             options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
+            placeholder="Position"
             required
-            value={categories}
+            value={position}
             onChange={(e) => {
-              setCategories(e);
+              setPosition(e);
             }}
           />
         </div>
-        <div
-          className="popup__container__form__heading"
-          style={{ marginTop: 10 }}
-        >
-          Content
-        </div>
-        <CKEditor
-          editor={ClassicEditor}
-          data=""
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setContent(data);
-          }}
-        />
         <div>
-          <div className="popup__container__form__heading">Upload Image</div>
+          <div className="popup__container__form__heading">Upload PDF</div>
           <Widget
             sources={["local"]}
             resourceType={"image"}
             cloudName={"mehfoozurrehman"}
             uploadPreset={"cqido5en"}
             buttonText={
-              image !== "" ? (
-                <img
+              cv !== "" ? (
+                <iframe
                   src={
                     "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                    image
+                    cv
                   }
                   style={{ width: "100%", height: "100%" }}
                 />
@@ -162,7 +159,7 @@ export default function AddCareersApplied({ closeOnClick }) {
             multiple={false}
             autoClose={false}
             onSuccess={(e) => {
-              setImage(e.info.path);
+              setCV(e.info.path);
               console.log(e);
             }}
             onFailure={(e) => {
