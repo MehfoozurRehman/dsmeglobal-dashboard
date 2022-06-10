@@ -7,6 +7,7 @@ import catagoryDataOption from "../constants/constant";
 export default function EditService({ closeOnClick, editId }) {
   const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
   const [oldLogo, setOldLogo] = useState("");
@@ -15,6 +16,7 @@ export default function EditService({ closeOnClick, editId }) {
   useEffect(() => {
     setCategories(editId.categories);
     setDescription(editId.description);
+    setShortDescription(editId.shortDescription);
     setName(editId.title);
     setOldLogo(editId.logo);
     setOldImage(editId.image);
@@ -33,6 +35,7 @@ export default function EditService({ closeOnClick, editId }) {
               categories: categories,
               title: name,
               description: description,
+              shortDescription: shortDescription,
             }
           );
         }}
@@ -82,7 +85,6 @@ export default function EditService({ closeOnClick, editId }) {
             </svg>
           </button>
         </div>
-
         <div className="popup__container__form__heading">Name</div>
         <div className="login__container__content__form__input">
           <input
@@ -102,6 +104,17 @@ export default function EditService({ closeOnClick, editId }) {
             value={categories}
             onChange={(e) => {
               setCategories(e);
+            }}
+          />
+        </div>
+        <div className="popup__container__form__heading">Short Description</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Short Description"
+            value={shortDescription}
+            onChange={(e) => {
+              setShortDescription(e.target.value);
             }}
           />
         </div>

@@ -7,9 +7,10 @@ import catagoryDataOption from "../constants/constant";
 export default function AddService({ closeOnClick }) {
   const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
   const [image, setImage] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
+  const [description, setDescription] = useState("");
 
   return (
     <div className="popup__container">
@@ -23,6 +24,7 @@ export default function AddService({ closeOnClick }) {
               image: image,
               categories: categories,
               title: name,
+              shortDescription: shortDescription,
               description: description,
             }
           );
@@ -96,6 +98,18 @@ export default function AddService({ closeOnClick }) {
             onChange={(e) => {
               setCategories(e);
             }}
+          />
+        </div>
+        <div className="popup__container__form__heading">Short Description</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Short Description"
+            value={shortDescription}
+            onChange={(e) => {
+              setShortDescription(e.target.value);
+            }}
+            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>

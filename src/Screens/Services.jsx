@@ -31,6 +31,7 @@ export default function Services({
     { heading: "Image" },
     { heading: "Title" },
     { heading: "Category" },
+    { heading: "Short Description" },
     { heading: "Description" },
   ];
 
@@ -70,6 +71,7 @@ export default function Services({
                               title: item.title,
                               image: item.image,
                               description: item.description,
+                              shortDescription: item.shortDescription,
                               categories: item.categories,
                             });
                           }}
@@ -151,6 +153,9 @@ export default function Services({
                           </a>
                         </div>
                       )}
+                      <div className="entry__info__row__text">
+                        {item.shortDescription}
+                      </div>
                       {item.description.length < 40 ? (
                         <div className="entry__info__row__text">
                           {item.description}
