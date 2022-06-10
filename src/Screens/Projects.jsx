@@ -29,9 +29,17 @@ export default function Projects({
     { heading: "" },
     { heading: "Title" },
     { heading: "Image" },
-    { heading: "Category" },
+    { heading: "Banner" },
+    { heading: "Slide Image" },
+    { heading: "Theme" },
+    { heading: "Categories" },
+    { heading: "Techonologies" },
     { heading: "Is Our" },
     { heading: "URL" },
+    { heading: "Description" },
+    { heading: "Quote" },
+    { heading: "Quote Author" },
+    { heading: "Quote Designation" },
   ];
 
   return (
@@ -123,6 +131,50 @@ export default function Projects({
                           className="entry__info__row__text__img"
                         />
                       </div>
+                      <div className="entry__info__row__text">
+                        <img
+                          src={
+                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                            item.banner
+                          }
+                          alt="tableEntryPic"
+                          className="entry__info__row__text__img"
+                        />
+                      </div>
+                      <div
+                        className="entry__info__row__text"
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <img
+                          src={
+                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                            item.image
+                          }
+                          alt="tableEntryPic"
+                          className="entry__info__row__text__img"
+                        />
+                        <img
+                          src={
+                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                            item.image
+                          }
+                          alt="tableEntryPic"
+                          className="entry__info__row__text__img"
+                        />
+                      </div>
+                      <div
+                        className="entry__info__row__text"
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <div
+                          style={{
+                            backgroundColor: item.theme,
+                            width: 30,
+                            height: 30,
+                            borderRadius: 5,
+                          }}
+                        ></div>
+                      </div>
                       {item.categories.length < 40 ? (
                         <div className="entry__info__row__text">
                           {item.categories.length <= 2 ? (
@@ -160,10 +212,65 @@ export default function Projects({
                           </a>
                         </div>
                       )}
+                      {item.techonologies.length < 40 ? (
+                        <div className="entry__info__row__text">
+                          {item.techonologies.length <= 2 ? (
+                            <div className="entry__info__row__text">
+                              {item.techonologies.map((category, i) =>
+                                i + 1 < item.techonologies.length
+                                  ? category.label + ", "
+                                  : category.label
+                              )}
+                            </div>
+                          ) : (
+                            <div className="entry__info__row__text">
+                              <a>
+                                View Techonologies
+                                <div className="entry__info__row__text__message">
+                                  {item.techonologies.map((category, i) =>
+                                    i + 1 < item.techonologies.length
+                                      ? category.label + ", "
+                                      : category.label
+                                  )}
+                                </div>
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="entry__info__row__text">
+                          <a>
+                            Techonologies
+                            <div className="entry__info__row__text__message">
+                              {item.techonologies.map(
+                                (category) => category.label + ", "
+                              )}
+                            </div>
+                          </a>
+                        </div>
+                      )}
                       <div className="entry__info__row__text">
                         {item.isOur.map((item) => item.label)}
                       </div>
                       <div className="entry__info__row__text">{item.url}</div>
+                      <div className="entry__info__row__text">
+                        <a>
+                          View Description
+                          <div className="entry__info__row__text__message">
+                            {item.description}
+                          </div>
+                        </a>
+                      </div>
+
+                      <div className="entry__info__row__text">
+                        {item.quotation}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.quotationAuthor}
+                      </div>
+                      <div className="entry__info__row__text">
+                        {item.quotationDesignation}
+                      </div>
                     </div>
                   ))
                 ) : (
