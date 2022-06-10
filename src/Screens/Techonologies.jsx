@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import TableEntryHeadings from "../Components/TableEntryHeadings";
 import Loader from "./Loader";
 import DeleteConfirmation from "./DeleteConfirmation";
-import { parseDate } from "../utils/parseDate";
+import TableEntryHeadings from "../Components/TableEntryHeadings";
 
 export default function Techonologies({
   isAdd,
@@ -29,7 +28,9 @@ export default function Techonologies({
   const tableHeadingRow = [
     { heading: "" },
     { heading: "Name" },
+    { heading: "Icon" },
     { heading: "Image" },
+    { heading: "Description" },
   ];
 
   return (
@@ -67,7 +68,9 @@ export default function Techonologies({
                             setEditId({
                               _id: item._id,
                               name: item.name,
+                              icon: item.icon,
                               image: item.image,
+                              content: item.content,
                             });
                           }}
                           className="primary__button__rounded"
@@ -114,19 +117,25 @@ export default function Techonologies({
                         <img
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                            item.icon
+                          }
+                          alt="tableEntryPic"
+                          className="entry__info__row__text__img"
+                        />
+                      </div>
+                      <div className="entry__info__row__text">
+                        <img
+                          src={
+                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.image
                           }
                           alt="tableEntryPic"
                           className="entry__info__row__text__img"
                         />
                       </div>
-                      {/* <div className="entry__info__row__text">{item.title}</div>
-                      
-                      
                       <div className="entry__info__row__text">
-                        {item.isOur.map((item) => item.label)}
+                        {item.content}
                       </div>
-                      <div className="entry__info__row__text">{item.url}</div> */}
                     </div>
                   ))
                 ) : (

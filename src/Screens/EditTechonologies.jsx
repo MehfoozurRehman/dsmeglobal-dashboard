@@ -6,9 +6,14 @@ export default function EditTechonologies({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [oldImage, setOldImage] = useState("");
+  const [icon, setIcon] = useState("");
+  const [oldIcon, setOldIcon] = useState("");
+  const [content, setContent] = useState("");
   useEffect(() => {
     setName(editId.name);
+    setOldIcon(editId.icon);
     setOldImage(editId.image);
+    setContent(editId.content);
   }, [editId]);
   return (
     <div className="popup__container">
@@ -20,7 +25,9 @@ export default function EditTechonologies({ closeOnClick, editId }) {
             {
               _id: editId._id,
               name: name,
+              image: icon === "" ? oldIcon : icon,
               image: image === "" ? oldImage : image,
+              content: content,
             }
           );
         }}
@@ -82,53 +89,118 @@ export default function EditTechonologies({ closeOnClick, editId }) {
             required
           />
         </div>
-        <div>
-          <div className="popup__container__form__heading">Upload Image</div>
-          <Widget
-            sources={["local"]}
-            resourceType={"image"}
-            cloudName={"mehfoozurrehman"}
-            uploadPreset={"cqido5en"}
-            buttonText={
-              <img
-                src={
-                  image === ""
-                    ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      oldImage
-                    : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      image
-                }
-                style={{ width: "100%", height: "100%" }}
-              />
-            }
-            style={{
-              color: "black",
-              border: "none",
-              width: "120px",
-              backgroundColor: "white",
-              border: "1px solid #242424",
-              borderRadius: "4px",
-              fontSize: 50,
-              height: "120px",
-              cursor: "pointer",
-              padding: 0,
+        <div className="popup__container__form__heading">Description</div>
+        <div className="table__details__container__text__box">
+          <textarea
+            cols="30"
+            rows="6"
+            name="description"
+            placeholder="Description"
+            onChange={(e) => {
+              setContent(e.target.value);
             }}
-            folder={"dsme_global"}
-            cropping={true}
-            multiple={false}
-            autoClose={false}
-            onSuccess={(e) => {
-              setImage(e.info.path);
-              console.log(e);
-            }}
-            onFailure={(e) => {
-              console.log(e);
-            }}
-            logging={true}
-            use_filename={true}
-            destroy={true}
-            apiKey={915662453295273}
+            value={content}
+            className="table__details__container__text__box__input"
           />
+        </div>
+        <div style={{ display: "flex", marginTop: ".7em" }}>
+          <div style={{ marginRight: "1em" }}>
+            <div className="popup__container__form__heading">Upload Image</div>
+            <Widget
+              sources={["local"]}
+              resourceType={"image"}
+              cloudName={"mehfoozurrehman"}
+              uploadPreset={"cqido5en"}
+              buttonText={
+                <img
+                  src={
+                    icon === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldIcon
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        icon
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
+              }
+              style={{
+                color: "black",
+                border: "none",
+                width: "120px",
+                backgroundColor: "white",
+                border: "1px solid #242424",
+                borderRadius: "4px",
+                fontSize: 50,
+                height: "120px",
+                cursor: "pointer",
+                padding: 0,
+              }}
+              folder={"dsme_global"}
+              cropping={true}
+              multiple={false}
+              autoClose={false}
+              onSuccess={(e) => {
+                setIcon(e.info.path);
+                console.log(e);
+              }}
+              onFailure={(e) => {
+                console.log(e);
+              }}
+              logging={true}
+              use_filename={true}
+              destroy={true}
+              apiKey={915662453295273}
+            />
+          </div>
+          <div>
+            {" "}
+            <div className="popup__container__form__heading">Upload Image</div>
+            <Widget
+              sources={["local"]}
+              resourceType={"image"}
+              cloudName={"mehfoozurrehman"}
+              uploadPreset={"cqido5en"}
+              buttonText={
+                <img
+                  src={
+                    image === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldImage
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        image
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
+              }
+              style={{
+                color: "black",
+                border: "none",
+                width: "120px",
+                backgroundColor: "white",
+                border: "1px solid #242424",
+                borderRadius: "4px",
+                fontSize: 50,
+                height: "120px",
+                cursor: "pointer",
+                padding: 0,
+              }}
+              folder={"dsme_global"}
+              cropping={true}
+              multiple={false}
+              autoClose={false}
+              onSuccess={(e) => {
+                setImage(e.info.path);
+                console.log(e);
+              }}
+              onFailure={(e) => {
+                console.log(e);
+              }}
+              logging={true}
+              use_filename={true}
+              destroy={true}
+              apiKey={915662453295273}
+            />
+          </div>
         </div>
 
         <button
