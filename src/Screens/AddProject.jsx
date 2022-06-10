@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
@@ -10,6 +10,17 @@ export default function AddProject({ closeOnClick }) {
   const [categories, setCategories] = useState("");
   const [isOur, setIsOur] = useState("");
   const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  let techDataOption = [];
+  useEffect(() => {
+    axios
+      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_techonologies`)
+      .then((res) => {
+        res.data.map((item) =>
+          techDataOption.push({ value: item.name, label: item.name })
+        );
+      });
+  }, []);
 
   return (
     <div className="popup__container">
@@ -28,6 +39,7 @@ export default function AddProject({ closeOnClick }) {
           );
         }}
         className="popup__container__form"
+        style={{ maxWidth: "1000px", minWidth: "1000px" }}
       >
         <div className="popup__container__form__header">
           <div>Add Project</div>
@@ -73,106 +85,284 @@ export default function AddProject({ closeOnClick }) {
             </svg>
           </button>
         </div>
-        <div className="popup__container__form__heading">Name</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <div className="popup__container__form__heading">URL</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="URL"
-            value={url}
-            onChange={(e) => {
-              setUrl(e.target.value);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Is Our</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={[
-              { value: true, label: "Yes" },
-              { value: false, label: "No" },
-            ]}
-            placeholder="Is Our"
-            value={isOur}
-            required
-            onChange={(e) => {
-              setIsOur(e);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Categories</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
-            required
-            value={categories}
-            onChange={(e) => {
-              setCategories(e);
-            }}
-          />
-        </div>
-        <div>
-          <div className="popup__container__form__heading">Upload Image</div>
-          <Widget
-            sources={["local"]}
-            resourceType={"image"}
-            cloudName={"mehfoozurrehman"}
-            uploadPreset={"cqido5en"}
-            buttonText={
-              image !== "" ? (
-                <img
-                  src={
-                    "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                    image
+        <div style={{ flex: 1, display: "flex" }}>
+          <div style={{ flex: 1, marginRight: "1.5em" }}>
+            <div className="popup__container__form__heading">Name</div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="popup__container__form__heading">URL</div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="URL"
+                value={url}
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">Is Our</div>
+            <div className="login__container__content__form__input">
+              <Select
+                options={[
+                  { value: true, label: "Yes" },
+                  { value: false, label: "No" },
+                ]}
+                placeholder="Is Our"
+                value={isOur}
+                required
+                onChange={(e) => {
+                  setIsOur(e);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">Categories</div>
+            <div className="login__container__content__form__input">
+              <Select
+                options={catagoryDataOption}
+                placeholder="Categories"
+                isMulti
+                required
+                value={categories}
+                onChange={(e) => {
+                  setCategories(e);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">Techonologies</div>
+            <div className="login__container__content__form__input">
+              <Select
+                options={techDataOption}
+                placeholder="Techonologies"
+                isMulti
+                required
+                value={categories}
+                onChange={(e) => {
+                  setCategories(e);
+                }}
+              />
+            </div>
+          </div>
+          <div style={{ flex: 1 }}>
+            <div className="popup__container__form__heading">Description</div>
+            <div className="table__details__container__text__box">
+              <textarea
+                cols="30"
+                rows="6"
+                name="description"
+                placeholder="Description"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                value={description}
+                className="table__details__container__text__box__input"
+              />
+            </div>
+            <div className="popup__container__form__heading">Quote Author</div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="Quote Author"
+                value={url}
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">
+              Quote Author Designation
+            </div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="Author Designation"
+                value={url}
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">Quote</div>
+            <div className="table__details__container__text__box">
+              <textarea
+                cols="30"
+                rows="6"
+                name="quote"
+                placeholder="Quote"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                value={description}
+                className="table__details__container__text__box__input"
+              />
+            </div>
+            <div style={{ display: "flex", marginTop: ".7em" }}>
+              <div style={{ marginRight: "1em" }}>
+                <div className="popup__container__form__heading">
+                  Upload Image
+                </div>
+                <Widget
+                  sources={["local"]}
+                  resourceType={"image"}
+                  cloudName={"mehfoozurrehman"}
+                  uploadPreset={"cqido5en"}
+                  buttonText={
+                    image !== "" ? (
+                      <img
+                        src={
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          image
+                        }
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    ) : (
+                      "+"
+                    )
                   }
-                  style={{ width: "100%", height: "100%" }}
+                  style={{
+                    color: "black",
+                    border: "none",
+                    width: "120px",
+                    backgroundColor: "white",
+                    border: "1px solid #242424",
+                    borderRadius: "4px",
+                    fontSize: 50,
+                    height: "120px",
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                  folder={"dsme_global"}
+                  cropping={true}
+                  multiple={false}
+                  autoClose={false}
+                  onSuccess={(e) => {
+                    setImage(e.info.path);
+                    console.log(e);
+                  }}
+                  onFailure={(e) => {
+                    console.log(e);
+                  }}
+                  logging={true}
+                  use_filename={true}
+                  destroy={true}
+                  apiKey={915662453295273}
                 />
-              ) : (
-                "+"
-              )
-            }
-            style={{
-              color: "black",
-              border: "none",
-              width: "120px",
-              backgroundColor: "white",
-              border: "1px solid #242424",
-              borderRadius: "4px",
-              fontSize: 50,
-              height: "120px",
-              cursor: "pointer",
-              padding: 0,
-            }}
-            folder={"dsme_global"}
-            cropping={true}
-            multiple={false}
-            autoClose={false}
-            onSuccess={(e) => {
-              setImage(e.info.path);
-              console.log(e);
-            }}
-            onFailure={(e) => {
-              console.log(e);
-            }}
-            logging={true}
-            use_filename={true}
-            destroy={true}
-            apiKey={915662453295273}
-          />
+              </div>
+              <div style={{ marginRight: "1em" }}>
+                <div className="popup__container__form__heading">
+                  Upload Banner
+                </div>
+                <Widget
+                  sources={["local"]}
+                  resourceType={"image"}
+                  cloudName={"mehfoozurrehman"}
+                  uploadPreset={"cqido5en"}
+                  buttonText={
+                    image !== "" ? (
+                      <img
+                        src={
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          image
+                        }
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    ) : (
+                      "+"
+                    )
+                  }
+                  style={{
+                    color: "black",
+                    border: "none",
+                    width: "120px",
+                    backgroundColor: "white",
+                    border: "1px solid #242424",
+                    borderRadius: "4px",
+                    fontSize: 50,
+                    height: "120px",
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                  folder={"dsme_global"}
+                  cropping={true}
+                  multiple={false}
+                  autoClose={false}
+                  onSuccess={(e) => {
+                    setImage(e.info.path);
+                    console.log(e);
+                  }}
+                  onFailure={(e) => {
+                    console.log(e);
+                  }}
+                  logging={true}
+                  use_filename={true}
+                  destroy={true}
+                  apiKey={915662453295273}
+                />
+              </div>
+              <div>
+                <div className="popup__container__form__heading">
+                  Slider Images
+                </div>
+                <Widget
+                  sources={["local"]}
+                  resourceType={"image"}
+                  cloudName={"mehfoozurrehman"}
+                  uploadPreset={"cqido5en"}
+                  buttonText={
+                    image !== "" ? (
+                      <img
+                        src={
+                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                          image
+                        }
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    ) : (
+                      "+"
+                    )
+                  }
+                  style={{
+                    color: "black",
+                    border: "none",
+                    width: "120px",
+                    backgroundColor: "white",
+                    border: "1px solid #242424",
+                    borderRadius: "4px",
+                    fontSize: 50,
+                    height: "120px",
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                  folder={"dsme_global"}
+                  cropping={false}
+                  multiple={true}
+                  autoClose={false}
+                  onSuccess={(e) => {
+                    // setImage(e.info.path);
+                    console.log(e);
+                  }}
+                  onFailure={(e) => {
+                    console.log(e);
+                  }}
+                  logging={true}
+                  use_filename={true}
+                  destroy={false}
+                  apiKey={915662453295273}
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
         <button
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}
