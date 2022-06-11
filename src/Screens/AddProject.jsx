@@ -3,24 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
+import techDataOption from "../constants/techDataOption";
 
 export default function AddProject({ closeOnClick }) {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [isOur, setIsOur] = useState("");
   const [url, setUrl] = useState("");
+  const [isOur, setIsOur] = useState("");
+  const [categories, setCategories] = useState("");
+  const [techonologies, setTechonologies] = useState("");
+  const [image, setImage] = useState("");
+  const [banner, setBanner] = useState("");
   const [description, setDescription] = useState("");
-  let techDataOption = [];
-  useEffect(() => {
-    axios
-      .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_techonologies`)
-      .then((res) => {
-        res.data.map((item) =>
-          techDataOption.push({ value: item.name, label: item.name })
-        );
-      });
-  }, []);
+  const [quoteAuthor, setQuoteAuthor] = useState("");
+  const [quoteAuthorDesignation, setQuoteAuthorDesignation] = useState("");
+  const [quote, setQuote] = useState("");
+  const [theme, setTheme] = useState("");
+  const [sliderImage, setSliderImage] = useState([]);
 
   return (
     <div className="popup__container">
@@ -32,9 +30,17 @@ export default function AddProject({ closeOnClick }) {
             {
               title: name,
               image: image,
+              banner: banner,
+              sliderImage: sliderImage,
+              theme: theme,
               categories: categories,
+              techonologies: techonologies,
               isOur: isOur,
               url: url,
+              description: description,
+              quotation: quote,
+              quotationAuthor: quoteAuthor,
+              quotationDesignation: quoteAuthorDesignation,
             }
           );
         }}
@@ -145,64 +151,10 @@ export default function AddProject({ closeOnClick }) {
                 placeholder="Techonologies"
                 isMulti
                 required
-                value={categories}
+                value={techonologies}
                 onChange={(e) => {
-                  setCategories(e);
+                  setTechonologies(e);
                 }}
-              />
-            </div>
-          </div>
-          <div style={{ flex: 1 }}>
-            <div className="popup__container__form__heading">Description</div>
-            <div className="table__details__container__text__box">
-              <textarea
-                cols="30"
-                rows="6"
-                name="description"
-                placeholder="Description"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                value={description}
-                className="table__details__container__text__box__input"
-              />
-            </div>
-            <div className="popup__container__form__heading">Quote Author</div>
-            <div className="login__container__content__form__input">
-              <input
-                type="text"
-                placeholder="Quote Author"
-                value={url}
-                onChange={(e) => {
-                  setUrl(e.target.value);
-                }}
-              />
-            </div>
-            <div className="popup__container__form__heading">
-              Quote Author Designation
-            </div>
-            <div className="login__container__content__form__input">
-              <input
-                type="text"
-                placeholder="Author Designation"
-                value={url}
-                onChange={(e) => {
-                  setUrl(e.target.value);
-                }}
-              />
-            </div>
-            <div className="popup__container__form__heading">Quote</div>
-            <div className="table__details__container__text__box">
-              <textarea
-                cols="30"
-                rows="6"
-                name="quote"
-                placeholder="Quote"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                value={description}
-                className="table__details__container__text__box__input"
               />
             </div>
             <div style={{ display: "flex", marginTop: ".7em" }}>
@@ -267,11 +219,11 @@ export default function AddProject({ closeOnClick }) {
                   cloudName={"mehfoozurrehman"}
                   uploadPreset={"cqido5en"}
                   buttonText={
-                    image !== "" ? (
+                    banner !== "" ? (
                       <img
                         src={
                           "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                          image
+                          banner
                         }
                         style={{ width: "100%", height: "100%" }}
                       />
@@ -296,7 +248,7 @@ export default function AddProject({ closeOnClick }) {
                   multiple={false}
                   autoClose={false}
                   onSuccess={(e) => {
-                    setImage(e.info.path);
+                    setBanner(e.info.path);
                     console.log(e);
                   }}
                   onFailure={(e) => {
@@ -318,14 +270,27 @@ export default function AddProject({ closeOnClick }) {
                   cloudName={"mehfoozurrehman"}
                   uploadPreset={"cqido5en"}
                   buttonText={
-                    image !== "" ? (
-                      <img
-                        src={
-                          "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                          image
-                        }
-                        style={{ width: "100%", height: "100%" }}
-                      />
+                    sliderImage.length > 0 ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      >
+                        {sliderImage
+                          .filter((item, i) => i < 2)
+                          .map((item, index) => (
+                            <img
+                              src={
+                                "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                                item
+                              }
+                              style={{ width: "100%", height: "50%" }}
+                            />
+                          ))}
+                      </div>
                     ) : (
                       "+"
                     )
@@ -347,8 +312,11 @@ export default function AddProject({ closeOnClick }) {
                   multiple={true}
                   autoClose={false}
                   onSuccess={(e) => {
-                    // setImage(e.info.path);
-                    console.log(e);
+                    setSliderImage((sliderImage) => [
+                      ...sliderImage,
+                      e.info.path,
+                    ]);
+                    console.log("array", sliderImage);
                   }}
                   onFailure={(e) => {
                     console.log(e);
@@ -361,11 +329,91 @@ export default function AddProject({ closeOnClick }) {
               </div>
             </div>
           </div>
+          <div style={{ flex: 1 }}>
+            <div className="popup__container__form__heading">Description</div>
+            <div className="table__details__container__text__box">
+              <textarea
+                cols="30"
+                rows="6"
+                name="description"
+                placeholder="Description"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                value={description}
+                className="table__details__container__text__box__input"
+              />
+            </div>
+            <div
+              className="popup__container__form__heading"
+              style={{ marginTop: 12, marginBottom: 0 }}
+            >
+              Theme
+            </div>
+            <input
+              type="color"
+              value={theme}
+              onChange={(e) => {
+                setTheme(e.target.value);
+              }}
+              style={{
+                border: "none",
+                height: 42,
+                width: "50%",
+                borderRadius: 5,
+                backgroundColor: "#e7e9ec",
+              }}
+            />
+
+            <div className="popup__container__form__heading">Quote Author</div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="Quote Author"
+                value={quoteAuthor}
+                onChange={(e) => {
+                  setQuoteAuthor(e.target.value);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">
+              Quote Author Designation
+            </div>
+            <div className="login__container__content__form__input">
+              <input
+                type="text"
+                placeholder="Author Designation"
+                value={quoteAuthorDesignation}
+                onChange={(e) => {
+                  setQuoteAuthorDesignation(e.target.value);
+                }}
+              />
+            </div>
+            <div className="popup__container__form__heading">Quote</div>
+            <div className="table__details__container__text__box">
+              <textarea
+                cols="30"
+                rows="6"
+                name="quote"
+                placeholder="Quote"
+                onChange={(e) => {
+                  setQuote(e.target.value);
+                }}
+                value={quote}
+                className="table__details__container__text__box__input"
+              />
+            </div>
+          </div>
         </div>
 
         <button
           type="submit"
-          style={{ marginTop: "1em", marginBottom: "1em" }}
+          style={{
+            width: "50%",
+            margin: "auto",
+            marginTop: "2em",
+            marginBottom: "1em",
+          }}
           className="secondary__button"
         >
           Add

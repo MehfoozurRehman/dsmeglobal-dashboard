@@ -76,9 +76,17 @@ export default function Projects({
                               _id: item._id,
                               title: item.title,
                               image: item.image,
+                              banner: item.banner,
+                              sliderImage: item.sliderImage,
+                              theme: item.theme,
                               categories: item.categories,
+                              techonologies: item.techonologies,
                               isOur: item.isOur,
                               url: item.url,
+                              description: item.description,
+                              quotation: item.quotation,
+                              quotationAuthor: item.quotationAuthor,
+                              quotationDesignation: item.quotationDesignation,
                             });
                           }}
                           className="primary__button__rounded"
@@ -145,22 +153,22 @@ export default function Projects({
                         className="entry__info__row__text"
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <img
-                          src={
-                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                            item.image
-                          }
-                          alt="tableEntryPic"
-                          className="entry__info__row__text__img"
-                        />
-                        <img
-                          src={
-                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                            item.image
-                          }
-                          alt="tableEntryPic"
-                          className="entry__info__row__text__img"
-                        />
+                        {item.sliderImage
+                          .filter((item, i) => i < 2)
+                          .map((item, i) => (
+                            <img
+                              src={
+                                "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                                item
+                              }
+                              alt="tableEntryPic"
+                              className="entry__info__row__text__img"
+                              style={{
+                                marginRight: ".3em",
+                                marginLeft: ".3em",
+                              }}
+                            />
+                          ))}
                       </div>
                       <div
                         className="entry__info__row__text"
