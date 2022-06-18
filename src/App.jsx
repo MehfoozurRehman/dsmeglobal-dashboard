@@ -9,6 +9,7 @@ import Dashboard from "./Screens/Dashboard.jsx";
 import Login from "./Screens/Login.jsx";
 import Work from "./Screens/Work.jsx";
 import Contact from "./Screens/Contact.jsx";
+import Quotes from "./Screens/Quotes.jsx";
 import EditWork from "./Screens/EditWork.jsx";
 import AddWork from "./Screens/AddWork.jsx";
 import NewsLetter from "./Screens/NewsLetter";
@@ -280,6 +281,17 @@ function App() {
             path="contact"
             element={
               <Contact
+                deleteConfirmation={deleteConfirmation}
+                setDeleteConfirmation={setDeleteConfirmation}
+                setDeleteConfirmationURL={setDeleteConfirmationURL}
+                setDeleteConfirmationId={setDeleteConfirmationId}
+              />
+            }
+          />
+          <Route
+            path="quote"
+            element={
+              <Quotes
                 deleteConfirmation={deleteConfirmation}
                 setDeleteConfirmation={setDeleteConfirmation}
                 setDeleteConfirmationURL={setDeleteConfirmationURL}
