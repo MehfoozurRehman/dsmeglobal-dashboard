@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
+import { mutate } from "swr";
 import catagoryDataOption from "../constants/constant";
 import techDataOption from "../constants/techDataOption";
 
@@ -19,6 +20,12 @@ export default function AddProject({ closeOnClick }) {
   const [quote, setQuote] = useState("");
   const [theme, setTheme] = useState("");
   const [sliderImage, setSliderImage] = useState([]);
+
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_project");
+    };
+  }, []);
 
   return (
     <div className="popup__container">

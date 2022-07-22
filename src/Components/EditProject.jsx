@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
+import { mutate } from "swr";
 import catagoryDataOption from "../constants/constant";
 import techDataOption from "../constants/techDataOption";
 
@@ -22,6 +23,7 @@ export default function EditProject({ closeOnClick, editId }) {
   const [theme, setTheme] = useState("");
   const [sliderImage, setSliderImage] = useState([]);
   const [oldSliderImage, setOldSliderImage] = useState([]);
+
   useEffect(() => {
     setName(editId.title);
     setOldBanner(editId.banner);
@@ -36,7 +38,11 @@ export default function EditProject({ closeOnClick, editId }) {
     setQuoteAuthor(editId.quotationAuthor);
     setQuoteAuthorDesignation(editId.quotationDesignation);
     setTheme(editId.theme);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_project");
+    };
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
