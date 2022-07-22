@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import catagoryDataOption from "../constants/constant";
+import { mutate } from "swr";
 
 export default function AddBlog({ closeOnClick }) {
   const [name, setName] = useState("");
@@ -12,7 +13,11 @@ export default function AddBlog({ closeOnClick }) {
   const [categories, setCategories] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
-
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_blog");
+    };
+  }, []);
   return (
     <div className="popup__container">
       <form

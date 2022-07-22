@@ -1,5 +1,6 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
+import { mutate } from "swr";
 
 export default function DeleteConfirmation({
   closeOnClick,
@@ -15,8 +16,12 @@ export default function DeleteConfirmation({
       }
     );
     closeOnClick(false);
-    fetch();
   }
+  useEffect(() => {
+    return () => {
+      mutate(fetch);
+    };
+  });
   return (
     <div className="popup__container">
       <div className="popup__container__form">
