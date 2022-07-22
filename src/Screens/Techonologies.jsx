@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Loader from "../Components/Loader";
 import DeleteConfirmation from "../Components/DeleteConfirmation";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
+import Loader from "../Components/Loader";
+import axios from "axios";
 
 export default function Techonologies({
   isAdd,
@@ -29,7 +29,6 @@ export default function Techonologies({
     { heading: "" },
     { heading: "Name" },
     { heading: "Icon" },
-    { heading: "Image" },
     { heading: "Description" },
   ];
 
@@ -119,17 +118,6 @@ export default function Techonologies({
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.icon
-                          }
-                          alt="tableEntryPic"
-                          className="entry__info__row__text__img"
-                        />
-                      </div>
-                      <div className="entry__info__row__text">
-                        <img
-                          loading="lazy"
-                          src={
-                            "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                            item.image
                           }
                           alt="tableEntryPic"
                           className="entry__info__row__text__img"

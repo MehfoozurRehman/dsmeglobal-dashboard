@@ -1,7 +1,7 @@
 import React from "react";
+import { UserStatisticsCard } from "../Components/UserStatisticsCard";
 import { MonthlyStatsCard } from "../Components/MonthlyStatsCard";
 import { StatsCard } from "../Components/StatsCard";
-import { UserStatisticsCard } from "../Components/UserStatisticsCard";
 
 export default function Dashboard() {
   return (

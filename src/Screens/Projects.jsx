@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import Loader from "../Components/Loader";
 import DeleteConfirmation from "../Components/DeleteConfirmation";
+import Loader from "../Components/Loader";
+import axios from "axios";
 
 export default function Projects({
   isAdd,
@@ -159,6 +159,7 @@ export default function Projects({
                           .filter((item, i) => i < 2)
                           .map((item, i) => (
                             <img
+                              key={i}
                               loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +

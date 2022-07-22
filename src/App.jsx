@@ -1,42 +1,47 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { lazy, Suspense, useLayoutEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
 import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Header from "./Components/Header";
-import Sidebar from "./Components/Sidebar";
-import Dashboard from "./Screens/Dashboard.jsx";
-import Login from "./Screens/Login.jsx";
-import Work from "./Screens/Work.jsx";
-import Contact from "./Screens/Contact.jsx";
-import Quotes from "./Screens/Quotes.jsx";
-import NewsLetter from "./Screens/NewsLetter";
-import Projects from "./Screens/Projects";
-import Services from "./Screens/Services";
-import Category from "./Screens/Category";
-import Client from "./Screens/Client";
-import Blogs from "./Screens/Blogs";
-import Techonologies from "./Screens/Techonologies";
-import CareersApplications from "./Screens/CareersApplications";
-import Vacancies from "./Screens/Vacancies";
 
-import AddVacancy from "./Components/AddVacancy";
-import EditVacancies from "./Components/EditVacancies";
-import EditCareersApplied from "./Components/EditCareersApplied";
-import AddCareersApplied from "./Components/AddCareersApplied";
-import AddTechonologies from "./Components/AddTechonologies";
-import EditTechonologies from "./Components/EditTechonologies";
-import EditBlog from "./Components/EditBlog";
-import AddBlog from "./Components/AddBlog";
-import AddCategory from "./Components/AddCategory";
-import EditService from "./Components/EditService";
-import AddProject from "./Components/AddProject";
-import AddService from "./Components/AddService";
-import EditProject from "./Components/EditProject";
-import AddClient from "./Components/AddClient";
-import EditClient from "./Components/EditClient";
-import EditWork from "./Components/EditWork.jsx";
-import AddWork from "./Components/AddWork.jsx";
-import DeleteConfirmation from "./Components/DeleteConfirmation";
+import Loader from "./Components/Loader";
+
+const AddVacancy = lazy(() => import("./Components/AddVacancy"));
+const EditVacancies = lazy(() => import("./Components/EditVacancies"));
+const EditCareersApplied = lazy(() =>
+  import("./Components/EditCareersApplied")
+);
+const AddCareersApplied = lazy(() => import("./Components/AddCareersApplied"));
+const AddTechonologies = lazy(() => import("./Components/AddTechonologies"));
+const EditTechonologies = lazy(() => import("./Components/EditTechonologies"));
+const AddBlog = lazy(() => import("./Components/AddBlog"));
+const EditBlog = lazy(() => import("./Components/EditBlog"));
+const AddCategory = lazy(() => import("./Components/AddCategory"));
+const EditService = lazy(() => import("./Components/EditService"));
+const AddProject = lazy(() => import("./Components/AddProject"));
+const AddService = lazy(() => import("./Components/AddService"));
+const EditProject = lazy(() => import("./Components/EditProject"));
+const AddClient = lazy(() => import("./Components/AddClient"));
+const AddWork = lazy(() => import("./Components/AddWork"));
+const DeleteConfirmation = lazy(() =>
+  import("./Components/DeleteConfirmation")
+);
+const Sidebar = lazy(() => import("./Components/Sidebar"));
+const Header = lazy(() => import("./Components/Header"));
+
+const Work = lazy(() => import("./Screens/Work"));
+const Contact = lazy(() => import("./Screens/Contact"));
+const Quotes = lazy(() => import("./Screens/Quotes"));
+const NewsLetter = lazy(() => import("./Screens/NewsLetter"));
+const Projects = lazy(() => import("./Screens/Projects"));
+const Services = lazy(() => import("./Screens/Services"));
+const Category = lazy(() => import("./Screens/Category"));
+const Client = lazy(() => import("./Screens/Client"));
+const Login = lazy(() => import("./Screens/Login"));
+const Blogs = lazy(() => import("./Screens/Blogs"));
+const Vacancies = lazy(() => import("./Screens/Vacancies"));
+const Techonologies = lazy(() => import("./Screens/Techonologies"));
+const Dashboard = lazy(() => import("./Screens/Dashboard"));
+const CareersApplications = lazy(() => import("./Screens/CareersApplications"));
 
 function Main() {
   return (
@@ -87,7 +92,7 @@ function App() {
     }
   }, [window.location.pathname]);
   return (
-    <>
+    <Suspense fallback={<Loader height="100vh" />}>
       {isAddCategory ? <AddCategory closeOnClick={setIsAddCategory} /> : null}
       {isAddClient ? <AddClient closeOnClick={setIsAddClient} /> : null}
       {isEditClient ? (
@@ -141,7 +146,6 @@ function App() {
         />
       ) : null}
       <WidgetLoader />
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Main />}>
@@ -302,7 +306,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+    </Suspense>
   );
 }
 

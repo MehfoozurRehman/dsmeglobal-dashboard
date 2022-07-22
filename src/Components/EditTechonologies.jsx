@@ -4,17 +4,16 @@ import { Widget } from "react-cloudinary-upload-widget";
 
 export default function EditTechonologies({ closeOnClick, editId }) {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [oldImage, setOldImage] = useState("");
   const [icon, setIcon] = useState("");
   const [oldIcon, setOldIcon] = useState("");
   const [content, setContent] = useState("");
+
   useEffect(() => {
     setName(editId.name);
     setOldIcon(editId.icon);
-    setOldImage(editId.image);
     setContent(editId.content);
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
@@ -26,7 +25,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               _id: editId._id,
               name: name,
               icon: icon === "" ? oldIcon : icon,
-              image: image === "" ? oldImage : image,
+              image: "",
               content: content,
             }
           );
@@ -126,7 +125,6 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               }
               style={{
                 color: "black",
-
                 width: "120px",
                 backgroundColor: "white",
                 border: "1px solid #242424",
@@ -153,58 +151,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               apiKey={915662453295273}
             />
           </div>
-          <div>
-            {" "}
-            <div className="popup__container__form__heading">Upload Image</div>
-            <Widget
-              sources={["local"]}
-              resourceType={"image"}
-              cloudName={"mehfoozurrehman"}
-              uploadPreset={"cqido5en"}
-              buttonText={
-                <img
-                  loading="lazy"
-                  src={
-                    image === ""
-                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        oldImage
-                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        image
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
-              }
-              style={{
-                color: "black",
-
-                width: "120px",
-                backgroundColor: "white",
-                border: "1px solid #242424",
-                borderRadius: "4px",
-                fontSize: 50,
-                height: "120px",
-                cursor: "pointer",
-                padding: 0,
-              }}
-              folder={"dsme_global"}
-              cropping={true}
-              multiple={false}
-              autoClose={false}
-              onSuccess={(e) => {
-                setImage(e.info.path);
-                console.log(e);
-              }}
-              onFailure={(e) => {
-                console.log(e);
-              }}
-              logging={true}
-              use_filename={true}
-              destroy={true}
-              apiKey={915662453295273}
-            />
-          </div>
         </div>
-
         <button
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}

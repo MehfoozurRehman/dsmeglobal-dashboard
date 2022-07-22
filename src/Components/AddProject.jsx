@@ -285,6 +285,7 @@ export default function AddProject({ closeOnClick }) {
                           .filter((item, i) => i < 2)
                           .map((item, index) => (
                             <img
+                              key={index}
                               loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
