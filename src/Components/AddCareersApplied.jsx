@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
+import { mutate } from "swr";
 
 export default function AddCareersApplied({ closeOnClick }) {
   const [name, setName] = useState("");
@@ -11,6 +12,12 @@ export default function AddCareersApplied({ closeOnClick }) {
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState([]);
   const [cv, setCV] = useState("");
+
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_careers_applied");
+    };
+  }, []);
 
   return (
     <div className="popup__container">

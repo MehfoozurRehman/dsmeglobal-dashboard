@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
+import Select from "react-select";
+import { mutate } from "swr";
 
 export default function EditCareersApplied({ closeOnClick, editId }) {
   const [name, setName] = useState("");
@@ -12,15 +13,7 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState([]);
-  console.log({
-    _id: editId._id,
-    name: name,
-    email: email,
-    phone: phone,
-    position: position,
-    department: department,
-    cv: cv === "" ? oldCV : cv,
-  });
+
   useEffect(() => {
     setName(editId.name);
     setEmail(editId.email);
@@ -28,7 +21,11 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
     setPosition(editId.position);
     setDepartment(editId.department);
     setOldCV(editId.cv);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_careers_applied");
+    };
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
