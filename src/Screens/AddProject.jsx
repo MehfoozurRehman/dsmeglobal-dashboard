@@ -182,7 +182,7 @@ export default function AddProject({ closeOnClick }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -233,7 +233,7 @@ export default function AddProject({ closeOnClick }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -297,7 +297,7 @@ export default function AddProject({ closeOnClick }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -357,7 +357,6 @@ export default function AddProject({ closeOnClick }) {
                 setTheme(e.target.value);
               }}
               style={{
-                border: "none",
                 height: 42,
                 width: "50%",
                 borderRadius: 5,

@@ -200,7 +200,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -250,7 +250,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -333,7 +333,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   }
                   style={{
                     color: "black",
-                    border: "none",
+
                     width: "120px",
                     backgroundColor: "white",
                     border: "1px solid #242424",
@@ -395,7 +395,6 @@ export default function EditProject({ closeOnClick, editId }) {
                 setTheme(e.target.value);
               }}
               style={{
-                border: "none",
                 height: 42,
                 width: "50%",
                 borderRadius: 5,

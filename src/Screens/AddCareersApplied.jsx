@@ -181,7 +181,7 @@ export default function AddCareersApplied({ closeOnClick }) {
             }
             style={{
               color: "black",
-              border: "none",
+
               width: "fit-content",
               minWidth: "170px",
               backgroundColor: "white",

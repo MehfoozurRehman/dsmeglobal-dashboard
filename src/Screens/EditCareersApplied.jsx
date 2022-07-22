@@ -193,7 +193,7 @@ export default function EditCareersApplied({ closeOnClick, editId }) {
             }
             style={{
               color: "black",
-              border: "none",
+
               width: "fit-content",
               minWidth: "170px",
               backgroundColor: "white",

@@ -25,7 +25,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
             {
               _id: editId._id,
               name: name,
-              image: icon === "" ? oldIcon : icon,
+              icon: icon === "" ? oldIcon : icon,
               image: image === "" ? oldImage : image,
               content: content,
             }
@@ -125,7 +125,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               }
               style={{
                 color: "black",
-                border: "none",
+
                 width: "120px",
                 backgroundColor: "white",
                 border: "1px solid #242424",
@@ -174,7 +174,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               }
               style={{
                 color: "black",
-                border: "none",
+
                 width: "120px",
                 backgroundColor: "white",
                 border: "1px solid #242424",

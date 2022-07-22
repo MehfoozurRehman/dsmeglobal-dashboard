@@ -1,25 +1,25 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DSME Global",
+  "name": "DSME Global",
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "./logo.webp",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/svg"
+      "type": "image/png"
     },
     {
-      "src": "favicon.svg",
-      "type": "image/svg",
+      "src": "./logo.webp",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon.svg",
-      "type": "image/svg",
+      "src": "./logo.webp",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#189366",
+  "background_color": "#000000"
 }
