@@ -21,6 +21,7 @@ const AddProject = lazy(() => import("./Components/AddProject"));
 const AddService = lazy(() => import("./Components/AddService"));
 const EditProject = lazy(() => import("./Components/EditProject"));
 const AddClient = lazy(() => import("./Components/AddClient"));
+const EditClient = lazy(() => import("./Components/EditClient"));
 const AddWork = lazy(() => import("./Components/AddWork"));
 const DeleteConfirmation = lazy(() =>
   import("./Components/DeleteConfirmation")

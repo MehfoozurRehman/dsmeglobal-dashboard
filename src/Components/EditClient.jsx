@@ -1,15 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import { mutate } from "swr";
 
 export default function EditClient({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [oldImage, setOldImage] = useState("");
+
   useEffect(() => {
     setName(editId.name);
     setOldImage(editId.logo);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_client");
+    };
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
