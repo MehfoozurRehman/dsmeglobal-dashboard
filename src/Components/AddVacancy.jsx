@@ -1,15 +1,22 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { mutate } from "swr";
 
 export default function AddVacancy({ closeOnClick }) {
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");
   const [requirements, setRequirements] = useState("");
+
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_careers");
+    };
+  }, []);
 
   return (
     <div className="popup__container">

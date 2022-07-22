@@ -4,6 +4,7 @@ import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { mutate } from "swr";
 
 export default function EditVacancies({ closeOnClick, editId }) {
   const [position, setPosition] = useState("");
@@ -16,7 +17,11 @@ export default function EditVacancies({ closeOnClick, editId }) {
     setDescription(editId.description);
     setRequirements(editId.requirements);
     setDepartment(editId.department);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_careers");
+    };
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
