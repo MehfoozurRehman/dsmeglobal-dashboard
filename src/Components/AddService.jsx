@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
+import { mutate } from "swr";
 import catagoryDataOption from "../constants/constant";
 
 export default function AddService({ closeOnClick }) {
@@ -11,6 +12,12 @@ export default function AddService({ closeOnClick }) {
   const [image, setImage] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_service");
+    };
+  }, []);
 
   return (
     <div className="popup__container">

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
+import { mutate } from "swr";
 import catagoryDataOption from "../constants/constant";
 
 export default function EditService({ closeOnClick, editId }) {
@@ -13,6 +14,7 @@ export default function EditService({ closeOnClick, editId }) {
   const [oldLogo, setOldLogo] = useState("");
   const [image, setImage] = useState("");
   const [oldImage, setOldImage] = useState("");
+
   useEffect(() => {
     setCategories(editId.categories);
     setDescription(editId.description);
@@ -20,7 +22,11 @@ export default function EditService({ closeOnClick, editId }) {
     setName(editId.title);
     setOldLogo(editId.logo);
     setOldImage(editId.image);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_service");
+    };
   }, [editId]);
+
   return (
     <div className="popup__container">
       <form
