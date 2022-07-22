@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import { mutate } from "swr";
 
 export default function AddWork({ closeOnClick }) {
   const [company, setCompany] = useState("");
@@ -8,6 +9,12 @@ export default function AddWork({ closeOnClick }) {
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
   const [image, setImage] = useState("");
+
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_work");
+    };
+  }, []);
 
   return (
     <div className="popup__container">

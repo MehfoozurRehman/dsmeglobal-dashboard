@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import { mutate } from "swr";
 
 export default function EditWork({ closeOnClick, editId }) {
   const [company, setCompany] = useState("");
@@ -17,6 +18,9 @@ export default function EditWork({ closeOnClick, editId }) {
     setDescription(editId.description);
     setOldLogo(editId.logo);
     setOldImage(editId.image);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_work");
+    };
   }, [editId]);
 
   return (
