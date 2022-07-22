@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import { mutate } from "swr";
 
 export default function EditTechonologies({ closeOnClick, editId }) {
   const [name, setName] = useState("");
@@ -12,6 +13,9 @@ export default function EditTechonologies({ closeOnClick, editId }) {
     setName(editId.name);
     setOldIcon(editId.icon);
     setContent(editId.content);
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_techonologies");
+    };
   }, [editId]);
 
   return (
