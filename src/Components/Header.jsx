@@ -14,7 +14,12 @@ export default function Header() {
           ).checked = true;
         }}
       >
-        <img src={logo} alt="logo" className="header__container__logo__svg" />
+        <img
+          loading="lazy"
+          src={logo}
+          alt="logo"
+          className="header__container__logo__svg"
+        />
       </Link>
     </div>
   );

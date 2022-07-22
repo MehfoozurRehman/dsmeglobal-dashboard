@@ -1,38 +1,42 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
-import catagoryDataOption from "../constants/constant";
 
-export default function AddService({ closeOnClick }) {
-  const [categories, setCategories] = useState("");
+export default function EditWork({ closeOnClick, editId }) {
+  const [company, setCompany] = useState("");
   const [name, setName] = useState("");
-  const [logo, setLogo] = useState("");
-  const [image, setImage] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
+  const [logo, setLogo] = useState("");
+  const [oldLogo, setOldLogo] = useState("");
+  const [image, setImage] = useState("");
+  const [oldImage, setOldImage] = useState("");
+
+  useEffect(() => {
+    setCompany(editId.company);
+    setName(editId.title);
+    setDescription(editId.description);
+    setOldLogo(editId.logo);
+    setOldImage(editId.image);
+  }, [editId]);
 
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post(
-            `https://dsmeglobal-api.herokuapp.com/api/v1/set_service`,
-            {
-              logo: logo,
-              image: image,
-              categories: categories,
-              title: name,
-              shortDescription: shortDescription,
-              description: description,
-            }
-          );
+          axios.put(`https://dsmeglobal-api.herokuapp.com/api/v1/update_work`, {
+            _id: editId._id,
+            logo: logo === "" ? oldLogo : logo,
+            image: image === "" ? oldImage : image,
+            company: company,
+            title: name,
+            description: description,
+          });
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Add Service</div>
+          <div>Edit Work</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -75,7 +79,17 @@ export default function AddService({ closeOnClick }) {
             </svg>
           </button>
         </div>
-
+        <div className="popup__container__form__heading">Company Name</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="company"
+            value={company}
+            onChange={(e) => {
+              setCompany(e.target.value);
+            }}
+          />
+        </div>
         <div className="popup__container__form__heading">Name</div>
         <div className="login__container__content__form__input">
           <input
@@ -85,31 +99,6 @@ export default function AddService({ closeOnClick }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
-          />
-        </div>
-        <div className="popup__container__form__heading">Categories</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
-            placeholder="Categories"
-            required
-            value={categories}
-            onChange={(e) => {
-              setCategories(e);
-            }}
-          />
-        </div>
-        <div className="popup__container__form__heading">Short Description</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="Short Description"
-            value={shortDescription}
-            onChange={(e) => {
-              setShortDescription(e.target.value);
-            }}
-            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
@@ -124,7 +113,6 @@ export default function AddService({ closeOnClick }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
-            required
           />
         </div>
         <div style={{ display: "flex" }}>
@@ -136,17 +124,17 @@ export default function AddService({ closeOnClick }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                logo !== "" ? (
-                  <img
-                    src={
-                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      logo
-                    }
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                ) : (
-                  "+"
-                )
+                <img
+                  loading="lazy"
+                  src={
+                    logo === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldLogo
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        logo
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
               }
               style={{
                 color: "black",
@@ -185,17 +173,17 @@ export default function AddService({ closeOnClick }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                image !== "" ? (
-                  <img
-                    src={
-                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      image
-                    }
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                ) : (
-                  "+"
-                )
+                <img
+                  loading="lazy"
+                  src={
+                    image === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldImage
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        image
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
               }
               style={{
                 color: "black",
@@ -232,7 +220,7 @@ export default function AddService({ closeOnClick }) {
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
         >
-          Add
+          Edit
         </button>
       </form>
     </div>

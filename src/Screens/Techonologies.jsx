@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loader from "./Loader";
-import DeleteConfirmation from "./DeleteConfirmation";
+import Loader from "../Components/Loader";
+import DeleteConfirmation from "../Components/DeleteConfirmation";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
 
 export default function Techonologies({
@@ -115,6 +115,7 @@ export default function Techonologies({
                       <div className="entry__info__row__text">{item.name}</div>
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.icon
@@ -125,6 +126,7 @@ export default function Techonologies({
                       </div>
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.image

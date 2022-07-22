@@ -188,6 +188,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   uploadPreset={"cqido5en"}
                   buttonText={
                     <img
+                      loading="lazy"
                       src={
                         image === ""
                           ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
@@ -238,6 +239,7 @@ export default function EditProject({ closeOnClick, editId }) {
                   uploadPreset={"cqido5en"}
                   buttonText={
                     <img
+                      loading="lazy"
                       src={
                         banner === ""
                           ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
@@ -300,6 +302,7 @@ export default function EditProject({ closeOnClick, editId }) {
                           .filter((item, i) => i < 2)
                           .map((item, index) => (
                             <img
+                              loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                                 item
@@ -321,6 +324,7 @@ export default function EditProject({ closeOnClick, editId }) {
                           .filter((item, i) => i < 2)
                           .map((item, index) => (
                             <img
+                              loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                                 item

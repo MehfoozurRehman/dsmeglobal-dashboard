@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import Loader from "./Loader";
-import DeleteConfirmation from "./DeleteConfirmation";
+import Loader from "../Components/Loader";
+import DeleteConfirmation from "../Components/DeleteConfirmation";
 import { parseDate } from "../utils/parseDate";
 
 export default function Blogs({
@@ -142,6 +142,7 @@ export default function Blogs({
                       )}
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.image
@@ -150,13 +151,6 @@ export default function Blogs({
                           className="entry__info__row__text__img"
                         />
                       </div>
-                      {/* <div className="entry__info__row__text">{item.title}</div>
-                      
-                      
-                      <div className="entry__info__row__text">
-                        {item.isOur.map((item) => item.label)}
-                      </div>
-                      <div className="entry__info__row__text">{item.url}</div> */}
                     </div>
                   ))
                 ) : (

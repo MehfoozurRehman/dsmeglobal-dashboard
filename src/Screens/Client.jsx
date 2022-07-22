@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import Loader from "./Loader";
-import DeleteConfirmation from "./DeleteConfirmation";
+import Loader from "../Components/Loader";
+import DeleteConfirmation from "../Components/DeleteConfirmation";
 
 export default function Client({
   isAddClient,
@@ -108,6 +108,7 @@ export default function Client({
                       </div>
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.logo

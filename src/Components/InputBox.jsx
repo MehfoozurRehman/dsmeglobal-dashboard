@@ -47,6 +47,7 @@ export default function InputBox({
           <div className="panel__container__form__input__pic__content">
             {uploadedImg ? (
               <img
+                loading="lazy"
                 src={value}
                 alt="UploadedPic"
                 className="panel__container__form__input__pic__content__img"

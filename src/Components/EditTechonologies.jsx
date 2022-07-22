@@ -113,6 +113,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               uploadPreset={"cqido5en"}
               buttonText={
                 <img
+                  loading="lazy"
                   src={
                     icon === ""
                       ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
@@ -162,6 +163,7 @@ export default function EditTechonologies({ closeOnClick, editId }) {
               uploadPreset={"cqido5en"}
               buttonText={
                 <img
+                  loading="lazy"
                   src={
                     image === ""
                       ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +

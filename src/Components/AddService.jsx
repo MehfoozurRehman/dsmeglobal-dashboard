@@ -1,48 +1,38 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
 
-export default function EditService({ closeOnClick, editId }) {
+export default function AddService({ closeOnClick }) {
   const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
+  const [logo, setLogo] = useState("");
+  const [image, setImage] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
-  const [logo, setLogo] = useState("");
-  const [oldLogo, setOldLogo] = useState("");
-  const [image, setImage] = useState("");
-  const [oldImage, setOldImage] = useState("");
-  useEffect(() => {
-    setCategories(editId.categories);
-    setDescription(editId.description);
-    setShortDescription(editId.shortDescription);
-    setName(editId.title);
-    setOldLogo(editId.logo);
-    setOldImage(editId.image);
-  }, [editId]);
+
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(
-            `https://dsmeglobal-api.herokuapp.com/api/v1/update_service`,
+          axios.post(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/set_service`,
             {
-              _id: editId._id,
-              logo: logo === "" ? oldLogo : logo,
-              image: image === "" ? oldImage : image,
+              logo: logo,
+              image: image,
               categories: categories,
               title: name,
-              description: description,
               shortDescription: shortDescription,
+              description: description,
             }
           );
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Service</div>
+          <div>Add Service</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -85,6 +75,7 @@ export default function EditService({ closeOnClick, editId }) {
             </svg>
           </button>
         </div>
+
         <div className="popup__container__form__heading">Name</div>
         <div className="login__container__content__form__input">
           <input
@@ -94,6 +85,7 @@ export default function EditService({ closeOnClick, editId }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            required
           />
         </div>
         <div className="popup__container__form__heading">Categories</div>
@@ -101,6 +93,7 @@ export default function EditService({ closeOnClick, editId }) {
           <Select
             options={catagoryDataOption}
             placeholder="Categories"
+            required
             value={categories}
             onChange={(e) => {
               setCategories(e);
@@ -116,6 +109,7 @@ export default function EditService({ closeOnClick, editId }) {
             onChange={(e) => {
               setShortDescription(e.target.value);
             }}
+            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
@@ -130,9 +124,9 @@ export default function EditService({ closeOnClick, editId }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
+            required
           />
         </div>
-
         <div style={{ display: "flex" }}>
           <div style={{ marginRight: "1em" }}>
             <div className="popup__container__form__heading">Upload Logo</div>
@@ -142,16 +136,18 @@ export default function EditService({ closeOnClick, editId }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                <img
-                  src={
-                    logo === ""
-                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        oldLogo
-                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        logo
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
+                logo !== "" ? (
+                  <img
+                    loading="lazy"
+                    src={
+                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                      logo
+                    }
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  "+"
+                )
               }
               style={{
                 color: "black",
@@ -190,16 +186,18 @@ export default function EditService({ closeOnClick, editId }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                <img
-                  src={
-                    image === ""
-                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        oldImage
-                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        image
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
+                image !== "" ? (
+                  <img
+                    loading="lazy"
+                    src={
+                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                      image
+                    }
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  "+"
+                )
               }
               style={{
                 color: "black",
@@ -236,7 +234,7 @@ export default function EditService({ closeOnClick, editId }) {
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
         >
-          Edit
+          Add
         </button>
       </form>
     </div>

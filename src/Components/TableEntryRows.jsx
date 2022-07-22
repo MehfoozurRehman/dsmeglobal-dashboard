@@ -45,6 +45,7 @@ function EntryInfoRowData({
     return (
       <div className="entry__info__row__text">
         <img
+          loading="lazy"
           src={tableEntryPic}
           alt="tableEntryPic"
           className="entry__info__row__text__img"

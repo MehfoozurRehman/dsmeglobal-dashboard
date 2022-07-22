@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
 import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
-import DeleteConfirmation from "./Screens/DeleteConfirmation";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Dashboard from "./Screens/Dashboard.jsx";
@@ -10,32 +9,34 @@ import Login from "./Screens/Login.jsx";
 import Work from "./Screens/Work.jsx";
 import Contact from "./Screens/Contact.jsx";
 import Quotes from "./Screens/Quotes.jsx";
-import EditWork from "./Screens/EditWork.jsx";
-import AddWork from "./Screens/AddWork.jsx";
 import NewsLetter from "./Screens/NewsLetter";
 import Projects from "./Screens/Projects";
 import Services from "./Screens/Services";
-import AddService from "./Screens/AddService";
-import EditService from "./Screens/EditService";
-import AddProject from "./Screens/AddProject";
-import EditProject from "./Screens/EditProject";
 import Category from "./Screens/Category";
-import AddCategory from "./Screens/AddCategory";
 import Client from "./Screens/Client";
-import AddClient from "./Screens/AddClient";
-import EditClient from "./Screens/EditClient";
 import Blogs from "./Screens/Blogs";
-import EditBlog from "./Screens/EditBlog";
-import AddBlog from "./Screens/AddBlog";
 import Techonologies from "./Screens/Techonologies";
-import AddTechonologies from "./Screens/AddTechonologies";
-import EditTechonologies from "./Screens/EditTechonologies";
 import CareersApplications from "./Screens/CareersApplications";
-import EditCareersApplied from "./Screens/EditCareersApplied";
-import AddCareersApplied from "./Screens/AddCareersApplied";
 import Vacancies from "./Screens/Vacancies";
-import AddVacancy from "./Screens/AddVacancy";
-import EditVacancies from "./Screens/EditVacancies";
+
+import AddVacancy from "./Components/AddVacancy";
+import EditVacancies from "./Components/EditVacancies";
+import EditCareersApplied from "./Components/EditCareersApplied";
+import AddCareersApplied from "./Components/AddCareersApplied";
+import AddTechonologies from "./Components/AddTechonologies";
+import EditTechonologies from "./Components/EditTechonologies";
+import EditBlog from "./Components/EditBlog";
+import AddBlog from "./Components/AddBlog";
+import AddCategory from "./Components/AddCategory";
+import EditService from "./Components/EditService";
+import AddProject from "./Components/AddProject";
+import AddService from "./Components/AddService";
+import EditProject from "./Components/EditProject";
+import AddClient from "./Components/AddClient";
+import EditClient from "./Components/EditClient";
+import EditWork from "./Components/EditWork.jsx";
+import AddWork from "./Components/AddWork.jsx";
+import DeleteConfirmation from "./Components/DeleteConfirmation";
 
 function Main() {
   return (
@@ -80,7 +81,7 @@ function App() {
   const [editBlogId, setEditBlogId] = useState("");
   const [editCareersAppliedId, setEditCareersAppliedId] = useState("");
   const [editVacanciesId, setEditVacanciesId] = useState("");
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (window.localStorage.getItem("user") === null) {
       navigate("/");
     }

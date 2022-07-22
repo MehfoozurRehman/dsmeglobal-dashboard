@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import Loader from "./Loader";
-import DeleteConfirmation from "./DeleteConfirmation";
+import Loader from "../Components/Loader";
+import DeleteConfirmation from "../Components/DeleteConfirmation";
 
 export default function Projects({
   isAdd,
@@ -131,6 +131,7 @@ export default function Projects({
                       <div className="entry__info__row__text">{item.title}</div>
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.image
@@ -141,6 +142,7 @@ export default function Projects({
                       </div>
                       <div className="entry__info__row__text">
                         <img
+                          loading="lazy"
                           src={
                             "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                             item.banner
@@ -157,6 +159,7 @@ export default function Projects({
                           .filter((item, i) => i < 2)
                           .map((item, i) => (
                             <img
+                              loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                                 item

@@ -1,33 +1,22 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 
-export default function EditWork({ closeOnClick, editId }) {
+export default function AddWork({ closeOnClick }) {
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
-  const [oldLogo, setOldLogo] = useState("");
   const [image, setImage] = useState("");
-  const [oldImage, setOldImage] = useState("");
-
-  useEffect(() => {
-    setCompany(editId.company);
-    setName(editId.title);
-    setDescription(editId.description);
-    setOldLogo(editId.logo);
-    setOldImage(editId.image);
-  }, [editId]);
 
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(`https://dsmeglobal-api.herokuapp.com/api/v1/update_work`, {
-            _id: editId._id,
-            logo: logo === "" ? oldLogo : logo,
-            image: image === "" ? oldImage : image,
+          axios.post(`https://dsmeglobal-api.herokuapp.com/api/v1/set_work`, {
+            logo: logo,
+            image: image,
             company: company,
             title: name,
             description: description,
@@ -36,7 +25,7 @@ export default function EditWork({ closeOnClick, editId }) {
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Work</div>
+          <div>Add Work</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -88,6 +77,7 @@ export default function EditWork({ closeOnClick, editId }) {
             onChange={(e) => {
               setCompany(e.target.value);
             }}
+            required
           />
         </div>
         <div className="popup__container__form__heading">Name</div>
@@ -99,6 +89,7 @@ export default function EditWork({ closeOnClick, editId }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            required
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
@@ -113,8 +104,10 @@ export default function EditWork({ closeOnClick, editId }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
+            required
           />
         </div>
+
         <div style={{ display: "flex" }}>
           <div style={{ marginRight: "1em" }}>
             <div className="popup__container__form__heading">Upload Logo</div>
@@ -124,16 +117,18 @@ export default function EditWork({ closeOnClick, editId }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                <img
-                  src={
-                    logo === ""
-                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        oldLogo
-                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        logo
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
+                logo !== "" ? (
+                  <img
+                    loading="lazy"
+                    src={
+                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                      logo
+                    }
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  "+"
+                )
               }
               style={{
                 color: "black",
@@ -172,16 +167,18 @@ export default function EditWork({ closeOnClick, editId }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                <img
-                  src={
-                    image === ""
-                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        oldImage
-                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                        image
-                  }
-                  style={{ width: "100%", height: "100%" }}
-                />
+                image !== "" ? (
+                  <img
+                    loading="lazy"
+                    src={
+                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                      image
+                    }
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  "+"
+                )
               }
               style={{
                 color: "black",
@@ -218,7 +215,7 @@ export default function EditWork({ closeOnClick, editId }) {
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
         >
-          Edit
+          Add
         </button>
       </form>
     </div>

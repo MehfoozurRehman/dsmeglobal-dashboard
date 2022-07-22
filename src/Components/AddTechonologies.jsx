@@ -106,6 +106,7 @@ export default function AddTechonologies({ closeOnClick }) {
               buttonText={
                 icon !== "" ? (
                   <img
+                    loading="lazy"
                     src={
                       "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                       icon
@@ -155,6 +156,7 @@ export default function AddTechonologies({ closeOnClick }) {
               buttonText={
                 image !== "" ? (
                   <img
+                    loading="lazy"
                     src={
                       "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                       image

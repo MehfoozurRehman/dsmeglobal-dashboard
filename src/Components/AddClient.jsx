@@ -84,6 +84,7 @@ export default function AddClient({ closeOnClick }) {
             buttonText={
               image !== "" ? (
                 <img
+                  loading="lazy"
                   src={
                     "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                     image

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import Loader from "./Loader";
-import DeleteConfirmation from "./DeleteConfirmation";
+import Loader from "../Components/Loader";
+import DeleteConfirmation from "../Components/DeleteConfirmation";
 
 export default function Quotes({}) {
   const [QuotesData, setQuotesData] = useState([]);

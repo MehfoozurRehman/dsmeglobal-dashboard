@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
@@ -170,6 +170,7 @@ export default function AddProject({ closeOnClick }) {
                   buttonText={
                     image !== "" ? (
                       <img
+                        loading="lazy"
                         src={
                           "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                           image
@@ -221,6 +222,7 @@ export default function AddProject({ closeOnClick }) {
                   buttonText={
                     banner !== "" ? (
                       <img
+                        loading="lazy"
                         src={
                           "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                           banner
@@ -283,6 +285,7 @@ export default function AddProject({ closeOnClick }) {
                           .filter((item, i) => i < 2)
                           .map((item, index) => (
                             <img
+                              loading="lazy"
                               src={
                                 "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                                 item

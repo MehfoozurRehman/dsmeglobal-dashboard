@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
 import Select from "react-select";
-import catagoryDataOption from "../constants/constant";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import catagoryDataOption from "../constants/constant";
 
 export default function AddBlog({ closeOnClick }) {
   const [name, setName] = useState("");
@@ -117,7 +117,6 @@ export default function AddBlog({ closeOnClick }) {
         </div>
         <CKEditor
           editor={ClassicEditor}
-          data=""
           onChange={(event, editor) => {
             const data = editor.getData();
             setContent(data);
@@ -133,6 +132,7 @@ export default function AddBlog({ closeOnClick }) {
             buttonText={
               image !== "" ? (
                 <img
+                  loading="lazy"
                   src={
                     "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
                     image

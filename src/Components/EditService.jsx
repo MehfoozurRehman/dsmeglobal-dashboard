@@ -1,31 +1,48 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import Select from "react-select";
+import catagoryDataOption from "../constants/constant";
 
-export default function AddWork({ closeOnClick }) {
-  const [company, setCompany] = useState("");
+export default function EditService({ closeOnClick, editId }) {
+  const [categories, setCategories] = useState("");
   const [name, setName] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
   const [logo, setLogo] = useState("");
+  const [oldLogo, setOldLogo] = useState("");
   const [image, setImage] = useState("");
-
+  const [oldImage, setOldImage] = useState("");
+  useEffect(() => {
+    setCategories(editId.categories);
+    setDescription(editId.description);
+    setShortDescription(editId.shortDescription);
+    setName(editId.title);
+    setOldLogo(editId.logo);
+    setOldImage(editId.image);
+  }, [editId]);
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.post(`https://dsmeglobal-api.herokuapp.com/api/v1/set_work`, {
-            logo: logo,
-            image: image,
-            company: company,
-            title: name,
-            description: description,
-          });
+          axios.put(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/update_service`,
+            {
+              _id: editId._id,
+              logo: logo === "" ? oldLogo : logo,
+              image: image === "" ? oldImage : image,
+              categories: categories,
+              title: name,
+              description: description,
+              shortDescription: shortDescription,
+            }
+          );
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Add Work</div>
+          <div>Edit Service</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -68,18 +85,6 @@ export default function AddWork({ closeOnClick }) {
             </svg>
           </button>
         </div>
-        <div className="popup__container__form__heading">Company Name</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="company"
-            value={company}
-            onChange={(e) => {
-              setCompany(e.target.value);
-            }}
-            required
-          />
-        </div>
         <div className="popup__container__form__heading">Name</div>
         <div className="login__container__content__form__input">
           <input
@@ -89,7 +94,28 @@ export default function AddWork({ closeOnClick }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
+          />
+        </div>
+        <div className="popup__container__form__heading">Categories</div>
+        <div className="login__container__content__form__input">
+          <Select
+            options={catagoryDataOption}
+            placeholder="Categories"
+            value={categories}
+            onChange={(e) => {
+              setCategories(e);
+            }}
+          />
+        </div>
+        <div className="popup__container__form__heading">Short Description</div>
+        <div className="login__container__content__form__input">
+          <input
+            type="text"
+            placeholder="Short Description"
+            value={shortDescription}
+            onChange={(e) => {
+              setShortDescription(e.target.value);
+            }}
           />
         </div>
         <div className="popup__container__form__heading">Description</div>
@@ -104,7 +130,6 @@ export default function AddWork({ closeOnClick }) {
             }}
             value={description}
             className="table__details__container__text__box__input"
-            required
           />
         </div>
 
@@ -117,17 +142,17 @@ export default function AddWork({ closeOnClick }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                logo !== "" ? (
-                  <img
-                    src={
-                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      logo
-                    }
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                ) : (
-                  "+"
-                )
+                <img
+                  loading="lazy"
+                  src={
+                    logo === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldLogo
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        logo
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
               }
               style={{
                 color: "black",
@@ -166,17 +191,17 @@ export default function AddWork({ closeOnClick }) {
               cloudName={"mehfoozurrehman"}
               uploadPreset={"cqido5en"}
               buttonText={
-                image !== "" ? (
-                  <img
-                    src={
-                      "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
-                      image
-                    }
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                ) : (
-                  "+"
-                )
+                <img
+                  loading="lazy"
+                  src={
+                    image === ""
+                      ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        oldImage
+                      : "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
+                        image
+                  }
+                  style={{ width: "100%", height: "100%" }}
+                />
               }
               style={{
                 color: "black",
@@ -213,7 +238,7 @@ export default function AddWork({ closeOnClick }) {
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
         >
-          Add
+          Edit
         </button>
       </form>
     </div>

@@ -1,51 +1,33 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
-import catagoryDataOption from "../constants/constant";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default function EditBlog({ closeOnClick, editId }) {
+export default function EditClient({ closeOnClick, editId }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [oldImage, setOldImage] = useState("");
-  const [categories, setCategories] = useState("");
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
-  console.log({
-    _id: editId._id,
-    title: name,
-    image: image === "" ? oldImage : image,
-    categories: categories,
-    author: author,
-    content: content,
-  });
   useEffect(() => {
-    setName(editId.title);
-    setOldImage(editId.image);
-    setCategories(editId.categories);
-    setAuthor(editId.author);
-    setContent(editId.content);
+    setName(editId.name);
+    setOldImage(editId.logo);
   }, [editId]);
   return (
     <div className="popup__container">
       <form
         onSubmit={() => {
           closeOnClick(false);
-          axios.put(`https://dsmeglobal-api.herokuapp.com/api/v1/update_blog`, {
-            _id: editId._id,
-            title: name,
-            image: image === "" ? oldImage : image,
-            categories: categories,
-            author: author,
-            content: content,
-          });
+          axios.put(
+            `https://dsmeglobal-api.herokuapp.com/api/v1/update_client`,
+            {
+              _id: editId._id,
+              name: name,
+              logo: image === "" ? oldImage : image,
+            }
+          );
         }}
         className="popup__container__form"
       >
         <div className="popup__container__form__header">
-          <div>Edit Blog</div>
+          <div>Edit Client</div>
           <button
             onClick={() => {
               closeOnClick(false);
@@ -100,45 +82,6 @@ export default function EditBlog({ closeOnClick, editId }) {
             required
           />
         </div>
-        <div className="popup__container__form__heading">Author</div>
-        <div className="login__container__content__form__input">
-          <input
-            type="text"
-            placeholder="Author"
-            value={author}
-            onChange={(e) => {
-              setAuthor(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <div className="popup__container__form__heading">Categories</div>
-        <div className="login__container__content__form__input">
-          <Select
-            options={catagoryDataOption}
-            placeholder="Categories"
-            isMulti
-            required
-            value={categories}
-            onChange={(e) => {
-              setCategories(e);
-            }}
-          />
-        </div>
-        <div
-          className="popup__container__form__heading"
-          style={{ marginTop: 10 }}
-        >
-          Content
-        </div>
-        <CKEditor
-          editor={ClassicEditor}
-          data={content}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setContent(data);
-          }}
-        />
         <div>
           <div className="popup__container__form__heading">Upload Image</div>
           <Widget
@@ -148,6 +91,7 @@ export default function EditBlog({ closeOnClick, editId }) {
             uploadPreset={"cqido5en"}
             buttonText={
               <img
+                loading="lazy"
                 src={
                   image === ""
                     ? "https://res.cloudinary.com/mehfoozurrehman/image/upload/" +
@@ -187,6 +131,7 @@ export default function EditBlog({ closeOnClick, editId }) {
             apiKey={915662453295273}
           />
         </div>
+
         <button
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}
