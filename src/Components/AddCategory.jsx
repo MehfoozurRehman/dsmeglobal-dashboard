@@ -1,8 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { mutate } from "swr";
 
 export default function AddCategory({ closeOnClick }) {
   const [name, setName] = useState("");
+  useEffect(() => {
+    return () => {
+      mutate("https://dsmeglobal-api.herokuapp.com/api/v1/get_category");
+    };
+  }, []);
 
   return (
     <div className="popup__container">
