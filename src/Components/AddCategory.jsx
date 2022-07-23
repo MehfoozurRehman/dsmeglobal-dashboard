@@ -84,6 +84,7 @@ export default function AddCategory({ closeOnClick }) {
           type="submit"
           style={{ marginTop: "1em", marginBottom: "1em" }}
           className="secondary__button"
+          title="Add Category"
         >
           Add
         </button>
