@@ -1,9 +1,8 @@
 import React, { lazy, Suspense, useLayoutEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
 import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
-import axios from "axios";
-
 import Loader from "./Components/Loader";
+import axios from "axios";
 
 const AddVacancy = lazy(() => import("./Components/AddVacancy"));
 const EditVacancies = lazy(() => import("./Components/EditVacancies"));

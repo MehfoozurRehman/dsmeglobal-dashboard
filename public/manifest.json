@@ -1,19 +1,19 @@
 {
-  "short_name": "DSME Global",
-  "name": "DSME Global",
+  "short_name": "DSME Global Dashbaord",
+  "name": "DSME Global Dashbaord",
   "icons": [
     {
-      "src": "./logo.webp",
+      "src": "./logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
     {
-      "src": "./logo.webp",
+      "src": "./logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "./logo.webp",
+      "src": "./logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
