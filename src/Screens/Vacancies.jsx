@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
 import DeleteConfirmation from "../Components/DeleteConfirmation";
 import { parseDate } from "../utils/parseDate";
 import { getText } from "../utils/getText";
-import Loader from "../Components/Loader";
-import axios from "axios";
-import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
+import useSWR from "swr";
 
-export default function Vacancies({
-  isAdd,
-  isEdit,
-  setIsEdit,
-  setIsAdd,
-  setEditId,
-}) {
-  const [VacanciesData, setVacanciesData] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function Vacancies({ setIsEdit, setIsAdd, setEditId }) {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState("");
 

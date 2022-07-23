@@ -1,6 +1,7 @@
 import axios from "axios";
 
 let techDataOption = [];
+
 axios
   .get(`https://dsmeglobal-api.herokuapp.com/api/v1/get_techonologies`)
   .then((res) => {

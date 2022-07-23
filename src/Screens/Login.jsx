@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,11 +8,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     if (window.localStorage.getItem("user") != null) {
       navigate("/dashboard");
     }
   }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
     axios

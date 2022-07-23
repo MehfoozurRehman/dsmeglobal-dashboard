@@ -8,4 +8,5 @@ axios
       catagoryDataOption.push({ value: item.name, label: item.name })
     );
   });
+
 export default catagoryDataOption;

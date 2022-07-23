@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import catagoryDataOption from "../constants/constant";
+import TextArea from "./TextArea";
+import Select from "react-select";
 import { mutate } from "swr";
 
 export default function AddBlog({ closeOnClick }) {
@@ -120,13 +119,13 @@ export default function AddBlog({ closeOnClick }) {
         >
           Content
         </div>
-        <CKEditor
-          editor={ClassicEditor}
+        <TextArea
           onChange={(event, editor) => {
             const data = editor.getData();
             setContent(data);
           }}
         />
+
         <div>
           <div className="popup__container__form__heading">Upload Image</div>
           <Widget
@@ -164,13 +163,6 @@ export default function AddBlog({ closeOnClick }) {
             cropping={true}
             multiple={false}
             autoClose={false}
-            onSuccess={(e) => {
-              setImage(e.info.path);
-              console.log(e);
-            }}
-            onFailure={(e) => {
-              console.log(e);
-            }}
             logging={true}
             use_filename={true}
             destroy={true}

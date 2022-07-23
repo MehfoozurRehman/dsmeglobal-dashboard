@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { mutate } from "swr";
+import TextArea from "./TextArea";
 
 export default function EditVacancies({ closeOnClick, editId }) {
   const [position, setPosition] = useState("");
@@ -126,8 +125,7 @@ export default function EditVacancies({ closeOnClick, editId }) {
         >
           Requirements
         </div>
-        <CKEditor
-          editor={ClassicEditor}
+        <TextArea
           data={requirements}
           onChange={(event, editor) => {
             const data = editor.getData();

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import DeleteConfirmation from "../Components/DeleteConfirmation";
 import TableEntryHeadings from "../Components/TableEntryHeadings";
-import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
+import useSWR from "swr";
 
 export default function Techonologies({ setIsEdit, setIsAdd, setEditId }) {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);

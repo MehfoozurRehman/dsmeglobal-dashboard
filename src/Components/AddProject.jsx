@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
+import techDataOption from "../constants/techDataOption";
+import catagoryDataOption from "../constants/constant";
 import Select from "react-select";
 import { mutate } from "swr";
-import catagoryDataOption from "../constants/constant";
-import techDataOption from "../constants/techDataOption";
 
 export default function AddProject({ closeOnClick }) {
   const [name, setName] = useState("");

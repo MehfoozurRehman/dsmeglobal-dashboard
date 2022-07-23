@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Widget } from "react-cloudinary-upload-widget";
-import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Select from "react-select";
+import TextArea from "./TextArea";
 import { mutate } from "swr";
 
 export default function EditBlog({ closeOnClick, editId }) {
@@ -130,8 +129,7 @@ export default function EditBlog({ closeOnClick, editId }) {
         >
           Content
         </div>
-        <CKEditor
-          editor={ClassicEditor}
+        <TextArea
           data={content}
           onChange={(event, editor) => {
             const data = editor.getData();
@@ -174,13 +172,6 @@ export default function EditBlog({ closeOnClick, editId }) {
             cropping={true}
             multiple={false}
             autoClose={false}
-            onSuccess={(e) => {
-              setImage(e.info.path);
-              console.log(e);
-            }}
-            onFailure={(e) => {
-              console.log(e);
-            }}
             logging={true}
             use_filename={true}
             destroy={true}

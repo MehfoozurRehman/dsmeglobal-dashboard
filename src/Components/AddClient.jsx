@@ -118,13 +118,6 @@ export default function AddClient({ closeOnClick }) {
             cropping={true}
             multiple={false}
             autoClose={false}
-            onSuccess={(e) => {
-              setImage(e.info.path);
-              console.log(e);
-            }}
-            onFailure={(e) => {
-              console.log(e);
-            }}
             logging={true}
             use_filename={true}
             destroy={true}

@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
 import catagoryDataOption from "../constants/constant";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Select from "react-select";
+import TextArea from "./TextArea";
 import { mutate } from "swr";
 
 export default function AddVacancy({ closeOnClick }) {
@@ -121,9 +120,7 @@ export default function AddVacancy({ closeOnClick }) {
         >
           Requirements
         </div>
-        <CKEditor
-          editor={ClassicEditor}
-          data=""
+        <TextArea
           onChange={(event, editor) => {
             const data = editor.getData();
             setRequirements(data);
